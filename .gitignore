@@ -1,0 +1,12 @@
+# Build
+.build/
+DerivedData/
+*.xcuserstate
+*.xcworkspace
+!default.xcworkspace
+
+# macOS
+.DS_Store
+
+# Swift Package
+.swiftpm/

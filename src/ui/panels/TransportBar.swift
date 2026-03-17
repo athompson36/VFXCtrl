@@ -1,0 +1,47 @@
+import SwiftUI
+
+struct TransportBar: View {
+    @EnvironmentObject private var midi: MIDIDeviceManager
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Menu {
+                Button("Refresh") { midi.refreshDevices() }
+                ForEach(midi.availableInputs, id: \.id) { item in
+                    Button(item.name) { midi.selectInput(item.id) }
+                }
+            } label: {
+                Text("IN: \(midi.inputName)")
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+            }
+            .frame(maxWidth: 140, alignment: .leading)
+
+            Menu {
+                ForEach(midi.availableOutputs, id: \.id) { item in
+                    Button(item.name) { midi.selectOutput(item.id) }
+                }
+            } label: {
+                Text("OUT: \(midi.outputName)")
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+            }
+            .frame(maxWidth: 140, alignment: .leading)
+
+            Text("Ch \(midi.midiChannel)")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            Spacer()
+            Button("Request Patch") {}
+            Button("Send") {}
+            Button("Compare") {}
+            Divider().frame(height: 20)
+            Button("Play") {}
+            Button("Stop") {}
+            Button("Record") {}
+            Button("Tap") {}
+        }
+        .padding()
+    }
+}
