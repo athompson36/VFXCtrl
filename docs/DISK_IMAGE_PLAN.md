@@ -12,10 +12,11 @@
 SysEx only.
 
 ### Phase 2
-Read-only disk-image metadata extractor.
-- list files
-- identify names/types
-- map banks/program files if format is understood
+Read-only disk-image metadata extractor (to be implemented when format is confirmed).
+- List files on disk image
+- Identify names/types from Ensoniq floppy layout
+- Map banks/program files if format is understood
+- No write support; import into library via SysEx only for now
 
 ### Phase 3
 Curated export pipeline.

@@ -40,10 +40,10 @@ struct TransportBar: View {
                 editor.comparePatch = editor.currentPatch
             }
             Divider().frame(height: 20)
-            Button("Play") {}
-            Button("Stop") {}
-            Button("Record") {}
-            Button("Tap") {}
+            Button("Play") { midi.sequencerPlay() }
+            Button("Stop") { midi.sequencerStop() }
+            Button("Record") { midi.sequencerRecord() }
+            Button("Tap") { midi.sequencerTap() }
         }
         .padding()
     }

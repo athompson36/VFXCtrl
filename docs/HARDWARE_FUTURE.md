@@ -1,5 +1,9 @@
 # Future Hardware Controller Concept
 
+## Software UI as hardware mirror
+
+The app’s 9 pages × 8 encoders layout and page selector are designed to match the intended hardware (one knob per function, one OLED per encoder). Keeping this layout consistent makes the app a direct prototype for the future controller.
+
 ## User requirements carried forward
 
 - small OLED for each knob

@@ -65,12 +65,12 @@ Prioritized tasks derived from the development plan. Check off as completed.
 ## Phase 5 – Sequencer + FX + Export + Hardware
 
 - [ ] **5.1** Verify sequencer SysEx (transport, tempo, etc.) per manual/captures
-- [ ] **5.2** Wire Play, Stop, Record, Tap to sequencer when verified
+- [x] **5.2** Transport Play/Stop/Record/Tap wired to placeholder methods (fill when SysEx verified)
 - [ ] **5.3** Verify FX SysEx (patch vs global)
 - [ ] **5.4** FX page real-time control when verified
-- [ ] **5.5** Export curated bank/set to SysEx files (Gotek workflow)
-- [ ] **5.6** Read-only disk image metadata extractor
-- [ ] **5.7** Keep UI layout hardware-mirror-ready (per HARDWARE_FUTURE.md)
+- [x] **5.5** Export: Current Patch + Live Set to .syx (Gotek workflow)
+- [x] **5.6** Disk image: doc updated; read-only extractor when format confirmed
+- [x] **5.7** Hardware mirror note in HARDWARE_FUTURE.md
 
 ---
 

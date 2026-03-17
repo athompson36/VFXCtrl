@@ -3,6 +3,8 @@ import SwiftUI
 struct MainView: View {
     @EnvironmentObject private var editor: EditorState
     @EnvironmentObject private var midi: MIDIDeviceManager
+    @EnvironmentObject private var library: LibraryDB
+    @State private var showExportSetSheet = false
 
     var body: some View {
         NavigationSplitView {
@@ -20,7 +22,31 @@ struct MainView: View {
                 SysExConsole()
                     .frame(height: 220)
             }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Menu("Export") {
+                        Button("Current Patch") {
+                            exportCurrentPatch()
+                        }
+                        .disabled(editor.currentPatch.rawSysEx == nil)
+                        Button("Live Set…") {
+                            showExportSetSheet = true
+                        }
+                        .disabled(library.liveSets.isEmpty)
+                    }
+                }
+            }
+            .sheet(isPresented: $showExportSetSheet) {
+                ExportLiveSetSheet(library: library) {
+                    showExportSetSheet = false
+                }
+            }
         }
+    }
+
+    private func exportCurrentPatch() {
+        guard let data = editor.currentPatch.rawSysEx else { return }
+        _ = ExportHelper.saveSysEx(data, defaultName: editor.currentPatch.name + ".syx")
     }
 
     @ViewBuilder

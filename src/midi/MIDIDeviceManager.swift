@@ -224,6 +224,20 @@ final class MIDIDeviceManager: ObservableObject {
             self.messageLog.append(text)
         }
     }
+
+    // MARK: - Sequencer (placeholders until VFX-SD transport SysEx is verified)
+    func sequencerPlay() {
+        // TODO: send VFX-SD Play SysEx when format known
+    }
+    func sequencerStop() {
+        // TODO: send VFX-SD Stop SysEx when format known
+    }
+    func sequencerRecord() {
+        // TODO: send VFX-SD Record SysEx when format known
+    }
+    func sequencerTap() {
+        // TODO: send or derive tap tempo when format known
+    }
 }
 
 private func sysexCompletionProc(_ request: UnsafeMutablePointer<MIDISysexSendRequest>) {
