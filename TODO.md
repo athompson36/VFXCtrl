@@ -42,23 +42,23 @@ Prioritized tasks derived from the development plan. Check off as completed.
 ## Phase 3 – Wave, Filter, Amp + Compare + Snapshots
 
 - [ ] **3.1** Add verified parameter addresses for Wave, Filter, Amp to `ParameterMap.swift` and `PARAMETER_MAP.md`
-- [ ] **3.2** Sync page controls with `currentPatch.parameters` and verified parameter definitions
+- [x] **3.2** Sync page controls with `currentPatch.parameters` and verified parameter definitions
 - [ ] **3.3** Send real-time SysEx parameter edit on control change (with delay)
-- [ ] **3.4** “Compare” button: copy current patch to `comparePatch`; show diff
-- [ ] **3.5** Compare UI: show changed keys (e.g. `CompareEngine.changedKeys`) and values
-- [ ] **3.6** Snapshots: save/restore current state (named list; restore loads and optionally sends)
-- [ ] **3.7** “Send” button: serialize current patch and send program dump to synth
+- [x] **3.4** “Compare” button: copy current patch to `comparePatch`; show diff
+- [x] **3.5** Compare UI: show changed keys (e.g. `CompareEngine.changedKeys`) and values
+- [x] **3.6** Snapshots: save/restore current state (named list; restore loads and optionally sends)
+- [x] **3.7** “Send” button: serialize current patch and send program dump to synth
 
 ---
 
 ## Phase 4 – Motion, Mod, Perf + Macros + Favorites / Live Sets
 
 - [ ] **4.1** Verify and add parameter addresses for Motion, Mod, Performance
-- [ ] **4.2** Wire Motion, Mod, Perf pages to parameters and real-time SysEx
-- [ ] **4.3** Expand MacroEngine (all 8 macros); document mapping in docs
-- [ ] **4.4** Favorites: mark patches; filter sidebar by favorite
-- [ ] **4.5** Live sets: create/edit named sets; reorder; load set for performance
-- [ ] **4.6** (Optional) Use TagEngine suggestions in library UI
+- [ ] **4.2** Wire Motion, Mod, Perf to real-time SysEx (needs addresses)
+- [x] **4.3** MacroEngine: all 8 macros map to params; docs/MACRO_MAP.md
+- [x] **4.4** Favorites: toggle in context menu; Favorites section in sidebar
+- [x] **4.5** Live sets: New Set, add patch (context menu), reorder/delete, tap to load
+- [ ] **4.6** (Optional) TagEngine suggestions in library UI
 
 ---
 
