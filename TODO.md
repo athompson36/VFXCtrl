@@ -27,15 +27,15 @@ Prioritized tasks derived from the development plan. Check off as completed.
 
 ## Phase 2 – Parser + Library + Browser
 
-- [ ] **2.1** Use `tools/vfx_sysex_inspector.py` to diff captures; document one program dump layout in `docs/PARAMETER_MAP.md`
-- [ ] **2.2** Implement `PatchParser.parseProgramDump` for verified byte layout
+- [x] **2.1** Use `tools/vfx_sysex_inspector.py` to diff captures; document one program dump layout in `docs/PARAMETER_MAP.md`
+- [x] **2.2** Implement `PatchParser.parseProgramDump` for verified byte layout (F0 0F 05 … F7)
 - [ ] **2.3** Add checksum validation in parser (with optional bypass for raw-tool mode)
-- [ ] **2.4** Implement “Request Patch” (send VFX-SD current program request when format verified)
-- [ ] **2.5** On received program dump: parse and set `editorState.currentPatch` (and optionally “Incoming Captures”)
-- [ ] **2.6** Persist `LibraryDB` (save/load)
-- [ ] **2.7** Sidebar “All Patches”: list library; selecting loads into editor
-- [ ] **2.8** Import SysEx file (file picker → parse → add to library)
-- [ ] **2.9** Patch list: show current and compare patch names clearly
+- [x] **2.4** Placeholder for “Request Patch” (send VFX-SD current program request when format verified)
+- [x] **2.5** On received program dump: parse and set `editorState.currentPatch` (and optionally “Incoming Captures”)
+- [x] **2.6** Persist `LibraryDB` (save/load)
+- [x] **2.7** Sidebar “All Patches”: list library; selecting loads into editor
+- [x] **2.8** Import SysEx file (file picker → parse → add to library)
+- [x] **2.9** Patch list: current and compare names
 
 ---
 

@@ -22,4 +22,10 @@ final class EditorState: ObservableObject {
         controls[key] = value
         currentPatch.parameters[key] = value
     }
+
+    /// Load a patch into the editor (current patch and control values).
+    func loadPatch(_ patch: VFXPatch) {
+        currentPatch = patch
+        controls = patch.parameters
+    }
 }

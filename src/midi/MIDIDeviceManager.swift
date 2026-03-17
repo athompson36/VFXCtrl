@@ -16,6 +16,9 @@ final class MIDIDeviceManager: ObservableObject {
     @Published var interMessageDelayMs: Double = 40
     @Published var sendStopped: Bool = false
 
+    /// Called when SysEx is received (after logging). Set by app to parse and load into editor.
+    var onReceiveSysEx: ((Data) -> Void)?
+
     private var clientRef: MIDIClientRef = 0
     private var inputPortRef: MIDIPortRef = 0
     private var outputPortRef: MIDIPortRef = 0
@@ -150,6 +153,7 @@ final class MIDIDeviceManager: ObservableObject {
     func receiveSysEx(_ data: Data) {
         let hex = data.map { String(format: "%02X", $0) }.joined(separator: " ")
         logWithTimestamp("RX", hex)
+        onReceiveSysEx?(data)
     }
 
     func sendSysEx(_ data: Data) {

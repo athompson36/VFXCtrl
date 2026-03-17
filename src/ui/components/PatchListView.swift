@@ -7,6 +7,16 @@ struct PatchListView: View {
         List {
             Section("Current") {
                 Text(editor.currentPatch.name)
+                    .font(.headline)
+            }
+            Section("Compare") {
+                if let compare = editor.comparePatch {
+                    Text(compare.name)
+                        .font(.headline)
+                } else {
+                    Text("None")
+                        .foregroundStyle(.secondary)
+                }
             }
         }
         .navigationTitle("Patches")

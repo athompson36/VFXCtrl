@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct TransportBar: View {
+    @EnvironmentObject private var editor: EditorState
     @EnvironmentObject private var midi: MIDIDeviceManager
 
     var body: some View {
@@ -33,9 +34,11 @@ struct TransportBar: View {
                 .foregroundStyle(.secondary)
 
             Spacer()
-            Button("Request Patch") {}
-            Button("Send") {}
-            Button("Compare") {}
+            Button("Request Patch") { requestPatch() }
+            Button("Send") { sendCurrentPatch() }
+            Button("Compare") {
+                editor.comparePatch = editor.currentPatch
+            }
             Divider().frame(height: 20)
             Button("Play") {}
             Button("Stop") {}
@@ -43,5 +46,15 @@ struct TransportBar: View {
             Button("Tap") {}
         }
         .padding()
+    }
+
+    private func requestPatch() {
+        // VFX-SD "send current program" request format TBD; placeholder.
+        // When verified, send the request SysEx here.
+    }
+
+    private func sendCurrentPatch() {
+        guard let data = editor.currentPatch.rawSysEx else { return }
+        midi.sendSysEx(data)
     }
 }
