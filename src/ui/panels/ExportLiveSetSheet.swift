@@ -10,9 +10,10 @@ struct ExportLiveSetSheet: View {
         VStack(spacing: 16) {
             Text("Export Live Set")
                 .font(.headline)
+                .foregroundStyle(VFXTheme.vfdGreen)
             if library.liveSets.isEmpty {
                 Text("No live sets.")
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(VFXTheme.textSecondary)
             } else {
                 Picker("Set", selection: $selectedSetId) {
                     Text("Choose one…").tag(nil as UUID?)
@@ -28,14 +29,17 @@ struct ExportLiveSetSheet: View {
                 if let msg = exportResult {
                     Text(msg)
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(VFXTheme.textSecondary)
                 }
             }
             Spacer()
             Button("Done") { onDismiss() }
+                .buttonStyle(VFXButtonStyle())
         }
         .padding(24)
         .frame(minWidth: 280, minHeight: 180)
+        .background(VFXTheme.panelBackground)
+        .foregroundStyle(VFXTheme.textPrimary)
         .onAppear {
             selectedSetId = library.liveSets.first?.id
         }

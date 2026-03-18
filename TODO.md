@@ -29,7 +29,7 @@ Prioritized tasks derived from the development plan. Check off as completed.
 
 - [x] **2.1** Use `tools/vfx_sysex_inspector.py` to diff captures; document one program dump layout in `docs/PARAMETER_MAP.md`
 - [x] **2.2** Implement `PatchParser.parseProgramDump` for verified byte layout (F0 0F 05 … F7)
-- [ ] **2.3** Add checksum validation in parser (with optional bypass for raw-tool mode)
+- [x] **2.3** Checksum validation stub (validateChecksum param; algorithm TBD)
 - [x] **2.4** Placeholder for “Request Patch” (send VFX-SD current program request when format verified)
 - [x] **2.5** On received program dump: parse and set `editorState.currentPatch` (and optionally “Incoming Captures”)
 - [x] **2.6** Persist `LibraryDB` (save/load)
@@ -58,7 +58,7 @@ Prioritized tasks derived from the development plan. Check off as completed.
 - [x] **4.3** MacroEngine: all 8 macros map to params; docs/MACRO_MAP.md
 - [x] **4.4** Favorites: toggle in context menu; Favorites section in sidebar
 - [x] **4.5** Live sets: New Set, add patch (context menu), reorder/delete, tap to load
-- [ ] **4.6** (Optional) TagEngine suggestions in library UI
+- [x] **4.6** TagEngine suggestions shown under patch name in Library
 
 ---
 
@@ -77,9 +77,9 @@ Prioritized tasks derived from the development plan. Check off as completed.
 ## Ongoing / Maintenance
 
 - [ ] Update `PARAMETER_MAP.md` and `ParameterMap.swift` for every new verified parameter
-- [ ] Add unit tests for PatchParser, CompareEngine, MacroEngine, serialization
-- [ ] Store per-device or user MIDI delay profile
-- [ ] Improve VirtualEncoder/value feedback for accessibility
+- [x] Add unit tests for PatchParser, CompareEngine, MacroEngine (Tests/VFXCtrlTests)
+- [x] Store MIDI delay and last input/output names (UserDefaults)
+- [x] VirtualEncoder: accessibilityLabel, accessibilityValue, accessibilityHint
 
 ---
 

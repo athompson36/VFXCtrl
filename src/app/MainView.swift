@@ -14,15 +14,21 @@ struct MainView: View {
         } detail: {
             VStack(spacing: 0) {
                 TransportBar()
-                Divider()
+                Divider().background(VFXTheme.textSecondary.opacity(0.3))
                 PageSelector(selectedPage: $editor.selectedPage)
-                Divider()
+                Divider().background(VFXTheme.textSecondary.opacity(0.3))
                 currentPage
-                Divider()
+                Divider().background(VFXTheme.textSecondary.opacity(0.3))
                 SysExConsole()
                     .frame(height: 220)
             }
+            .background(VFXTheme.panelBackground)
             .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("VFX-CTRL")
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .foregroundStyle(VFXTheme.vfdGreen)
+                }
                 ToolbarItem(placement: .primaryAction) {
                     Menu("Export") {
                         Button("Current Patch") {

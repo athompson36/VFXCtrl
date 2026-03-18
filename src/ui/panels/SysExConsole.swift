@@ -9,8 +9,13 @@ struct SysExConsole: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text("SysEx Log")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(VFXTheme.vfdGreen)
                 Spacer()
+                Button("Clear") { midi.clearLog() }
+                    .buttonStyle(VFXButtonStyle())
                 Button("Send file…") { showSendFile = true }
+                    .buttonStyle(VFXButtonStyle())
                     .fileImporter(
                         isPresented: $showSendFile,
                         allowedContentTypes: [.data],
@@ -24,21 +29,25 @@ struct SysExConsole: View {
                     }
                 HStack(spacing: 12) {
                     Text("Delay \(Int(midi.interMessageDelayMs)) ms")
-                        .font(.caption)
+                        .font(.system(size: 12))
+                        .foregroundStyle(VFXTheme.textSecondary)
                     Slider(value: $midi.interMessageDelayMs, in: 10...200, step: 5)
                         .frame(width: 120)
-                    Button("Stop Sends") {
-                        midi.stopSends()
-                    }
-                    .buttonStyle(.bordered)
+                        .tint(VFXTheme.vfdGreen)
+                    Button("Stop Sends") { midi.stopSends() }
+                        .buttonStyle(VFXButtonStyle())
                 }
             }
             .padding(.horizontal)
 
             List(midi.messageLog.reversed(), id: \.self) { line in
                 Text(line)
-                    .font(.system(.caption, design: .monospaced))
+                    .font(.system(size: 11, design: .monospaced))
+                    .foregroundStyle(VFXTheme.vfdGreenDim)
             }
+            .listRowBackground(VFXTheme.surface)
+            .scrollContentBackground(.hidden)
         }
+        .background(VFXTheme.panelBackground)
     }
 }

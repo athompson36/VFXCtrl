@@ -14,6 +14,7 @@ struct LibrarySidebar: View {
                         editor.loadPatch(patch)
                     }
                     .buttonStyle(.plain)
+                    .foregroundStyle(VFXTheme.textPrimary)
                     .lineLimit(1)
                     .contextMenu {
                         Button("Remove from Favorites") {
@@ -25,11 +26,22 @@ struct LibrarySidebar: View {
 
             Section("Library") {
                 ForEach(library.patches) { patch in
-                    Button(patch.name) {
+                    let suggested = TagEngine().suggestTags(for: patch)
+                    Button {
                         editor.loadPatch(patch)
+                    } label: {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(patch.name)
+                                .lineLimit(1)
+                            if !suggested.isEmpty {
+                                Text("Suggested: \(suggested.joined(separator: ", "))")
+                                    .font(.caption2)
+                                    .foregroundStyle(VFXTheme.textSecondary)
+                            }
+                        }
                     }
                     .buttonStyle(.plain)
-                    .lineLimit(1)
+                    .foregroundStyle(VFXTheme.textPrimary)
                     .contextMenu {
                         Button(library.favoriteIds.contains(patch.id) ? "Remove from Favorites" : "Add to Favorites") {
                             library.toggleFavorite(patch.id)
@@ -52,11 +64,13 @@ struct LibrarySidebar: View {
                 Button("Take Snapshot") {
                     editor.addSnapshot()
                 }
+                .foregroundStyle(VFXTheme.vfdGreen)
                 ForEach(editor.snapshots) { patch in
                     Button(patch.name) {
                         editor.restoreSnapshot(patch)
                     }
                     .buttonStyle(.plain)
+                    .foregroundStyle(VFXTheme.textPrimary)
                     .lineLimit(1)
                 }
                 .onDelete(perform: editor.removeSnapshot)
@@ -66,6 +80,7 @@ struct LibrarySidebar: View {
                 Button("New Live Set") {
                     library.addLiveSet()
                 }
+                .foregroundStyle(VFXTheme.vfdGreen)
                 ForEach(library.liveSets) { set in
                     DisclosureGroup(set.name) {
                         ForEach(set.patchIds, id: \.self) { id in
@@ -74,6 +89,7 @@ struct LibrarySidebar: View {
                                     editor.loadPatch(patch)
                                 }
                                 .buttonStyle(.plain)
+                                .foregroundStyle(VFXTheme.textPrimary)
                                 .lineLimit(1)
                             }
                         }
@@ -88,6 +104,9 @@ struct LibrarySidebar: View {
                 .onDelete(perform: library.removeLiveSet)
             }
         }
+        .scrollContentBackground(.hidden)
+        .background(VFXTheme.panelBackground)
+        .foregroundStyle(VFXTheme.textPrimary)
         .navigationTitle("Library")
         .toolbar {
             ToolbarItem(placement: .primaryAction) {

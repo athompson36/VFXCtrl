@@ -1,9 +1,10 @@
 import Foundation
 
-enum PatchParserError: Error {
+enum PatchParserError: Error, Equatable {
     case tooShort
     case notSysEx
     case noEndMarker
+    case checksumMismatch
 }
 
 /// VFX-SD program dump: F0 0F 05 ... F7 (Ensoniq manufacturer 0x0F; exact header TBD).
@@ -21,12 +22,16 @@ struct PatchParser {
         return true
     }
 
-    func parseProgramDump(_ data: Data) throws -> VFXPatch {
+    /// - Parameter validateChecksum: If true, validates checksum (algorithm TBD per VFX-SD spec). Use false for raw-tool / capture mode.
+    func parseProgramDump(_ data: Data, validateChecksum: Bool = false) throws -> VFXPatch {
         guard data.count >= minProgramDumpLength else { throw PatchParserError.tooShort }
         guard data.first == 0xF0 else { throw PatchParserError.notSysEx }
         guard data.last == sysexEnd else { throw PatchParserError.noEndMarker }
         guard data.prefix(expectedHeaderPrefix.count).elementsEqual(expectedHeaderPrefix) else {
             throw PatchParserError.notSysEx
+        }
+        if validateChecksum && !isChecksumValid(data) {
+            throw PatchParserError.checksumMismatch
         }
 
         let payloadStart = expectedHeaderPrefix.count
@@ -58,5 +63,11 @@ struct PatchParser {
             return s.trimmingCharacters(in: .whitespacesAndNewlines)
         }
         return "Captured Program"
+    }
+
+    /// Checksum algorithm TBD from VFX-SD spec. Until verified, returns true (accept all).
+    private func isChecksumValid(_ data: Data) -> Bool {
+        // TODO: implement when VFX-SD checksum format is documented (e.g. XOR/sum in last byte).
+        true
     }
 }

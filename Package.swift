@@ -13,5 +13,10 @@ let package = Package(
             path: "src",
             linkerSettings: [.linkedFramework("CoreMIDI")]
         ),
+        .testTarget(
+            name: "VFXCtrlTests",
+            dependencies: ["VFXCtrl"],
+            path: "Tests/VFXCtrlTests"
+        ),
     ]
 )

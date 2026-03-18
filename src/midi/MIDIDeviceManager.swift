@@ -10,11 +10,20 @@ final class MIDIDeviceManager: ObservableObject {
     @Published var selectedOutputRef: MIDIEndpointRef = 0
 
     /// MIDI channel the VFX-SD is set to (1-based). Used for channel voice / request messages if needed.
-    @Published var midiChannel: Int = 1
+    @Published var midiChannel: Int = 1 {
+        didSet { UserDefaults.standard.set(midiChannel, forKey: Self.defaultsKeyChannel) }
+    }
 
     @Published var messageLog: [String] = []
-    @Published var interMessageDelayMs: Double = 40
+    @Published var interMessageDelayMs: Double = 40 {
+        didSet { UserDefaults.standard.set(interMessageDelayMs, forKey: Self.defaultsKeyDelay) }
+    }
     @Published var sendStopped: Bool = false
+
+    private static let defaultsKeyDelay = "VFXCtrl.midi.interMessageDelayMs"
+    private static let defaultsKeyInputName = "VFXCtrl.midi.lastInputName"
+    private static let defaultsKeyOutputName = "VFXCtrl.midi.lastOutputName"
+    private static let defaultsKeyChannel = "VFXCtrl.midi.channel"
 
     /// Called when SysEx is received (after logging). Set by app to parse and load into editor.
     var onReceiveSysEx: ((Data) -> Void)?
@@ -27,6 +36,7 @@ final class MIDIDeviceManager: ObservableObject {
     private let sendLock = NSLock()
 
     init() {
+        loadMIDIPreferences()
         setupClient()
     }
 
@@ -67,20 +77,45 @@ final class MIDIDeviceManager: ObservableObject {
             outputs.append((ref, name))
         }
         DispatchQueue.main.async { [weak self] in
-            self?.availableInputs = inputs
-            self?.availableOutputs = outputs
-            if let s = self {
-                if s.selectedInputRef == 0, let first = inputs.first {
-                    s.selectedInputRef = first.0
-                    s.inputName = first.1
-                    s.connectInput()
-                }
-                if s.selectedOutputRef == 0, let first = outputs.first {
-                    s.selectedOutputRef = first.0
-                    s.outputName = first.1
-                }
+            guard let s = self else { return }
+            s.availableInputs = inputs
+            s.availableOutputs = outputs
+            let savedInput = UserDefaults.standard.string(forKey: Self.defaultsKeyInputName)
+            let savedOutput = UserDefaults.standard.string(forKey: Self.defaultsKeyOutputName)
+            if let name = savedInput, let match = inputs.first(where: { $0.1 == name }) {
+                s.selectedInputRef = match.0
+                s.inputName = match.1
+                s.connectInput()
+            } else if s.selectedInputRef == 0, let first = inputs.first {
+                s.selectedInputRef = first.0
+                s.inputName = first.1
+                s.connectInput()
+            }
+            if let name = savedOutput, let match = outputs.first(where: { $0.1 == name }) {
+                s.selectedOutputRef = match.0
+                s.outputName = match.1
+            } else if s.selectedOutputRef == 0, let first = outputs.first {
+                s.selectedOutputRef = first.0
+                s.outputName = first.1
             }
         }
+    }
+
+    private func loadMIDIPreferences() {
+        let d = UserDefaults.standard
+        let delay = d.double(forKey: Self.defaultsKeyDelay)
+        if delay >= 10 && delay <= 200 {
+            interMessageDelayMs = delay
+        }
+        let ch = d.integer(forKey: Self.defaultsKeyChannel)
+        if ch >= 1 && ch <= 16 {
+            midiChannel = ch
+        }
+    }
+
+    private func saveMIDIPreferences() {
+        UserDefaults.standard.set(inputName, forKey: Self.defaultsKeyInputName)
+        UserDefaults.standard.set(outputName, forKey: Self.defaultsKeyOutputName)
     }
 
     private func getEndpointName(_ ref: MIDIEndpointRef) -> String {
@@ -96,11 +131,13 @@ final class MIDIDeviceManager: ObservableObject {
         selectedInputRef = ref
         inputName = getEndpointName(ref)
         connectInput()
+        saveMIDIPreferences()
     }
 
     func selectOutput(_ ref: MIDIEndpointRef) {
         selectedOutputRef = ref
         outputName = getEndpointName(ref)
+        saveMIDIPreferences()
     }
 
     private var connectedInputRef: MIDIEndpointRef = 0
@@ -219,10 +256,19 @@ final class MIDIDeviceManager: ObservableObject {
         log("[\(ts)] \(direction) \(hex)")
     }
 
+    private static let maxLogLines = 500
+
     private func log(_ text: String) {
         DispatchQueue.main.async {
             self.messageLog.append(text)
+            if self.messageLog.count > Self.maxLogLines {
+                self.messageLog.removeFirst(self.messageLog.count - Self.maxLogLines)
+            }
         }
+    }
+
+    func clearLog() {
+        messageLog.removeAll()
     }
 
     // MARK: - Sequencer (placeholders until VFX-SD transport SysEx is verified)

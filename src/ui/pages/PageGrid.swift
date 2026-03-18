@@ -18,5 +18,7 @@ struct PageGrid: View {
             }
         }
         .padding(24)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(VFXTheme.surface)
     }
 }

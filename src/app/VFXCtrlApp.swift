@@ -13,6 +13,7 @@ struct VFXCtrlApp: App {
                 .environmentObject(midi)
                 .environmentObject(library)
                 .onAppear(perform: wireReceiveSysEx)
+                .preferredColorScheme(.dark)
         }
         .defaultSize(width: 1440, height: 900)
     }

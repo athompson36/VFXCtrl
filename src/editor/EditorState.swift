@@ -20,7 +20,8 @@ private let allPageControlKeys: [String] = [
     "amp.attack", "amp.decay", "amp.sustain", "amp.release", "amp.velocity", "amp.level", "amp.keyscale", "amp.alt",
     "mod.src1", "mod.dest1", "mod.depth1", "mod.src2", "mod.dest2", "mod.depth2", "mod.pedal", "mod.pressure",
     "perf.split", "perf.balance", "perf.detune", "perf.zonelow", "perf.zonehigh", "perf.vellow", "perf.velhigh", "perf.transpose",
-    "seq.tempo", "seq.song", "seq.track", "seq.loop", "seq.quant", "seq.click", "seq.mode", "seq.tap",
+    "seq.tempo", "seq.song", "seq.sequence", "seq.track", "seq.loop", "seq.quant", "seq.click", "seq.mode", "seq.tap",
+    "seq.clockSource", "seq.punchIn", "seq.punchOut",
     "fx.type", "fx.mix", "fx.time", "fx.feedback", "fx.depth", "fx.rate", "fx.tone", "fx.alt",
     "macro.brightness", "macro.motion", "macro.weight", "macro.attack", "macro.space", "macro.width", "macro.dirt", "macro.animate",
 ]
