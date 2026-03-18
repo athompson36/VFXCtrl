@@ -40,13 +40,17 @@ struct SysExConsole: View {
             }
             .padding(.horizontal)
 
-            List(midi.messageLog.reversed(), id: \.self) { line in
-                Text(line)
-                    .font(.system(size: 11, design: .monospaced))
-                    .foregroundStyle(VFXTheme.vfdGreenDim)
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 2) {
+                    ForEach(Array(midi.messageLog.suffix(200).reversed().enumerated()), id: \.offset) { _, line in
+                        Text(line)
+                            .font(.system(size: 11, design: .monospaced))
+                            .foregroundStyle(VFXTheme.vfdGreenDim)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+                .padding(.horizontal)
             }
-            .listRowBackground(VFXTheme.surface)
-            .scrollContentBackground(.hidden)
         }
         .background(VFXTheme.panelBackground)
     }

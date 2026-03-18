@@ -193,12 +193,18 @@ final class MIDIDeviceManager: ObservableObject {
         onReceiveSysEx?(data)
     }
 
-    func sendSysEx(_ data: Data) {
+    func sendSysEx(_ data: Data, quiet: Bool = false) {
+        LiveDebugLog.log("MIDI.sendSysEx(\(data.count) bytes, quiet=\(quiet)) START")
         sendLock.lock()
         sendQueue.append(data)
+        let queueCount = sendQueue.count
         sendLock.unlock()
-        logWithTimestamp("TX", data.map { String(format: "%02X", $0) }.joined(separator: " "))
+        LiveDebugLog.log("MIDI.sendSysEx queueCount=\(queueCount) after append")
+        if !quiet {
+            logWithTimestamp("TX", data.map { String(format: "%02X", $0) }.joined(separator: " "))
+        }
         startSendLoop()
+        LiveDebugLog.log("MIDI.sendSysEx END")
     }
 
     func stopSends() {
@@ -213,21 +219,29 @@ final class MIDIDeviceManager: ObservableObject {
 
     private func startSendLoop() {
         guard sendTask == nil else { return }
-        sendTask = Task { [weak self] in
+        LiveDebugLog.log("MIDI.startSendLoop SPAWN")
+        sendTask = Task.detached(priority: .utility) { [weak self] in
             guard let self else { return }
+            LiveDebugLog.log("MIDI.sendLoop RUNNING")
             let delayNs = UInt64(self.interMessageDelayMs * 1_000_000)
+            var iter = 0
             while !Task.isCancelled {
                 self.sendLock.lock()
                 let next = self.sendQueue.first
                 if next == nil {
                     self.sendQueue.removeAll()
                     self.sendLock.unlock()
+                    LiveDebugLog.log("MIDI.sendLoop EXIT (queue empty) iters=\(iter)")
                     break
                 }
                 self.sendQueue.removeFirst()
+                let count = next!.count
                 self.sendLock.unlock()
                 if self.sendStopped { continue }
+                iter += 1
+                LiveDebugLog.log("MIDI.sendLoop iter=\(iter) sendOneSysEx(\(count) bytes)")
                 self.sendOneSysEx(next!)
+                LiveDebugLog.log("MIDI.sendLoop sleep \(self.interMessageDelayMs)ms")
                 try? await Task.sleep(nanoseconds: delayNs)
             }
             await MainActor.run { self.sendTask = nil }
@@ -239,20 +253,30 @@ final class MIDIDeviceManager: ObservableObject {
         let count = data.count
         let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: count)
         data.copyBytes(to: buffer, count: count)
-        var request = MIDISysexSendRequest(
+        let requestPtr = UnsafeMutablePointer<MIDISysexSendRequest>.allocate(capacity: 1)
+        // RefCon holds only our allocated pointers; completion must not read from the request (CoreMIDI may overwrite it).
+        let refCon = UnsafeMutablePointer<SysexSendRefCon>.allocate(capacity: 1)
+        refCon.initialize(to: SysexSendRefCon(requestPtr: requestPtr, dataPtr: buffer))
+        requestPtr.initialize(to: MIDISysexSendRequest(
             destination: selectedOutputRef,
             data: buffer,
             bytesToSend: UInt32(count),
             complete: false,
             reserved: (0, 0, 0),
             completionProc: sysexCompletionProc,
-            completionRefCon: UnsafeMutableRawPointer(buffer)
-        )
-        MIDISendSysex(&request)
+            completionRefCon: UnsafeMutableRawPointer(refCon)
+        ))
+        MIDISendSysex(requestPtr)
     }
 
+    private static let timestampFormatter: ISO8601DateFormatter = {
+        let f = ISO8601DateFormatter()
+        f.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        return f
+    }()
+
     private func logWithTimestamp(_ direction: String, _ hex: String) {
-        let ts = ISO8601DateFormatter().string(from: Date())
+        let ts = Self.timestampFormatter.string(from: Date())
         log("[\(ts)] \(direction) \(hex)")
     }
 
@@ -286,7 +310,18 @@ final class MIDIDeviceManager: ObservableObject {
     }
 }
 
+/// Owned pointers for SysEx send; freed in completion. Do not read from the request in the completion—CoreMIDI may overwrite it.
+private struct SysexSendRefCon {
+    let requestPtr: UnsafeMutablePointer<MIDISysexSendRequest>
+    let dataPtr: UnsafeMutablePointer<UInt8>
+}
+
 private func sysexCompletionProc(_ request: UnsafeMutablePointer<MIDISysexSendRequest>) {
-    guard let refCon = request.pointee.completionRefCon else { return }
-    UnsafeMutablePointer<UInt8>(OpaquePointer(refCon)).deallocate()
+    LiveDebugLog.log("MIDI.sysexCompletionProc CALLED thread=\(Thread.isMainThread ? "main" : "bg")")
+    guard let refConRaw = request.pointee.completionRefCon else { return }
+    let refCon = refConRaw.assumingMemoryBound(to: SysexSendRefCon.self)
+    let ctx = refCon.pointee
+    ctx.dataPtr.deallocate()
+    ctx.requestPtr.deallocate()
+    refCon.deallocate()
 }

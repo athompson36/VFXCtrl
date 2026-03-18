@@ -24,24 +24,27 @@ struct PatchListView: View {
                 }
             }
             .listRowBackground(VFXTheme.surface)
-            if let compare = editor.comparePatch, !compareEngine.changedKeys(current: editor.currentPatch, compare: compare).isEmpty {
-                Section("Differences") {
-                    ForEach(compareEngine.changedKeys(current: editor.currentPatch, compare: compare), id: \.self) { key in
-                        HStack {
-                            Text(key)
-                                .font(.system(.caption, design: .monospaced))
-                                .foregroundStyle(VFXTheme.textPrimary)
-                            Spacer()
-                            Text("\(editor.currentPatch.parameters[key] ?? 0)")
-                                .foregroundStyle(VFXTheme.textSecondary)
-                            Text("→")
-                                .foregroundStyle(VFXTheme.textSecondary.opacity(0.7))
-                            Text("\(compare.parameters[key] ?? 0)")
-                                .foregroundStyle(VFXTheme.textSecondary)
+            if let compare = editor.comparePatch {
+                let diffs = compareEngine.changedKeys(current: editor.currentPatch, compare: compare)
+                if !diffs.isEmpty {
+                    Section("Differences") {
+                        ForEach(diffs, id: \.self) { key in
+                            HStack {
+                                Text(key)
+                                    .font(.system(.caption, design: .monospaced))
+                                    .foregroundStyle(VFXTheme.textPrimary)
+                                Spacer()
+                                Text("\(editor.currentPatch.parameters[key] ?? 0)")
+                                    .foregroundStyle(VFXTheme.textSecondary)
+                                Text("→")
+                                    .foregroundStyle(VFXTheme.textSecondary.opacity(0.7))
+                                Text("\(compare.parameters[key] ?? 0)")
+                                    .foregroundStyle(VFXTheme.textSecondary)
+                            }
                         }
                     }
+                    .listRowBackground(VFXTheme.surface)
                 }
-                .listRowBackground(VFXTheme.surface)
             }
         }
         .scrollContentBackground(.hidden)

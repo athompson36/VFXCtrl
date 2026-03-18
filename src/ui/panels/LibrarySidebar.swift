@@ -5,6 +5,7 @@ struct LibrarySidebar: View {
     @EnvironmentObject private var editor: EditorState
     @EnvironmentObject private var library: LibraryDB
     @State private var showImport = false
+    private let tagEngine = TagEngine()
 
     var body: some View {
         List {
@@ -26,7 +27,7 @@ struct LibrarySidebar: View {
 
             Section("Library") {
                 ForEach(library.patches) { patch in
-                    let suggested = TagEngine().suggestTags(for: patch)
+                    let suggested = tagEngine.suggestTags(for: patch)
                     Button {
                         editor.loadPatch(patch)
                     } label: {

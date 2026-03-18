@@ -47,6 +47,19 @@ struct MainView: View {
                     showExportSetSheet = false
                 }
             }
+            .onAppear {
+                editor.onLiveParameterChange = { key, value in
+                    LiveDebugLog.log("MainView.onLiveParameterChange \(key)=\(value) START")
+                    guard let data = LiveSysExBuilder.build(key: key, value: value) else {
+                        LiveDebugLog.log("MainView.onLiveParameterChange build=nil END")
+                        return
+                    }
+                    let hex = data.map { String(format: "%02X", $0) }.joined(separator: " ")
+                    LiveDebugLog.log("Live SysEx TX: \(hex)")
+                    midi.sendSysEx(data, quiet: true)
+                    LiveDebugLog.log("MainView.onLiveParameterChange sendSysEx done END")
+                }
+            }
         }
     }
 
@@ -67,6 +80,7 @@ struct MainView: View {
         case .sequencer: SequencerPage()
         case .fx: FXPage()
         case .macro: MacroPage()
+        case .system: SystemPage()
         }
     }
 }
