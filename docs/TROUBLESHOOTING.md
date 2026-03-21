@@ -1,26 +1,22 @@
 # Troubleshooting
 
-## Current focus: Live Master Volume does not change the synth
+## Resolved: Live Master Volume does not change the synth
 
-**Symptom:** With Live enabled on the System page, moving the Master Vol slider no longer freezes the app (pinwheel fixed), but the VFX-SD’s volume does not change.
+**Was:** Moving Master Vol slider with Live on sent a wrong SysEx format that the synth ignored.
 
-**Cause:** The SysEx message we send is built from an **unverified format**. The address (and possibly command/checksum) does not match what the VFX-SD expects, so it ignores the message.
+**Root cause:** We used a Fizmo/MR-guessed SysEx format (`F0 0F 05 01 00 05 00 00 [val] F7`). The VFX-SD master volume is NOT a SysEx page/slot parameter at all -- it responds to **MIDI CC 7** (Volume).
 
-**What we send (current):** `F0 0F 05 01 00 05 00 00 [value] F7`  
-- Header: Ensoniq `F0 0F`, model `05`, sub-id `01`, device `00`, command `05` (Parameter Change Request, from Fizmo/MR docs).  
-- Address: `00 00` (placeholder).  
-- Value: 0–127.  
-- No checksum in current implementation.
+**Fix:** `LiveSysExBuilder` now sends MIDI CC 7 for `sys.masterVol` via `MIDIDeviceManager.sendCC()`. The correct format was found in the official VFX-SD MIDI Implementation Specification v2.00 (already in `docs/`). See `docs/VFX_SYSEX_SPEC.md`.
 
-**References:**
-- **SysEx/MIDI research and byte layout:** `docs/SYSEX_RESEARCH_FINDINGS.md`
-- **Live parameter design and requirements:** `docs/LIVE_PARAMETER_RESEARCH.md`
-- **Spec status and live message:** `docs/VFX_SYSEX_SPEC.md`
-- **Code:** `src/midi/LiveSysExBuilder.swift` — update `buildMasterVolume` when the real format is known.
+---
 
-**Next steps:**
-1. Get the real format from the VFX or VFX-SD manual PDF (e.g. VFX Musician’s Manual p.144 “Message Format”, or Appendix A) and update `LiveSysExBuilder.buildMasterVolume` to match.
-2. Or capture SysEx from Midi Quest while moving master volume, compare with our “Live SysEx TX” log (enable “Debug: Live logging” on System page), and copy the exact bytes into `buildMasterVolume`.
+## Resolved: SysEx Parameter Change format was wrong
+
+**Was:** LiveSysExBuilder used a Fizmo-inferred format (`F0 0F 05 01 00 05 [addr] [val] F7`).
+
+**Root cause:** The correct format from the official spec is Command Type 01 with nibblized data and page/slot/voice addressing (19 bytes total). All data bytes must be nibblized (split into two 4-bit nibble bytes). See spec section 3.1.2.
+
+**Fix:** `LiveSysExBuilder` now builds proper nibblized Parameter Change messages using the page/slot/voice model from section 5 of the spec. Over 100 parameters are mapped and support live editing.
 
 ---
 
@@ -28,7 +24,7 @@
 
 **Was:** App pinwheeled when moving the Master Vol slider with Live on.
 
-**Fixes applied:** Throttled live MIDI sends; moved SysEx send loop off the main thread (`Task.detached`); fixed `MIDISysexSendRequest` completion proc to free only our own allocations (via `SysexSendRefCon`); always publish `objectWillChange` so the slider updates; reduced work in LibrarySidebar (single `TagEngine`) and PatchListView (single `changedKeys` call); quiet send path for live so TX log doesn’t flood.
+**Fixes applied:** Throttled live MIDI sends; moved SysEx send loop off the main thread (`Task.detached`); fixed `MIDISysexSendRequest` completion proc to free only our own allocations (via `SysexSendRefCon`); always publish `objectWillChange` so the slider updates; reduced work in LibrarySidebar (single `TagEngine`) and PatchListView (single `changedKeys` call); quiet send path for live so TX log doesn't flood.
 
 ---
 

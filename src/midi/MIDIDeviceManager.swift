@@ -295,18 +295,63 @@ final class MIDIDeviceManager: ObservableObject {
         messageLog.removeAll()
     }
 
-    // MARK: - Sequencer (placeholders until VFX-SD transport SysEx is verified)
+    // MARK: - MIDI Channel Messages
+
+    /// Send a MIDI Control Change message (3-byte short message).
+    func sendCC(channel: UInt8, controller: UInt8, value: UInt8, quiet: Bool = false) {
+        guard selectedOutputRef != 0, outputPortRef != 0 else { return }
+        let status: UInt8 = 0xB0 | (channel & 0x0F)
+        var packet = MIDIPacket()
+        packet.timeStamp = 0
+        packet.length = 3
+        let bytes = (status, controller & 0x7F, value & 0x7F)
+        withUnsafeMutableBytes(of: &packet.data) { ptr in
+            ptr[0] = bytes.0
+            ptr[1] = bytes.1
+            ptr[2] = bytes.2
+        }
+        var packetList = MIDIPacketList(numPackets: 1, packet: packet)
+        MIDISend(outputPortRef, selectedOutputRef, &packetList)
+        if !quiet {
+            logWithTimestamp("TX CC", String(format: "ch=%d cc=%d val=%d", channel + 1, controller, value))
+        }
+    }
+
+    // MARK: - Sequencer Transport (via Virtual Button SysEx)
+
     func sequencerPlay() {
-        // TODO: send VFX-SD Play SysEx when format known
+        let msgs = LiveSysExBuilder.buildVirtualButtonPair(buttonNumber: 91, channel: midiChannel - 1)
+        for msg in msgs { sendSysEx(msg) }
     }
+
     func sequencerStop() {
-        // TODO: send VFX-SD Stop SysEx when format known
+        let msgs = LiveSysExBuilder.buildVirtualButtonPair(buttonNumber: 92, channel: midiChannel - 1)
+        for msg in msgs { sendSysEx(msg) }
     }
+
     func sequencerRecord() {
-        // TODO: send VFX-SD Record SysEx when format known
+        let msgs = LiveSysExBuilder.buildVirtualButtonPair(buttonNumber: 89, channel: midiChannel - 1)
+        for msg in msgs { sendSysEx(msg) }
     }
+
     func sequencerTap() {
-        // TODO: send or derive tap tempo when format known
+        // Tap tempo via MIDI clock is preferable; placeholder for future implementation
+    }
+
+    // MARK: - Virtual Button
+
+    func sendVirtualButton(_ buttonNumber: Int) {
+        let msgs = LiveSysExBuilder.buildVirtualButtonPair(buttonNumber: buttonNumber, channel: midiChannel - 1)
+        for msg in msgs { sendSysEx(msg) }
+    }
+
+    // MARK: - Dump Requests (Command Type only, per spec sections 3.1.6–3.1.15)
+
+    func requestCurrentProgram() {
+        let data = LiveSysExBuilder.buildParameterChange(voice: 0, page: 0, slot: 0, valueLo: 0, channel: midiChannel - 1)
+        var bytes: [UInt8] = [0xF0, 0x0F, 0x05, 0x00, UInt8((midiChannel - 1) & 0x0F), 0x02]
+        bytes.append(0xF7)
+        sendSysEx(Data(bytes))
     }
 }
 

@@ -52,7 +52,7 @@ struct SystemPage: View {
         VStack(alignment: .leading, spacing: 12) {
             sectionHeader("Master")
             if liveEditEnabled {
-                Text("Live Master Vol uses a placeholder SysEx format; the synth may not change volume until the format is verified from the VFX-SD MIDI spec or a capture (see docs/LIVE_PARAMETER_RESEARCH.md).")
+                Text("Master Vol sends MIDI CC 7. Tune and Touch send SysEx Parameter Change (page 0). See official MIDI spec v2.00.")
                     .font(.caption)
                     .foregroundStyle(VFXTheme.textSecondary)
             }

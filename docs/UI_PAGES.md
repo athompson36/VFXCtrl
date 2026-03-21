@@ -90,3 +90,10 @@ Encoders:
 6. Width
 7. Dirt
 8. Animate
+
+## 10. System
+Organized by category (see docs/VFX_SYSTEM_PAGE.md):
+- **Master:** Master Vol, Tune, Touch (numeric 0–127)
+- **MIDI Control:** Base Ch (1–16), In Mode (OMNI/POLY/MULTI), Local, SysEx Rx, XPOS (toggle), Status (LOCAL/MIDI/BOTH)
+- **Storage:** Disk SAVE, LOAD, SYS-EX REC (actions; placeholders)
+- **System:** Pitch Table (SYSTEM/ALL-C4/CUSTOM)

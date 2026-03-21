@@ -1,6 +1,6 @@
 import Foundation
 
-/// VFX-SD modulation matrix: 15 sources × 10 destinations (see docs/VFX_MODULATION_MATRIX.md).
+/// VFX-SD modulation: 15 sources and 10 destinations (see docs/VFX_MODULATION_MATRIX.md). Hardware has 2 routing slots; UI uses canonical keys mod.src1/dest1/depth1, mod.src2/dest2/depth2.
 enum ModMatrixModel {
     static let sources: [(index: Int, name: String)] = [
         (0, "Pressure"),

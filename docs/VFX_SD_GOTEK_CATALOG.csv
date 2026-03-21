@@ -1,0 +1,155 @@
+Disk Number,Source Collection,Sub-Collection,Disk Name,Sound Category,Compatibility,Notes
+1,ATW,Colorado,VFXsdDemos,Demo,VFX-SD,Factory demo programs
+2,ATW,Colorado,VFXsdInternal,Factory,VFX-SD,Internal RAM bank backup
+3,ATW,Colorado,VFXsdKeys,Keys/Piano,VFX-SD,Keyboard-focused patches
+4,ATW,Colorado,VFXsdROM,Factory ROM,VFX-SD,ROM bank backup
+5,ATW,Colorado,alogdig,Analog/Digital,VFX/SD,Analog-meets-digital hybrid sounds
+6,ATW,Colorado,analog,Analog,VFX/SD,Analog-style patches
+7,ATW,Colorado,basses,Bass,VFX/SD,Bass patches
+8,ATW,Colorado,brass,Brass,VFX/SD,Brass patches
+9,ATW,Colorado,digital,Digital,VFX/SD,Digital/transwave sounds vol 1
+10,ATW,Colorado,digital2,Digital,VFX/SD,Digital/transwave sounds vol 2
+11,ATW,Colorado,digital3,Digital,VFX/SD,Digital/transwave sounds vol 3
+12,ATW,Colorado,digital4,Digital,VFX/SD,Digital/transwave sounds vol 4
+13,ATW,Colorado,digital5,Digital,VFX/SD,Digital/transwave sounds vol 5
+14,ATW,Colorado,drums1,Drums/Perc,VFX/SD,Drum patches vol 1
+15,ATW,Colorado,drums2,Drums/Perc,VFX/SD,Drum patches vol 2
+16,ATW,Colorado,electric,Electric,VFX/SD,Electric instrument patches
+17,ATW,Colorado,orches1,Orchestral,VFX/SD,Orchestral patches
+18,ATW,Colorado,organ,Organ,VFX/SD,Organ patches
+19,ATW,Colorado,otherelc,Electric/Other,VFX/SD,Other electric sounds
+20,ATW,Colorado,percs1,Percussion,VFX/SD,Percussion patches
+21,ATW,Colorado,piano,Piano,VFX/SD,Piano patches
+22,ATW,Colorado,sd1_advpc100,Mixed,SD-1,SD-1 Advanced Performance Cart 100
+23,ATW,Colorado,sd1_advpc101,Mixed,SD-1,SD-1 Advanced Performance Cart 101
+24,ATW,Colorado,sd1_keys1,Keys,SD-1,SD-1 keyboard patches
+25,ATW,Colorado,sd1_rom0,Factory ROM,SD-1,SD-1 ROM bank 0
+26,ATW,Colorado,sd1_rom1,Factory ROM,SD-1,SD-1 ROM bank 1
+27,ATW,Colorado,soundfx,Sound Effects,VFX/SD,Sound effect patches vol 1
+28,ATW,Colorado,soundfx2,Sound Effects,VFX/SD,Sound effect patches vol 2
+29,ATW,Colorado,strings1,Strings,VFX/SD,String patches
+30,ATW,Colorado,wind,Wind/Woodwind,VFX/SD,Wind instrument patches vol 1
+31,ATW,Colorado,wind2,Wind/Woodwind,VFX/SD,Wind instrument patches vol 2
+32,ATW,Fabio Garcia,FGarcia,Mixed,VFX/SD,Fabio Garcia user collection
+33,ATW,Neopatch,NEWBNK00,Mixed,VFX/SD,Neopatch bank 00
+34,ATW,Neopatch,NEWBNK01,Mixed,VFX/SD,Neopatch bank 01
+35,ATW,Neopatch,NEWBNK02,Mixed,VFX/SD,Neopatch bank 02
+36,ATW,Neopatch,SYNTHS,Synth,VFX/SD,Synth patches vol 1
+37,ATW,Neopatch,SYNTHS2,Synth,VFX/SD,Synth patches vol 2
+38,ATW,Neopatch,countrypatches,Country,VFX/SD,Country music patches
+39,ATW,Neopatch,playpatches,Performance,VFX/SD,Performance/play patches
+40,ATW,PAG,PAG,Mixed,VFX/SD,PAG user collection
+41,ATW,SoundLib,SLIB_ 1,Mixed,VFX/SD,Sound Library vol 1
+42,ATW,SoundLib,SLIB_ 2,Mixed,VFX/SD,Sound Library vol 2
+43,ATW,SoundLib,SLIB_ 3,Mixed,VFX/SD,Sound Library vol 3
+44,ATW,SoundLib,SLIB_ 4,Mixed,VFX/SD,Sound Library vol 4
+45,ATW,SoundLib,SLIB_ 5,Mixed,VFX/SD,Sound Library vol 5
+46,ATW,SoundLib,SLIB_ 6,Mixed,VFX/SD,Sound Library vol 6
+47,ATW,SoundLib,SLIB_ 7,Mixed,VFX/SD,Sound Library vol 7
+48,ATW,SoundLib,SLIB_ 8,Mixed,VFX/SD,Sound Library vol 8
+49,ATW,SoundLib,SLIB_ 9,Mixed,VFX/SD,Sound Library vol 9
+50,ATW,SoundLib,SLIB_ 10,Mixed,VFX/SD,Sound Library vol 10
+51,ATW,SoundLib,SLIB_ 11,Mixed,VFX/SD,Sound Library vol 11
+52,ATW,SoundLib,SLIB_ 12,Mixed,VFX/SD,Sound Library vol 12
+53,ATW,SoundLib,SLIB_ 13,Mixed,VFX/SD,Sound Library vol 13
+54,ATW,SoundLib,SLIB_ 14,Mixed,VFX/SD,Sound Library vol 14
+55,ATW,SoundLib,SLIB_ 15,Mixed,VFX/SD,Sound Library vol 15
+56,ATW,SoundLib,SLIB_ 16,Mixed,VFX/SD,Sound Library vol 16
+57,ATW,SoundLib,SLIB_ 17,Mixed,VFX/SD,Sound Library vol 17
+58,ATW,SoundLib,SLIB_ 18,Mixed,VFX/SD,Sound Library vol 18
+59,ATW,SoundLib,SLIB_ 19,Mixed,VFX/SD,Sound Library vol 19
+60,ATW,SoundLib,SLIB_ 20,Mixed,VFX/SD,Sound Library vol 20
+61,ATW,SoundLib,SLIB_ 21,Mixed,VFX/SD,Sound Library vol 21
+62,ATW,SoundLib,SLIB_ 22,Mixed,VFX/SD,Sound Library vol 22
+63,ATW,SoundLib,SLIB_ 23,Mixed,VFX/SD,Sound Library vol 23
+64,ATW,SoundLib,SLIB_ 24,Mixed,VFX/SD,Sound Library vol 24
+65,ATW,SoundLib,SLIB_ 25,Mixed,VFX/SD,Sound Library vol 25
+66,ATW,SoundLib,SLIB_ 26,Mixed,VFX/SD,Sound Library vol 26
+67,ATW,Soundthinker,01_PRG,Mixed,VFX/SD,Soundthinker program bank 01
+68,ATW,Soundthinker,02_PRG,Mixed,VFX/SD,Soundthinker program bank 02
+69,ATW,Soundthinker,03_PRG,Mixed,VFX/SD,Soundthinker program bank 03
+70,ATW,Soundthinker,04_PRG,Mixed,VFX/SD,Soundthinker program bank 04
+71,ATW,Soundthinker,05_PRG,Mixed,VFX/SD,Soundthinker program bank 05
+72,ATW,Soundthinker,06_PRG,Mixed,VFX/SD,Soundthinker program bank 06
+73,ATW,Soundthinker,07_PRG,Mixed,VFX/SD,Soundthinker program bank 07
+74,ATW,Soundthinker,08_PRG,Mixed,VFX/SD,Soundthinker program bank 08
+75,ATW,Soundthinker,09_PRG,Mixed,VFX/SD,Soundthinker program bank 09
+76,ATW,Soundthinker,10_PRG,Mixed,VFX/SD,Soundthinker program bank 10
+77,ATW,Soundthinker,11_PRG,Mixed,VFX/SD,Soundthinker program bank 11
+78,ATW,Soundthinker,12_PRG,Mixed,VFX/SD,Soundthinker program bank 12
+79,ATW,Soundthinker,13_PRG,Mixed,VFX/SD,Soundthinker program bank 13
+80,ATW,Soundthinker,14_PRG,Mixed,VFX/SD,Soundthinker program bank 14
+81,ATW,Soundthinker,15_PRG,Mixed,VFX/SD,Soundthinker program bank 15
+82,ATW,Soundthinker,16_PRG,Mixed,VFX/SD,Soundthinker program bank 16
+83,ATW,Soundthinker,17_PRG,Mixed,VFX/SD,Soundthinker program bank 17
+84,ATW,Soundthinker,18_PRG,Mixed,VFX/SD,Soundthinker program bank 18
+85,ATW,Soundthinker,19_PRG,Mixed,VFX/SD,Soundthinker program bank 19
+86,ATW,Soundthinker,20_PRG,Mixed,VFX/SD,Soundthinker program bank 20
+87,ATW,Soundthinker,21_PRG,Mixed,VFX/SD,Soundthinker program bank 21
+88,ATW,Soundthinker,22_PRG,Mixed,VFX/SD,Soundthinker program bank 22
+89,ATW,Soundthinker,23_PRG,Mixed,VFX/SD,Soundthinker program bank 23
+90,ATW,Soundthinker,24_PRG,Mixed,VFX/SD,Soundthinker program bank 24
+91,ATW,Soundthinker,25_PRG,Mixed,VFX/SD,Soundthinker program bank 25
+92,ATW,Soundthinker,26_PRG,Mixed,VFX/SD,Soundthinker program bank 26
+93,ATW,Soundthinker,27_PRG,Mixed,VFX/SD,Soundthinker program bank 27
+94,ATW,Soundthinker,28_PRG,Mixed,VFX/SD,Soundthinker program bank 28
+95,ATW,Soundthinker,29_PRG,Mixed,VFX/SD,Soundthinker program bank 29
+96,ATW,Soundthinker,30_PRG,Mixed,VFX/SD,Soundthinker program bank 30
+97,ATW,Soundthinker,31_PRG,Mixed,VFX/SD,Soundthinker program bank 31
+98,ATW,Soundthinker,32_PRG,Mixed,VFX/SD,Soundthinker program bank 32
+99,ATW,Soundthinker,33_PRG,Mixed,VFX/SD,Soundthinker program bank 33
+100,ATW,Soundthinker,34_PRG,Mixed,VFX/SD,Soundthinker program bank 34
+101,ATW,Soundthinker,35_PRG,Mixed,VFX/SD,Soundthinker program bank 35
+102,ATW,Soundthinker,36_PRG,Mixed,VFX/SD,Soundthinker program bank 36
+103,ATW,Soundthinker,37_PRG,Mixed,VFX/SD,Soundthinker program bank 37
+104,ATW,Soundthinker,38_PRG,Mixed,VFX/SD,Soundthinker program bank 38
+105,ATW,Soundthinker,39_PRG,Mixed,VFX/SD,Soundthinker program bank 39
+106,ATW,Soundthinker,40_PRG,Mixed,VFX/SD,Soundthinker program bank 40
+107,ATW,Soundthinker,41_PRG,Mixed,VFX/SD,Soundthinker program bank 41
+108,ATW,Soundthinker,42_PRG,Mixed,VFX/SD,Soundthinker program bank 42
+109,ATW,Soundthinker,43_PRG,Mixed,VFX/SD,Soundthinker program bank 43
+110,ATW,Soundthinker,44_PRG,Mixed,VFX/SD,Soundthinker program bank 44
+111,ATW,Soundthinker,45_PRG,Mixed,VFX/SD,Soundthinker program bank 45
+112,ATW,Soundthinker,46_PRG,Mixed,VFX/SD,Soundthinker program bank 46
+113,ATW,TransHacker,TransHacker_1,Mixed,VFX/SD,Transoniq Hacker magazine vol 1 (1990-92)
+114,ATW,TransHacker,TransHacker_2,Mixed,VFX/SD,Transoniq Hacker magazine vol 2 (1992-96)
+115,ATW,Tweakheads,richs,Mixed,VFX/SD,Tweakheads (Rich) user collection
+116,ATW,Yahoo!,VFX2010,Mixed,VFX/SD,Yahoo VFX group collection 2010
+117,ATW,Yahoo!,Yahoo_1,Mixed,VFX/SD,Yahoo VFX group collection 1
+118,ATW,Yahoo!,analog,Analog,VFX/SD,Analog-style patches
+119,ATW,Yahoo!,bass,Bass,VFX/SD,Bass patches
+120,ATW,Yahoo!,bells,Bells/Mallet,VFX/SD,Bell and mallet patches vol 1
+121,ATW,Yahoo!,bells2,Bells/Mallet,VFX/SD,Bell and mallet patches vol 2
+122,ATW,Yahoo!,brass,Brass,VFX/SD,Brass patches
+123,ATW,Yahoo!,drums,Drums/Perc,VFX/SD,Drum patches
+124,ATW,Yahoo!,guitars,Guitar,VFX/SD,Guitar patches
+125,ATW,Yahoo!,leads,Lead,VFX/SD,Lead synth patches
+126,ATW,Yahoo!,organs,Organ,VFX/SD,Organ patches vol 1
+127,ATW,Yahoo!,organs2,Organ,VFX/SD,Organ patches vol 2
+128,ATW,Yahoo!,pianos,Piano,VFX/SD,Piano patches vol 1
+129,ATW,Yahoo!,pianos2,Piano,VFX/SD,Piano patches vol 2
+130,ATW,Yahoo!,sndeffct,Sound Effects,VFX/SD,Sound effect patches
+131,ATW,Yahoo!,strings,Strings,VFX/SD,String patches
+132,ATW,Yahoo!,winds,Wind/Woodwind,VFX/SD,Wind instrument patches
+133,Ensoniq,IPC,IPC-1,Mixed,IPC,Ensoniq Internal Patch Cart 1
+134,Ensoniq,IPC,IPC-2,Mixed,IPC,Ensoniq Internal Patch Cart 2
+135,Ensoniq,IPC,IPC-3,Mixed,IPC,Ensoniq Internal Patch Cart 3
+136,Ensoniq,IPC,IPC-4,Mixed,IPC,Ensoniq Internal Patch Cart 4
+137,Ensoniq,SD1,SD1-RAM,Factory,SD-1,SD-1 RAM bank
+138,Ensoniq,SD1,SD1-ROM1,Factory ROM,SD-1,SD-1 ROM bank 1
+139,Ensoniq,VFX,VFX-ROM,Factory ROM,VFX,VFX ROM bank
+140,Ensoniq,VFX,VFXSD-Keys,Keys,VFX-SD,VFX-SD keyboard patches
+141,Ensoniq,VFX,VFXSD-RAM,Factory,VFX-SD,VFX-SD factory RAM bank
+142,Ensoniq,VPC,VPC-100,Mixed,VPC,Voice Patch Cart 100
+143,Ensoniq,VPC,VPC-101,Mixed,VPC,Voice Patch Cart 101
+144,Ensoniq,VPC,VPC-102,Mixed,VPC,Voice Patch Cart 102
+145,Ensoniq,VPC,VPC-103,Mixed,VPC,Voice Patch Cart 103
+146,Ensoniq,VPC,VPC-104,Mixed,VPC,Voice Patch Cart 104
+147,Ensoniq,VPC,VPC-105,Mixed,VPC,Voice Patch Cart 105
+148,Ensoniq,VSD,VSD1000A,Mixed,VFX-SD,Ensoniq VSD collection A (1000 sounds)
+149,Ensoniq,VSD,VSD1000B,Mixed,VFX-SD,Ensoniq VSD collection B
+150,Ensoniq,VSD,VSD1000C,Mixed,VFX-SD,Ensoniq VSD collection C
+151,Ensoniq,VSD,VSD1000D,Mixed,VFX-SD,Ensoniq VSD collection D
+152,Ensoniq,VSD,VSDBONUS,Mixed,VFX-SD,Ensoniq VSD bonus sounds
+153,System,,Stock Library Disk,Factory,VFX-SD,Stock library disk image (.img)
+154,System,,VFX SD OS 2.10,OS Update,VFX-SD,VFX-SD OS version 2.10 update disk (.img)

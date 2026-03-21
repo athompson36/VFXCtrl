@@ -66,7 +66,7 @@ final class EditorState: ObservableObject {
         objectWillChange.send()
 
         let liveOn = UserDefaults.standard.bool(forKey: Self.liveEditEnabledKey)
-        if liveOn, LiveSysExBuilder.supportedLiveKeys.contains(key), onLiveParameterChange != nil {
+        if liveOn, onLiveParameterChange != nil, LiveSysExBuilder.supportedLiveKeys.contains(key) {
             scheduleLiveSend(key: key, value: value)
         }
         LiveDebugLog.log("EditorState.set(\(key)) END")

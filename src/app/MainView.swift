@@ -50,14 +50,25 @@ struct MainView: View {
             .onAppear {
                 editor.onLiveParameterChange = { key, value in
                     LiveDebugLog.log("MainView.onLiveParameterChange \(key)=\(value) START")
-                    guard let data = LiveSysExBuilder.build(key: key, value: value) else {
+                    let channel = midi.midiChannel - 1
+                    guard let msg = LiveSysExBuilder.buildMessage(key: key, value: value, channel: channel) else {
                         LiveDebugLog.log("MainView.onLiveParameterChange build=nil END")
                         return
                     }
-                    let hex = data.map { String(format: "%02X", $0) }.joined(separator: " ")
-                    LiveDebugLog.log("Live SysEx TX: \(hex)")
-                    midi.sendSysEx(data, quiet: true)
-                    LiveDebugLog.log("MainView.onLiveParameterChange sendSysEx done END")
+                    switch msg {
+                    case .sysex(let data):
+                        let hex = data.map { String(format: "%02X", $0) }.joined(separator: " ")
+                        LiveDebugLog.log("Live SysEx TX: \(hex)")
+                        midi.sendSysEx(data, quiet: true)
+                    case .cc(let ch, let cc, let val):
+                        LiveDebugLog.log("Live CC TX: ch=\(ch+1) cc=\(cc) val=\(val)")
+                        midi.sendCC(channel: ch, controller: cc, value: val, quiet: true)
+                    case .virtualButton(let data):
+                        let hex = data.map { String(format: "%02X", $0) }.joined(separator: " ")
+                        LiveDebugLog.log("Live VBtn TX: \(hex)")
+                        midi.sendSysEx(data, quiet: true)
+                    }
+                    LiveDebugLog.log("MainView.onLiveParameterChange done END")
                 }
             }
         }
