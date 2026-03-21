@@ -4,7 +4,8 @@ import SwiftUI
 struct ModTwoSlotView: View {
     @EnvironmentObject private var editor: EditorState
 
-    private let depthRange = 0...127
+    /// VFX-SD mod mixer scaler / shape are 0…15 per MIDI spec.
+    private let depthRange = 0...15
     private let sourceRange = 0..<ModMatrixModel.sources.count
     private let destRange = 0..<ModMatrixModel.destinations.count
 

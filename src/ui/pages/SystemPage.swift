@@ -7,6 +7,13 @@ struct SystemPage: View {
     @AppStorage(EditorState.liveEditEnabledKey) private var liveEditEnabled: Bool = false
     @AppStorage(LiveDebugLog.defaultsKey) private var verboseLiveDebug: Bool = false
 
+    /// Shown in custom pickers / sliders above; full map grid lists the rest.
+    private static let handledInCustomUI: Set<String> = [
+        "sys.masterVol", "sys.tune", "sys.touch",
+        "sys.midiBaseCh", "sys.midiInMode", "sys.localControl", "sys.sysexRx", "sys.xposEnable",
+        "sys.midiStatus", "sys.pitchTable",
+    ]
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
@@ -16,6 +23,7 @@ struct SystemPage: View {
                 midiSection
                 storageSection
                 systemSection
+                otherSystemParameters
             }
             .padding(24)
         }
@@ -161,6 +169,17 @@ struct SystemPage: View {
                     .frame(width: 100)
                 }
             }
+        }
+    }
+
+    /// Remaining system / master SysEx parameters from the official map (pages 0–4, etc.).
+    private var otherSystemParameters: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            sectionHeader("All system parameters")
+            Text("Remaining items from the system/master MIDI map (pages 0–4, etc.). Master, tune, touch, and common MIDI pickers are excluded above.")
+                .font(.caption)
+                .foregroundStyle(VFXTheme.textSecondary)
+            ParameterDefinitionsPage(page: .system, excludeKeys: Self.handledInCustomUI, scrolls: false)
         }
     }
 

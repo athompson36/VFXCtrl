@@ -9,7 +9,7 @@ struct MacroEngine {
         switch macroKey {
         case "macro.brightness":
             patch.parameters["filter.cutoff"] = value
-            patch.parameters["filter.resonance"] = min(127, value / 4)
+            patch.parameters["filter.modAmt"] = min(255, value * 2)
         case "macro.motion":
             patch.parameters["motion.amount"] = value
             patch.parameters["lfo1.depth"] = value / 2

@@ -1,99 +1,33 @@
 # UI Pages
 
-## 1. Wave
-Encoders:
-1. Wave
-2. Coarse
-3. Fine
-4. Octave
-5. Level
-6. Velocity
-7. Key Track
-8. Pan/Alt
+Editor tabs map to **`EditorPage`** in `EditorState.swift`. Most synthesis tabs render **`ParameterDefinitionsPage`**, which lists every `ParameterDefinition` in `ParameterMap.swift` for that tab, **grouped by VFX-SD hardware SysEx page** (see `ParameterCatalog.sectionTitle`).
 
-## 2. Motion
-1. Scan Pos
-2. Scan Amt
-3. Scan Src
-4. LFO1 Rate
-5. LFO1 Depth
-6. LFO2 Rate
-7. ModWheel
-8. Aftertouch
+## Data-driven tabs (full parameter map)
 
-## 3. Filter
-1. Cutoff
-2. Resonance
-3. Env Amt
-4. Vel Amt
-5. Key Track
-6. Filter Mode/Alt
-7. Env Src
-8. Drive/Alt
+| Tab | Source | Notes |
+|-----|--------|--------|
+| **Wave** | `ParameterDefinitionsPage(.wave)` | Wave 7–10, pitch 11, program pitch table, voice status 38, legacy wave keys |
+| **Motion** | `ParameterDefinitionsPage(.motion)` | Pitch mod 12, LFO 18–19, legacy motion/LFO aliases |
+| **Filter** | `ParameterDefinitionsPage(.filter)` | Filters 13–14, legacy filter keys |
+| **Amp** | `ParameterDefinitionsPage(.amp)` | Output 15–17, Env1–3 (20–28), amp.* aliases |
+| **Performance** | `ParameterDefinitionsPage(.performance)` | Program control page 5, pan/mod page 16, perf.* patch fields |
+| **FX** | `ParameterDefinitionsPage(.fx)` | Routing dest 16, effects 29, legacy fx.* |
+| **Macro** | `ParameterDefinitionsPage(.macro)` | Eight macro knobs (patch-only routing via `MacroEngine`) |
 
-## 4. Amp
-1. Attack
-2. Decay
-3. Sustain
-4. Release
-5. Vel Amt
-6. Level
-7. Key Scale
-8. Alt
+Ranges and short labels come from the map; tooltips show full label + note.
 
-## 5. Mod
-1. Src1
-2. Dest1
-3. Depth1
-4. Src2
-5. Dest2
-6. Depth2
-7. Pedal
-8. Pressure
+## Custom layouts
 
-## 6. Performance
-1. Split
-2. Layer Bal
-3. Detune
-4. Zone Low
-5. Zone High
-6. Vel Low
-7. Vel High
-8. Transpose
+| Tab | UI |
+|-----|-----|
+| **System** | Custom pickers/sliders for master, MIDI, pitch table + scrollable grid of **remaining** system parameters (`excludeKeys` in `SystemPage`) |
+| **Mod** | `ModTwoSlotView` — two routes with source/dest menus; scaler/shape depths **0…15** (hardware) |
+| **Sequencer** | Segmented sub-pages (`SeqTransportView`, tempo/clock, song/track, quant/rec, dump/load) |
 
-## 7. Sequencer
-1. Tempo
-2. Song/Seq
-3. Track/Part
-4. Loop
-5. Quant/Alt
-6. Click/Alt
-7. Transport Mode
-8. Tap Source
+## Live MIDI
 
-## 8. FX
-1. FX Type
-2. Wet/Dry
-3. Time
-4. Feedback
-5. Depth
-6. Rate
-7. Tone
-8. Mix
+Keys in `LiveSysExBuilder.supportedLiveKeys` send when Live is enabled. Legacy / unmapped keys still edit the patch model only.
 
-## 9. Macro
-1. Brightness
-2. Motion
-3. Weight
-4. Attack
-5. Space
-6. Width
-7. Dirt
-8. Animate
+## Historical
 
-## 10. System
-Organized by category (see docs/VFX_SYSTEM_PAGE.md):
-- **Master:** Master Vol, Tune, Touch (numeric 0–127)
-- **MIDI Control:** Base Ch (1–16), In Mode (OMNI/POLY/MULTI), Local, SysEx Rx, XPOS (toggle), Status (LOCAL/MIDI/BOTH)
-- **Storage:** Disk SAVE, LOAD, SYS-EX REC (actions; placeholders)
-- **System:** Pitch Table (SYSTEM/ALL-C4/CUSTOM)
+Earlier versions used fixed 8-knob `PageGrid` layouts per tab; those encoders are superseded by the map-driven UI above (except Mod + System + Sequencer).

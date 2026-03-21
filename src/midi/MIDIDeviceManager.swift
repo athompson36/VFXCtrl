@@ -348,7 +348,7 @@ final class MIDIDeviceManager: ObservableObject {
     // MARK: - Dump Requests (Command Type only, per spec sections 3.1.6–3.1.15)
 
     func requestCurrentProgram() {
-        let data = LiveSysExBuilder.buildParameterChange(voice: 0, page: 0, slot: 0, valueLo: 0, channel: midiChannel - 1)
+        // Spec 3.1.6: Single Program Dump Request — command type 05 is the only data byte (verify envelope vs LiveSysExBuilder).
         var bytes: [UInt8] = [0xF0, 0x0F, 0x05, 0x00, UInt8((midiChannel - 1) & 0x0F), 0x02]
         bytes.append(0xF7)
         sendSysEx(Data(bytes))

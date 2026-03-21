@@ -7,7 +7,7 @@ final class MacroEngineTests: XCTestCase {
         let engine = MacroEngine()
         engine.apply("macro.brightness", value: 80, to: &patch)
         XCTAssertEqual(patch.parameters["filter.cutoff"], 80)
-        XCTAssertEqual(patch.parameters["filter.resonance"], 20)
+        XCTAssertEqual(patch.parameters["filter.modAmt"], 160)
     }
 
     func testApplyAttack_setsAmpParams() {

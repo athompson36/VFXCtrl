@@ -13,22 +13,12 @@ enum EditorPage: String, CaseIterable, Codable {
     case system = "System"
 }
 
-/// All control keys used by the 9 editor pages (per UI_PAGES.md).
-private let allPageControlKeys: [String] = [
-    "wave.select", "wave.coarse", "wave.fine", "wave.octave", "wave.level", "wave.velocity", "wave.keytrack", "wave.pan",
-    "motion.position", "motion.amount", "motion.source", "lfo1.rate", "lfo1.depth", "lfo2.rate", "modwheel.depth", "aftertouch.depth",
-    "filter.cutoff", "filter.resonance", "filter.env", "filter.velocity", "filter.keytrack", "filter.mode", "filter.source", "filter.alt",
-    "amp.attack", "amp.decay", "amp.sustain", "amp.release", "amp.velocity", "amp.level", "amp.keyscale", "amp.alt",
-    "mod.src1", "mod.dest1", "mod.depth1", "mod.src2", "mod.dest2", "mod.depth2", "mod.pedal", "mod.pressure",
-    "perf.split", "perf.balance", "perf.detune", "perf.zonelow", "perf.zonehigh", "perf.vellow", "perf.velhigh", "perf.transpose",
-    "seq.tempo", "seq.song", "seq.sequence", "seq.track", "seq.loop", "seq.quant", "seq.click", "seq.mode", "seq.tap",
-    "seq.clockSource", "seq.punchIn", "seq.punchOut",
-    "fx.type", "fx.mix", "fx.time", "fx.feedback", "fx.depth", "fx.rate", "fx.tone", "fx.alt",
-    "macro.brightness", "macro.motion", "macro.weight", "macro.attack", "macro.space", "macro.width", "macro.dirt", "macro.animate",
-    "sys.masterVol", "sys.tune", "sys.touch",
-    "sys.midiBaseCh", "sys.midiInMode", "sys.localControl", "sys.sysexRx", "sys.xposEnable", "sys.midiStatus",
-    "sys.pitchTable", "sys.diskType",
-]
+/// All control keys: full parameter map plus virtual sequencer actions.
+private let allPageControlKeys: [String] = {
+    var keys = Set(ParameterCatalog.allMappedKeys)
+    keys.formUnion(["seq.play", "seq.stop", "seq.record"])
+    return Array(keys)
+}()
 
 final class EditorState: ObservableObject {
     @Published var selectedPage: EditorPage = .wave
