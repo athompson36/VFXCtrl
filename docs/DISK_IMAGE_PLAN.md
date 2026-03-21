@@ -1,5 +1,7 @@
 # Disk Image / Gotek Plan
 
+See also: **[GOTEK_COMPATIBILITY_AUDIT.md](./GOTEK_COMPATIBILITY_AUDIT.md)** for a full documentation + code audit and gap matrix.
+
 ## Goals
 
 - import existing SysEx collections and bank files

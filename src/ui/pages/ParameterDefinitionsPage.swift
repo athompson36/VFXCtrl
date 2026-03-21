@@ -58,15 +58,7 @@ struct ParameterDefinitionsPage: View {
                 .foregroundStyle(VFXTheme.vfdGreen)
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 14), count: 4), spacing: 20) {
                 ForEach(items, id: \.key) { def in
-                    VirtualEncoder(
-                        label: def.shortLabel,
-                        value: Binding(
-                            get: { editor.controls[def.key, default: 0] },
-                            set: { editor.set(def.key, value: $0) }
-                        ),
-                        range: def.minValue...def.maxValue
-                    )
-                    .help(def.label + (def.note.isEmpty ? "" : " — \(def.note)"))
+                    LabeledParameterCell(definition: def)
                 }
             }
         }

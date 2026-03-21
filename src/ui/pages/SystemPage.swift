@@ -65,9 +65,9 @@ struct SystemPage: View {
                     .foregroundStyle(VFXTheme.textSecondary)
             }
             HStack(alignment: .firstTextBaseline, spacing: 16) {
-                numericRow("Master Vol", key: "sys.masterVol")
-                numericRow("Tune", key: "sys.tune")
-                numericRow("Touch", key: "sys.touch")
+                numericRow("Master Vol", key: "sys.masterVol", range: 0...127)
+                numericRow("Tune", key: "sys.tune", range: 0...255)
+                touchPickerRow
             }
         }
     }
@@ -82,28 +82,35 @@ struct SystemPage: View {
                         .foregroundStyle(VFXTheme.textPrimary)
                         .frame(width: 56, alignment: .leading)
                     Picker("", selection: Binding(
-                        get: { min(16, max(1, editor.controls["sys.midiBaseCh", default: 1])) },
-                        set: { editor.set("sys.midiBaseCh", value: $0) }
+                        get: {
+                            let raw = editor.controls["sys.midiBaseCh", default: 0]
+                            // Migrate legacy patches that stored 1…16 instead of 0…15
+                            let zeroBased = (1...16).contains(raw) ? raw - 1 : raw
+                            return min(15, max(0, zeroBased)) + 1
+                        },
+                        set: { editor.set("sys.midiBaseCh", value: $0 - 1) }
                     )) {
-                        ForEach(1...16, id: \.self) { n in Text("\(n)").tag(n) }
+                        ForEach(1...16, id: \.self) { n in Text("Ch \(n)").tag(n) }
                     }
                     .pickerStyle(.menu)
-                    .frame(width: 56)
+                    .frame(width: 72)
                 }
                 HStack(spacing: 8) {
                     Text("In Mode")
                         .foregroundStyle(VFXTheme.textPrimary)
                         .frame(width: 56, alignment: .leading)
                     Picker("", selection: Binding(
-                        get: { min(2, max(0, editor.controls["sys.midiInMode", default: 0])) },
+                        get: { min(4, max(0, editor.controls["sys.midiInMode", default: 0])) },
                         set: { editor.set("sys.midiInMode", value: $0) }
                     )) {
-                        Text("OMNI").tag(0)
-                        Text("POLY").tag(1)
-                        Text("MULTI").tag(2)
+                        Text("Omni").tag(0)
+                        Text("Poly").tag(1)
+                        Text("Multi").tag(2)
+                        Text("Mono A").tag(3)
+                        Text("Mono B").tag(4)
                     }
                     .pickerStyle(.menu)
-                    .frame(width: 80)
+                    .frame(width: 100)
                 }
                 toggleRow("Local", key: "sys.localControl")
                 toggleRow("SysEx Rx", key: "sys.sysexRx")
@@ -116,9 +123,9 @@ struct SystemPage: View {
                         get: { min(2, max(0, editor.controls["sys.midiStatus", default: 0])) },
                         set: { editor.set("sys.midiStatus", value: $0) }
                     )) {
-                        Text("LOCAL").tag(0)
+                        Text("Local").tag(0)
                         Text("MIDI").tag(1)
-                        Text("BOTH").tag(2)
+                        Text("Both").tag(2)
                     }
                     .pickerStyle(.menu)
                     .frame(width: 72)
@@ -161,9 +168,9 @@ struct SystemPage: View {
                         get: { min(2, max(0, editor.controls["sys.pitchTable", default: 0])) },
                         set: { editor.set("sys.pitchTable", value: $0) }
                     )) {
-                        Text("SYSTEM").tag(0)
-                        Text("ALL-C4").tag(1)
-                        Text("CUSTOM").tag(2)
+                        Text("System").tag(0)
+                        Text("All-C4").tag(1)
+                        Text("Custom").tag(2)
                     }
                     .pickerStyle(.menu)
                     .frame(width: 100)
@@ -189,24 +196,44 @@ struct SystemPage: View {
             .foregroundStyle(VFXTheme.vfdGreen)
     }
 
-    private func numericRow(_ label: String, key: String) -> some View {
+    private var touchPickerRow: some View {
+        HStack(spacing: 8) {
+            Text("Touch")
+                .foregroundStyle(VFXTheme.textPrimary)
+                .frame(width: 72, alignment: .leading)
+            if let labels = ParameterEnumLabels.labels(forKey: "sys.touch", minValue: 0, maxValue: 4) {
+                Picker("", selection: Binding(
+                    get: { min(4, max(0, editor.controls["sys.touch", default: 0])) },
+                    set: { editor.set("sys.touch", value: $0) }
+                )) {
+                    ForEach(0...4, id: \.self) { v in
+                        Text(labels[v]).tag(v)
+                    }
+                }
+                .pickerStyle(.menu)
+                .frame(width: 120)
+            }
+        }
+    }
+
+    private func numericRow(_ label: String, key: String, range: ClosedRange<Int>) -> some View {
         HStack(spacing: 8) {
             Text(label)
                 .foregroundStyle(VFXTheme.textPrimary)
                 .frame(width: 72, alignment: .leading)
             Slider(
                 value: Binding(
-                    get: { Double(editor.controls[key, default: 0]) },
+                    get: { Double(min(range.upperBound, max(range.lowerBound, editor.controls[key, default: range.lowerBound]))) },
                     set: { editor.set(key, value: Int($0.rounded())) }
                 ),
-                in: 0...127
+                in: Double(range.lowerBound)...Double(range.upperBound)
             )
             .tint(VFXTheme.vfdGreen)
             .frame(width: 100)
-            Text("\(editor.controls[key, default: 0])")
+            Text("\(min(range.upperBound, max(range.lowerBound, editor.controls[key, default: range.lowerBound])))")
                 .font(.system(size: 11, design: .monospaced))
                 .foregroundStyle(VFXTheme.textSecondary)
-                .frame(width: 28, alignment: .trailing)
+                .frame(width: 36, alignment: .trailing)
         }
     }
 

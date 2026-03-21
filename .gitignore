@@ -10,3 +10,7 @@ DerivedData/
 
 # Swift Package
 .swiftpm/
+
+# Local / IDE
+.cursor/
+VFX-SD Backup/

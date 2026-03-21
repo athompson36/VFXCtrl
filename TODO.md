@@ -74,6 +74,23 @@ Prioritized tasks derived from the development plan. Check off as completed.
 
 ---
 
+## Phase 6 – Gotek / librarian full compatibility
+
+*Goal:* Close gaps in [docs/GOTEK_COMPATIBILITY_AUDIT.md](./docs/GOTEK_COMPATIBILITY_AUDIT.md) so the library editor matches documented Gotek + `CURSOR_CONTEXT` librarian requirements.*
+
+- [ ] **6.1** Extend `VFXPatch` (or sidecar metadata): `sourceFileName`, `importedAt`, optional `sourceSynthOS`, `sysexSHA256` (or hash) for duplicate detection
+- [ ] **6.2** On SysEx import, persist provenance; warn or merge when hash matches existing patch
+- [ ] **6.3** Export presets for Gotek UX: optional **short filename** (e.g. ≤16 chars), numeric prefix (`01_`…`60_`), **collision-safe** names (never overwrite silently)
+- [ ] **6.4** Optional export layout: category subfolders per `docs/VFX_SD_Context.md` (`00_FACTORY`, `03_PAD`, …)
+- [ ] **6.5** **60-program bank** model: wire `VFXBank` (or extend Live Set) with max 60 ordered slots; validate on export; optional `bank.json` manifest
+- [ ] **6.6** **Bulk import**: multi-select `.syx` or “import folder” in `LibrarySidebar`
+- [ ] **6.7** **UTType**: register/use `.syx` in file importer and export where supported
+- [ ] **6.8** Disk image **Phase 2**: confirm Ensoniq/VFX-SD sector layout or integrate external tool; read-only **metadata / file list** OR document manual pipeline from `.img` → `.syx`
+- [ ] **6.9** **HFE** strategy: document FlashFloppy constraints in README; no binary HFE writer until **Phase 3** of `DISK_IMAGE_PLAN.md` + verified layout
+- [ ] **6.10** Update `VFX_CAPABILITY_AUDIT.md` (Wave/Motion sections still describe old 8-knob grids — sync with `ParameterDefinitionsPage` + map-driven UI)
+
+---
+
 ## Ongoing / Maintenance
 
 - [ ] Update `PARAMETER_MAP.md` and `ParameterMap.swift` for every new verified parameter
@@ -92,6 +109,6 @@ Prioritized tasks derived from the development plan. Check off as completed.
 | Editor state | `src/editor/EditorState.swift`, CompareEngine, MacroEngine |
 | Library | `src/librarian/LibraryDB.swift`, BankManager, TagEngine |
 | UI | `src/app/MainView.swift`, `src/ui/pages/*`, `src/ui/panels/*`, `src/ui/components/*` |
-| Docs | `docs/` (see DEVELOPMENT_PLAN.md “Doc Index”) |
+| Docs | `docs/` (see DEVELOPMENT_PLAN.md “Doc Index”; Gotek audit: `GOTEK_COMPATIBILITY_AUDIT.md`) |
 | Captures | `sysex/` — put .syx dumps and notes here |
 | Tools | `tools/vfx_sysex_inspector.py`, `tools/build_parameter_csv.py` |
