@@ -1,5 +1,6 @@
 import Foundation
 import CoreMIDI
+import os
 
 final class MIDIDeviceManager: ObservableObject {
     @Published var inputName: String = "Not Connected"
@@ -20,6 +21,19 @@ final class MIDIDeviceManager: ObservableObject {
     }
     @Published var sendStopped: Bool = false
 
+    /// After **Request Patch**, we wait for an incoming program dump (see `VFXCtrlApp` handler).
+    enum PatchRequestPhase: Equatable {
+        case idle
+        case waitingForDump
+        case timedOut
+    }
+
+    @Published private(set) var patchRequestPhase: PatchRequestPhase = .idle
+    /// One-shot transport hint (e.g. missing output, request timeout).
+    @Published var transportUserNotice: String?
+
+    private var patchRequestTimeoutWork: DispatchWorkItem?
+
     private static let defaultsKeyDelay = "VFXCtrl.midi.interMessageDelayMs"
     private static let defaultsKeyInputName = "VFXCtrl.midi.lastInputName"
     private static let defaultsKeyOutputName = "VFXCtrl.midi.lastOutputName"
@@ -31,9 +45,9 @@ final class MIDIDeviceManager: ObservableObject {
     private var clientRef: MIDIClientRef = 0
     private var inputPortRef: MIDIPortRef = 0
     private var outputPortRef: MIDIPortRef = 0
-    private var sendQueue: [Data] = []
+    /// SysEx send queue — protected for access from `Task.detached` send loop (no `NSLock` in async context).
+    private let sendQueueLock = OSAllocatedUnfairLock<[Data]>(initialState: [])
     private var sendTask: Task<Void, Never>?
-    private let sendLock = NSLock()
 
     init() {
         loadMIDIPreferences()
@@ -190,15 +204,21 @@ final class MIDIDeviceManager: ObservableObject {
     func receiveSysEx(_ data: Data) {
         let hex = data.map { String(format: "%02X", $0) }.joined(separator: " ")
         logWithTimestamp("RX", hex)
+        if PatchParser.isLikelyProgramDump(data) {
+            patchRequestTimeoutWork?.cancel()
+            patchRequestTimeoutWork = nil
+            patchRequestPhase = .idle
+            transportUserNotice = nil
+        }
         onReceiveSysEx?(data)
     }
 
     func sendSysEx(_ data: Data, quiet: Bool = false) {
         LiveDebugLog.log("MIDI.sendSysEx(\(data.count) bytes, quiet=\(quiet)) START")
-        sendLock.lock()
-        sendQueue.append(data)
-        let queueCount = sendQueue.count
-        sendLock.unlock()
+        let queueCount = sendQueueLock.withLock { queue in
+            queue.append(data)
+            return queue.count
+        }
         LiveDebugLog.log("MIDI.sendSysEx queueCount=\(queueCount) after append")
         if !quiet {
             logWithTimestamp("TX", data.map { String(format: "%02X", $0) }.joined(separator: " "))
@@ -209,9 +229,7 @@ final class MIDIDeviceManager: ObservableObject {
 
     func stopSends() {
         sendStopped = true
-        sendLock.lock()
-        sendQueue.removeAll()
-        sendLock.unlock()
+        sendQueueLock.withLock { $0.removeAll() }
         DispatchQueue.main.async { [weak self] in
             self?.sendStopped = false
         }
@@ -226,21 +244,19 @@ final class MIDIDeviceManager: ObservableObject {
             let delayNs = UInt64(self.interMessageDelayMs * 1_000_000)
             var iter = 0
             while !Task.isCancelled {
-                self.sendLock.lock()
-                let next = self.sendQueue.first
-                if next == nil {
-                    self.sendQueue.removeAll()
-                    self.sendLock.unlock()
+                let next: Data? = self.sendQueueLock.withLock { queue in
+                    guard !queue.isEmpty else { return nil }
+                    return queue.removeFirst()
+                }
+                guard let packet = next else {
                     LiveDebugLog.log("MIDI.sendLoop EXIT (queue empty) iters=\(iter)")
                     break
                 }
-                self.sendQueue.removeFirst()
-                let count = next!.count
-                self.sendLock.unlock()
+                let count = packet.count
                 if self.sendStopped { continue }
                 iter += 1
                 LiveDebugLog.log("MIDI.sendLoop iter=\(iter) sendOneSysEx(\(count) bytes)")
-                self.sendOneSysEx(next!)
+                self.sendOneSysEx(packet)
                 LiveDebugLog.log("MIDI.sendLoop sleep \(self.interMessageDelayMs)ms")
                 try? await Task.sleep(nanoseconds: delayNs)
             }
@@ -335,7 +351,8 @@ final class MIDIDeviceManager: ObservableObject {
     }
 
     func sequencerTap() {
-        // Tap tempo via MIDI clock is preferable; placeholder for future implementation
+        // Tap tempo: virtual button # TBD (spec table OCR is ambiguous). Use UI / hardware test to assign.
+        transportUserNotice = "Tap tempo: SysEx virtual button not mapped yet — verify on VFX-SD, then wire in LiveSysExBuilder."
     }
 
     // MARK: - Virtual Button
@@ -348,10 +365,28 @@ final class MIDIDeviceManager: ObservableObject {
     // MARK: - Dump Requests (Command Type only, per spec sections 3.1.6–3.1.15)
 
     func requestCurrentProgram() {
+        guard selectedOutputRef != 0, outputPortRef != 0 else {
+            transportUserNotice = "Select a MIDI output before requesting a patch."
+            return
+        }
+        patchRequestTimeoutWork?.cancel()
+        patchRequestPhase = .waitingForDump
+        transportUserNotice = nil
+
         // Spec 3.1.6: Single Program Dump Request — command type 05 is the only data byte (verify envelope vs LiveSysExBuilder).
         var bytes: [UInt8] = [0xF0, 0x0F, 0x05, 0x00, UInt8((midiChannel - 1) & 0x0F), 0x02]
         bytes.append(0xF7)
         sendSysEx(Data(bytes))
+
+        let work = DispatchWorkItem { [weak self] in
+            guard let self else { return }
+            if self.patchRequestPhase == .waitingForDump {
+                self.patchRequestPhase = .timedOut
+                self.transportUserNotice = "No program dump received within 5s. Check MIDI input, SysEx on the VFX-SD, and routing."
+            }
+        }
+        patchRequestTimeoutWork = work
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: work)
     }
 }
 

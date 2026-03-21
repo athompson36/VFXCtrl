@@ -187,12 +187,27 @@ enum LiveSysExBuilder {
         t["sys.tune"]       = .init(page: 0, slot: 0, min: 0, max: 255)  // -128..+127 as unsigned
         t["sys.touch"]      = .init(page: 0, slot: 1, min: 0, max: 4)
         t["sys.bendRange"]  = .init(page: 0, slot: 2, min: 0, max: 12)
+        t["sys.fs1"]        = .init(page: 0, slot: 4, min: 0, max: 3)
+        t["sys.fs2"]        = .init(page: 0, slot: 5, min: 0, max: 1)
+        t["sys.sliderMode"] = .init(page: 1, slot: 0, min: 0, max: 1)
+        t["sys.cvPedal"]    = .init(page: 1, slot: 1, min: 0, max: 1)
+        t["sys.pitchTable"] = .init(page: 1, slot: 3, min: 0, max: 1)
+        t["sys.maxVelocity"] = .init(page: 1, slot: 4, min: 0, max: 127)
+        t["sys.voiceMuting"] = .init(page: 2, slot: 2, min: 0, max: 1)
+        t["sys.diskType"]   = .init(page: 2, slot: 4, min: 0, max: 127)
+        t["sys.xposEnable"] = .init(page: 2, slot: 5, min: 0, max: 1)
 
         // -- MIDI Control (pages 3-4) --
         t["sys.midiBaseCh"]   = .init(page: 3, slot: 0, min: 0, max: 15)
+        t["sys.midiLoop"]     = .init(page: 3, slot: 1, min: 0, max: 1)
+        t["sys.midiSendCh"]   = .init(page: 3, slot: 2, min: 0, max: 1)
         t["sys.midiInMode"]   = .init(page: 3, slot: 3, min: 0, max: 4)
-        t["sys.sysexRx"]      = .init(page: 4, slot: 3, min: 0, max: 1)
+        t["sys.midiTranspose"] = .init(page: 3, slot: 4, min: 0, max: 2)
+        t["sys.midiExtCtrl"]  = .init(page: 3, slot: 5, min: 0, max: 95)
         t["sys.localControl"] = .init(page: 4, slot: 0, min: 0, max: 1)
+        t["sys.songSelect"]   = .init(page: 4, slot: 1, min: 0, max: 1)
+        t["sys.sendStartStop"] = .init(page: 4, slot: 2, min: 0, max: 1)
+        t["sys.sysexRx"]      = .init(page: 4, slot: 3, min: 0, max: 1)
         t["sys.midiStatus"]   = .init(page: 4, slot: 5, min: 0, max: 2)
 
         // -- Program Control (page 5) --

@@ -53,10 +53,10 @@ let initialParameterMap: [ParameterDefinition] = [
     .init(key: "sys.songSelect",    label: "MIDI Song Select",      shortLabel: "SONG",    page: .system, sysexPage: 4,  sysexSlot: 1, minValue: 0, maxValue: 1,   status: .verified, note: "OFF,ON"),
     .init(key: "sys.sendStartStop", label: "Send Start/Stop",       shortLabel: "STRT",    page: .system, sysexPage: 4,  sysexSlot: 2, minValue: 0, maxValue: 1,   status: .verified, note: "OFF,ON"),
     .init(key: "sys.sysexRx",       label: "SysEx Enable",          shortLabel: "SYSEX",   page: .system, sysexPage: 4,  sysexSlot: 3, minValue: 0, maxValue: 1,   status: .verified, note: "OFF,ON"),
-    .init(key: "sys.midiStatus",    label: "Program Change",        shortLabel: "PCHG",    page: .system, sysexPage: 4,  sysexSlot: 5, minValue: 0, maxValue: 2,   status: .verified, note: "OFF,ON,NEW"),
+    .init(key: "sys.midiStatus",    label: "Program Change Routing", shortLabel: "PCHG",   page: .system, sysexPage: 4,  sysexSlot: 5, minValue: 0, maxValue: 2,   status: .verified, note: "Local / MIDI / Both (not Off-On-New)"),
 
     // ── Program Control (Page 5) — slots match LiveSysExBuilder ──
-    .init(key: "prog.pitchTable",   label: "Pitch Table",           shortLabel: "PTBL",    page: .performance, sysexPage: 5, sysexSlot: 0, minValue: 0, maxValue: 1,  status: .verified, note: "OFF,ON"),
+    .init(key: "prog.pitchTable",   label: "Program Pitch Table",   shortLabel: "PTBL",    page: .performance, sysexPage: 5, sysexSlot: 0, minValue: 0, maxValue: 1,  status: .verified, note: "OFF,ON per program"),
     .init(key: "prog.bendRange",    label: "Program Bend Range",    shortLabel: "PBEND",   page: .performance, sysexPage: 5, sysexSlot: 1, minValue: 0, maxValue: 13, status: .verified, note: "13=global"),
     .init(key: "prog.delayMult",    label: "Delay Multiplier",      shortLabel: "DLYMX",   page: .performance, sysexPage: 5, sysexSlot: 2, minValue: 0, maxValue: 3,  status: .verified, note: "X1,X2,X4,X8"),
     .init(key: "prog.restrike",     label: "Restrike Delay",        shortLabel: "RSTK",    page: .performance, sysexPage: 5, sysexSlot: 4, minValue: 0, maxValue: 99, status: .verified, note: ""),

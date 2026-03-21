@@ -6,37 +6,40 @@ This plan aligns the codebase with `ROADMAP.md`, `VFX_PROJECT_SPEC.md`, and supp
 
 ## Current State Summary
 
-### Implemented (scaffold / verified)
+*Last aligned with codebase audit: 2026-03. For product milestones see [`ROADMAP.md`](./ROADMAP.md) and [`PRODUCTION_CHECKLIST.md`](./PRODUCTION_CHECKLIST.md).*
+
+### Implemented
 
 | Area | Status | Notes |
 |------|--------|--------|
-| **App shell** | Done | SwiftUI `VFXCtrlApp`, `MainView`, NavigationSplitView |
-| **Editor state** | Done | `EditorState`: selectedPage, currentPatch, comparePatch, controls |
-| **Page model** | Done | 9 pages (Wave → Macro), `PageSelector`, `EditorPage` enum |
-| **UI pages** | Done | All 9 pages use `PageGrid` + 8 encoder keys per page (per `UI_PAGES.md`) |
-| **VirtualEncoder** | Done | Circle + value + Stepper; reusable for hardware mirror |
-| **Patch model** | Done | `VFXPatch`: id, name, category, notes, rawSysEx, parameters |
-| **Compare engine** | Done | `CompareEngine.changedKeys(current:compare:)` |
-| **Macro engine** | Stub | `MacroEngine.applyBrightness` only; other macros TBD |
-| **Parameter map** | Stub | `ParameterMap.swift`: 5 sample params, all `address: nil`, status unknown |
-| **Library** | Stub | `LibraryDB` (patches array, `importSysEx`), `BankManager` (VFXBank), `TagEngine` (suggestTags) |
-| **MIDI** | Partial | `MIDIDeviceManager`: log + delay UI; **no** CoreMIDI enum, **no** real send pacing |
-| **SysEx** | Partial | `SysExSender.pacedSend`, `SysExReceiver.handlePacket`; not wired to CoreMIDI |
-| **Patch I/O** | Stub | `PatchParser` returns placeholder; `PatchSerializer` returns raw only |
-| **Transport bar** | UI only | Buttons (Request Patch, Send, Compare, Play, Stop, Record, Tap) not wired |
-| **SysEx console** | Done | Displays `messageLog`, shows delay; no send/receive from device |
-| **Tools** | Done | `vfx_sysex_inspector.py` (hexdump + diff), `build_parameter_csv.py` |
+| **App shell** | Done | SwiftUI `VFXCtrlApp`, `MainView`, `NavigationSplitView` |
+| **Editor state** | Done | `EditorState`: pages, `currentPatch` / `comparePatch`, snapshots, live-send throttling |
+| **Page model** | Done | 9 pages (`EditorPage`), `PageSelector` |
+| **UI pages** | Done | Most tabs: **`ParameterDefinitionsPage`** driven by `ParameterMap` (~100 defs), grouped by SysEx page; **Mod**, **System**, **Sequencer** use custom views — [`UI_PAGES.md`](./UI_PAGES.md) |
+| **VirtualEncoder** | Done | Used in map-driven rows; accessibility labels/values |
+| **Patch model** | Done | `VFXPatch` + provenance (`sourceFileName`, `importedAt`, `sysexSHA256`, optional `sourceSynthOS`) |
+| **Compare engine** | Done | `CompareEngine.changedKeys`; compare UI |
+| **Macro engine** | Done | Eight macros map to multiple params (`MacroEngine`, `docs/MACRO_MAP.md`) |
+| **Parameter map** | Substantial | `ParameterMap.swift` + `PARAMETER_MAP.md`; per-key verification ongoing |
+| **Library** | Done | `LibraryDB` persistence, favorites, live sets, bulk import, duplicate detection, `TagEngine` |
+| **MIDI** | Done | CoreMIDI in/out in `MIDIDeviceManager`, device refresh, paced `SysExSender`, `SysExReceiver`, user delay + stop |
+| **Live parameter MIDI** | Done | `LiveSysExBuilder`: SysEx nibbles + CC (e.g. master vol) + sequencer virtual buttons; gated by Live preference |
+| **Patch I/O** | Partial | `PatchParser` / `PatchSerializer` for program dumps; **checksum stub** |
+| **Transport / export** | Partial | Send / request / compare / transport wired per current spec; **hardware confirmation** still Phase 0 / 7 |
+| **SysEx console** | Done | Log + delay; reflects real traffic when connected |
+| **Gotek / export** | Done (scoped) | Folder export, naming options, optional `bank.json`, 60-slot awareness — [`GOTEK_COMPATIBILITY_AUDIT.md`](./GOTEK_COMPATIBILITY_AUDIT.md) |
+| **Tests** | Growing | `swift test`: parser, compare, macros, export naming, provenance, enum labels |
+| **Tools** | Done | `vfx_sysex_inspector.py`, `build_parameter_csv.py` |
 
-### Not implemented / needs verification
+### Still open / verification
 
-- CoreMIDI device enumeration and connection
-- Actual SysEx send/receive over MIDI (with 40 ms pacing per `MIDI_TIMING.md`)
-- Verified VFX-SD program dump parsing (format and checksum per `VFX_SYSEX_SPEC.md`)
-- Parameter address table (all TBD in `PARAMETER_MAP.md`; workflow in `PARAMETER_RESEARCH_WORKFLOW.md`)
-- Librarian: Favorites, Live Sets, Incoming Captures, search, dedupe
-- Set Builder / curated export
-- Disk image (read-only metadata then export) per `DISK_IMAGE_PLAN.md`
-- Hardware mirror mode (future)
+- Phase **0** captures and synth OS notes (`sysex/`)
+- **Checksum** algorithm and strict validation (or explicit “not validated” UX)
+- **Hardware proof** of live edits, request patch, and full program send
+- **Coverage:** keep `ParameterMap` keys and `LiveSysExBuilder.supportedLiveKeys` in sync; document “patch-only” controls
+- **Sequencer / FX:** protocol limits vs UI (see `TODO.md` Phase 5)
+- **Disk image** in-app read: still manual / TBD per `DISK_IMAGE_PLAN.md`
+- **Production:** signing, notarization, CI, QA matrix (`PRODUCTION_CHECKLIST.md`)
 
 ---
 
@@ -54,7 +57,7 @@ This plan aligns the codebase with `ROADMAP.md`, `VFX_PROJECT_SPEC.md`, and supp
 
 ---
 
-## Phase 1: App Shell + MIDI Transport (current phase)
+## Phase 1: App Shell + MIDI Transport *(implemented)*
 
 **Goal:** App talks to the synth over CoreMIDI; raw SysEx send/receive with safe timing.
 
@@ -99,8 +102,8 @@ This plan aligns the codebase with `ROADMAP.md`, `VFX_PROJECT_SPEC.md`, and supp
 | # | Task | Dependencies | Notes |
 |---|------|--------------|--------|
 | 3.1 | Extend parameter map with verified addresses for Wave, Filter, Amp (per page) | Phase 2, PARAMETER_RESEARCH_WORKFLOW | Update ParameterMap.swift and PARAMETER_MAP.md |
-| 3.2 | Drive page controls from `currentPatch.parameters` and `EditorState.controls` | 3.1 | PageGrid already bound to editor; sync keys to ParameterDefinition |
-| 3.3 | On control change: send real-time SysEx edit (when address verified) | 3.1, Phase 1 | Single-parameter messages; respect delay |
+| 3.2 | Drive page controls from `currentPatch.parameters` | 3.1 | `ParameterDefinitionsPage` + map (replaces old fixed PageGrid model) |
+| 3.3 | On control change: live SysEx/CC when key supported | 3.1, Phase 1 | `LiveSysExBuilder` + `EditorState` throttling; verify on hardware |
 | 3.4 | “Compare” button: set `comparePatch = currentPatch` copy; show diff | CompareEngine exists | Highlight changed params in UI |
 | 3.5 | Compare view: side-by-side or diff list using `CompareEngine.changedKeys` | 3.4 | |
 | 3.6 | Snapshots: save current state to a list (in-memory or library); restore | 2.6 | Name snapshot; restore loads into currentPatch and optionally sends to synth |
@@ -117,8 +120,8 @@ This plan aligns the codebase with `ROADMAP.md`, `VFX_PROJECT_SPEC.md`, and supp
 | # | Task | Dependencies | Notes |
 |---|------|--------------|--------|
 | 4.1 | Verify and add parameter addresses for Motion, Mod, Performance | PARAMETER_RESEARCH_WORKFLOW | |
-| 4.2 | Wire Motion, Mod, Perf page controls to parameters and real-time SysEx | 4.1, Phase 3 | Same pattern as Phase 3 |
-| 4.3 | Macro page: map macro knobs to multiple parameters (MacroEngine) | 3.1, 4.1 | Expand beyond applyBrightness; document mapping |
+| 4.2 | Motion, Mod, Perf live sends for supported keys | 4.1, Phase 3 | Mod matrix may need extra hardware validation |
+| 4.3 | Macro page: map macro knobs to multiple parameters (MacroEngine) | 3.1, 4.1 | Implemented; document in `MACRO_MAP.md` |
 | 4.4 | Favorites: mark patches as favorite; filter in sidebar | 2.6 | |
 | 4.5 | Live sets: named sets of patches; reorder; load set into “slots” for performance | 2.6 | |
 | 4.6 | TagEngine: integrate suggestions into library UI (optional auto-tag on import) | 2.8 | |
@@ -134,7 +137,7 @@ This plan aligns the codebase with `ROADMAP.md`, `VFX_PROJECT_SPEC.md`, and supp
 | # | Task | Dependencies | Notes |
 |---|------|--------------|--------|
 | 5.1 | Verify sequencer SysEx (transport, tempo, song/seq, track) | Phase 0, VFX_SYSEX_SPEC | May be limited on VFX-SD |
-| 5.2 | Wire transport buttons (Play, Stop, Record, Tap) to sequencer when verified | 5.1, Phase 1 | |
+| 5.2 | Transport: virtual-button SysEx for play/stop/record when Live on; tap tempo per spec | 5.1, Phase 1 | Confirm on hardware |
 | 5.3 | Verify FX parameter SysEx (patch vs global) | Phase 0 | |
 | 5.4 | FX page: real-time control when verified | 5.3, 4.2 | |
 | 5.5 | Export: curated bank/set to SysEx files for Gotek workflow | 2.6, DISK_IMAGE_PLAN | Phase 2 of disk plan |
@@ -145,29 +148,43 @@ This plan aligns the codebase with `ROADMAP.md`, `VFX_PROJECT_SPEC.md`, and supp
 
 ---
 
+## Phase 7: Production (see `TODO.md`)
+
+**Goal:** Signed, notarized macOS build; documented QA; honest limits for users.
+
+| # | Task | Notes |
+|---|------|--------|
+| 7.1–7.10 | Checklist items | [`PRODUCTION_CHECKLIST.md`](./PRODUCTION_CHECKLIST.md), [`ROADMAP.md`](./ROADMAP.md) |
+
+---
+
 ## Cross-Cutting and Maintenance
 
 - **Parameter research:** Ongoing; every new verified offset gets documented in `PARAMETER_MAP.md` and `ParameterMap.swift` with status.
-- **Tests:** Add unit tests for `PatchParser`, `CompareEngine`, `MacroEngine`, and parameter serialization as formats solidify.
-- **Per-device profile:** Store MIDI delay (and later device choice) per user profile (MIDI_TIMING).
-- **Accessibility:** Labels and value feedback for encoders (already partially there with VirtualEncoder).
+- **Tests:** Expand golden dumps, `LiveSysExBuilder` snapshots, export edge cases before 1.0.
+- **MIDI prefs:** Delay and last device names in UserDefaults (MIDI_TIMING).
+- **Accessibility:** VirtualEncoder + map-driven cells include labels/values.
 
 ---
 
 ## Dependency Graph (high level)
 
 ```
-Phase 0 (capture/verify)
-    ↓
-Phase 1 (MIDI transport) ← you are here for implementation
-    ↓
-Phase 2 (parser, library, browser)
-    ↓
-Phase 3 (Wave/Filter/Amp, compare, snapshots)
-    ↓
-Phase 4 (Motion/Mod/Perf, macros, favorites, live sets)
-    ↓
-Phase 5 (Sequencer, FX, export, disk metadata, hardware mirror)
+Phase 0 (capture/verify) ─────────────────────┐
+    ↓                                         │
+Phase 1 (MIDI transport) ✓                    │
+    ↓                                         │
+Phase 2 (parser, library, browser) ✓          │  Hardware + checksum
+    ↓                                         │  proof & release
+Phase 3 (edit/compare/snapshots) ✓            │  engineering
+    ↓                                         │
+Phase 4 (Motion/Mod/Perf, macros, sets) ✓     │
+    ↓                                         │
+Phase 5 (Sequencer, FX, export, disk) partial  │
+    ↓                                         │
+Phase 6 (Gotek/librarian alignment) ✓         │
+    ↓                                         ↓
+Phase 7 (production) ←────────────────────────┘
 ```
 
 ---
@@ -178,8 +195,13 @@ Phase 5 (Sequencer, FX, export, disk metadata, hardware mirror)
 |----------|---------|
 | README.md | Status, first test workflow, caution on parameter map |
 | docs/VFX_PROJECT_SPEC.md | Product goals, app modes, UX, deliverables |
-| docs/ROADMAP.md | Phase 0–5 summary |
-| docs/UI_PAGES.md | 9 pages × 8 encoders |
+| docs/ROADMAP.md | Milestones MVP → 1.0 + current state |
+| docs/PRODUCTION_CHECKLIST.md | Signing, QA, ship criteria |
+| docs/RELEASE.md | Notarization / distribution draft steps |
+| docs/PHASE5_SEQUENCER_FX.md | Sequencer/FX hardware verification vs code |
+| CHANGELOG.md | Release notes (Keep a Changelog) |
+| docs/SUPPORT.md | Support / bug report template |
+| docs/UI_PAGES.md | Map-driven tabs + custom Mod/System/Seq |
 | docs/PARAMETER_MAP.md | Inventory + address table (verified/inferred/unknown) |
 | docs/PARAMETER_RESEARCH_WORKFLOW.md | Dump-based and real-time mapping steps |
 | docs/MIDI_TIMING.md | Delays, coalescing, safety |

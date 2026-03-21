@@ -93,19 +93,19 @@ struct ModTwoSlotView: View {
             }
             .pickerStyle(.menu)
             .frame(width: 120)
-            Text("Depth")
+            Text(depthKey == "mod.depth1" ? "Scaler" : "Shape")
                 .foregroundStyle(VFXTheme.textPrimary)
-                .frame(width: 36, alignment: .leading)
+                .frame(width: 44, alignment: .leading)
             Slider(
                 value: Binding(
-                    get: { Double(editor.controls[depthKey, default: 0]) },
+                    get: { Double(min(depthRange.upperBound, max(depthRange.lowerBound, editor.controls[depthKey, default: 0]))) },
                     set: { editor.set(depthKey, value: Int($0.rounded())) }
                 ),
-                in: 0...127
+                in: Double(depthRange.lowerBound)...Double(depthRange.upperBound)
             )
             .tint(VFXTheme.vfdGreen)
             .frame(width: 140)
-            Text("\(editor.controls[depthKey, default: 0])")
+            Text("\(min(depthRange.upperBound, max(depthRange.lowerBound, editor.controls[depthKey, default: 0])))")
                 .font(.system(size: 11, design: .monospaced))
                 .foregroundStyle(VFXTheme.textSecondary)
                 .frame(width: 24, alignment: .trailing)

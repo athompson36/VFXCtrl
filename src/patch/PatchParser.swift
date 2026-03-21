@@ -13,6 +13,10 @@ private let sysexEnd: UInt8 = 0xF7
 private let minProgramDumpLength = 20
 
 struct PatchParser {
+
+    /// Shown in UI when loading from a program dump (checksum algorithm still TBD).
+    static let programDumpChecksumNotValidatedNote = "Program dump checksum was not validated (algorithm TBD per VFX-SD spec)."
+
     /// Returns true if data looks like a VFX-SD program dump (F0 0F 05 ... F7).
     static func isLikelyProgramDump(_ data: Data) -> Bool {
         guard data.count >= minProgramDumpLength,
@@ -49,7 +53,8 @@ struct PatchParser {
             category: "Unsorted",
             notes: "",
             rawSysEx: data,
-            parameters: parameters
+            parameters: parameters,
+            importIntegrityNote: Self.programDumpChecksumNotValidatedNote
         )
     }
 

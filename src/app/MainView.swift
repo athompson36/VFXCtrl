@@ -31,8 +31,12 @@ struct MainView: View {
                 }
                 ToolbarItem(placement: .primaryAction) {
                     Menu("Export") {
-                        Button("Current Patch") {
-                            exportCurrentPatch()
+                        Button("Current Patch…") {
+                            exportCurrentPatch(gotekShortName: false)
+                        }
+                        .disabled(editor.currentPatch.rawSysEx == nil)
+                        Button("Current Patch (Gotek ≤16 chars)…") {
+                            exportCurrentPatch(gotekShortName: true)
                         }
                         .disabled(editor.currentPatch.rawSysEx == nil)
                         Button("Live Set…") {
@@ -74,9 +78,13 @@ struct MainView: View {
         }
     }
 
-    private func exportCurrentPatch() {
+    private func exportCurrentPatch(gotekShortName: Bool) {
         guard let data = editor.currentPatch.rawSysEx else { return }
-        _ = ExportHelper.saveSysEx(data, defaultName: editor.currentPatch.name + ".syx")
+        if gotekShortName {
+            _ = ExportHelper.saveSysExGotek(data, patchName: editor.currentPatch.name, maxBaseNameLength: 16)
+        } else {
+            _ = ExportHelper.saveSysEx(data, defaultName: editor.currentPatch.name + ".syx")
+        }
     }
 
     @ViewBuilder

@@ -92,12 +92,30 @@ final class EditorState: ObservableObject {
         if c["seq.song"] == nil || c["seq.song"]! < 1 || c["seq.song"]! > 60 { c["seq.song"] = 1 }
         if c["seq.sequence"] == nil || c["seq.sequence"]! < 1 || c["seq.sequence"]! > 60 { c["seq.sequence"] = 1 }
         if c["seq.track"] == nil || c["seq.track"]! < 1 || c["seq.track"]! > 24 { c["seq.track"] = 1 }
+        // Older System UI allowed sys.pitchTable = 2; VFX-SD map is 0…1 (Custom / Normal).
+        if let v = c["sys.pitchTable"] {
+            c["sys.pitchTable"] = min(1, max(0, v))
+        }
+        if let d1 = c["mod.depth1"] { c["mod.depth1"] = min(15, max(0, d1)) }
+        if let d2 = c["mod.depth2"] { c["mod.depth2"] = min(15, max(0, d2)) }
         controls = c
         objectWillChange.send()
     }
 
     func addSnapshot() {
-        let copy = VFXPatch(id: UUID(), name: "Snapshot \(snapshotDateString())", category: currentPatch.category, notes: currentPatch.notes, rawSysEx: currentPatch.rawSysEx, parameters: currentPatch.parameters)
+        let copy = VFXPatch(
+            id: UUID(),
+            name: "Snapshot \(snapshotDateString())",
+            category: currentPatch.category,
+            notes: currentPatch.notes,
+            rawSysEx: currentPatch.rawSysEx,
+            parameters: currentPatch.parameters,
+            sourceFileName: currentPatch.sourceFileName,
+            importedAt: currentPatch.importedAt,
+            sourceSynthOS: currentPatch.sourceSynthOS,
+            sysexSHA256: currentPatch.sysexSHA256,
+            importIntegrityNote: currentPatch.importIntegrityNote
+        )
         snapshots.append(copy)
     }
 

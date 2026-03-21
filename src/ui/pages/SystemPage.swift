@@ -116,9 +116,9 @@ struct SystemPage: View {
                 toggleRow("SysEx Rx", key: "sys.sysexRx")
                 toggleRow("XPOS", key: "sys.xposEnable")
                 HStack(spacing: 8) {
-                    Text("Status")
+                    Text("Pgm chg")
                         .foregroundStyle(VFXTheme.textPrimary)
-                        .frame(width: 44, alignment: .leading)
+                        .frame(width: 56, alignment: .leading)
                     Picker("", selection: Binding(
                         get: { min(2, max(0, editor.controls["sys.midiStatus", default: 0])) },
                         set: { editor.set("sys.midiStatus", value: $0) }
@@ -161,19 +161,21 @@ struct SystemPage: View {
             sectionHeader("System")
             HStack(alignment: .firstTextBaseline, spacing: 16) {
                 HStack(spacing: 8) {
-                    Text("Pitch Table")
+                    Text("System pitch table")
                         .foregroundStyle(VFXTheme.textPrimary)
-                        .frame(width: 80, alignment: .leading)
-                    Picker("", selection: Binding(
-                        get: { min(2, max(0, editor.controls["sys.pitchTable", default: 0])) },
-                        set: { editor.set("sys.pitchTable", value: $0) }
-                    )) {
-                        Text("System").tag(0)
-                        Text("All-C4").tag(1)
-                        Text("Custom").tag(2)
+                        .frame(width: 120, alignment: .leading)
+                    if let labels = ParameterEnumLabels.labels(forKey: "sys.pitchTable", minValue: 0, maxValue: 1) {
+                        Picker("", selection: Binding(
+                            get: { min(1, max(0, editor.controls["sys.pitchTable", default: 0])) },
+                            set: { editor.set("sys.pitchTable", value: $0) }
+                        )) {
+                            ForEach(0...1, id: \.self) { v in
+                                Text(labels[v]).tag(v)
+                            }
+                        }
+                        .pickerStyle(.menu)
+                        .frame(width: 120)
                     }
-                    .pickerStyle(.menu)
-                    .frame(width: 100)
                 }
             }
         }

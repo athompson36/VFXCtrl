@@ -1,5 +1,25 @@
 import Foundation
 
+/// Result of evaluating a SysEx blob before adding to the library.
+struct SysExImportEvaluation {
+    var patch: VFXPatch
+    /// Existing library patch with identical SysEx bytes (by hash or raw equality).
+    var duplicateOf: VFXPatch?
+}
+
+struct BulkSysExImportSummary: Equatable {
+    var imported: Int = 0
+    var skippedDuplicate: Int = 0
+    var skippedUnreadable: Int = 0
+}
+
+enum BulkImportDuplicatePolicy {
+    /// Skip blobs that match an existing library patch (by hash or raw data).
+    case skipDuplicates
+    /// Add every file (allows duplicate SysEx in the library).
+    case importAll
+}
+
 final class LibraryDB: ObservableObject {
     @Published var patches: [VFXPatch] = [] {
         didSet { savePatches() }
@@ -34,7 +54,16 @@ final class LibraryDB: ObservableObject {
         guard FileManager.default.fileExists(atPath: patchesURL.path),
               let data = try? Data(contentsOf: patchesURL),
               let decoded = try? decoder.decode([VFXPatch].self, from: data) else { return }
-        patches = decoded
+        patches = decoded.map(Self.migrateProvenance)
+    }
+
+    /// Backfill `sysexSHA256` for patches saved before provenance existed.
+    private static func migrateProvenance(_ patch: VFXPatch) -> VFXPatch {
+        var p = patch
+        if p.sysexSHA256 == nil, let raw = p.rawSysEx, !raw.isEmpty {
+            p.sysexSHA256 = SysExDigest.sha256Hex(of: raw)
+        }
+        return p
     }
 
     private func savePatches() {
@@ -42,10 +71,62 @@ final class LibraryDB: ObservableObject {
         try? data.write(to: patchesURL)
     }
 
-    /// Parse SysEx and add to library. Uses patch name from dump when possible.
-    func importSysEx(_ data: Data) {
-        let patch = (try? PatchParser().parseProgramDump(data)) ?? VFXPatch(name: "Imported", rawSysEx: data)
+    /// Parse SysEx, attach import metadata + SHA256 digest. Does **not** append until `commitImportedPatch` (after duplicate check in UI).
+    func evaluateSysExImport(_ data: Data, sourceFileName: String?, sourceSynthOS: String? = nil) -> SysExImportEvaluation {
+        var patch: VFXPatch
+        if let parsed = try? PatchParser().parseProgramDump(data) {
+            patch = parsed
+        } else {
+            var raw = VFXPatch(name: "Imported", rawSysEx: data)
+            raw.importIntegrityNote = "Not parsed as a VFX-SD program dump; stored as raw SysEx."
+            patch = raw
+        }
+        let digest = SysExDigest.sha256Hex(of: data)
+        patch.sourceFileName = sourceFileName
+        patch.importedAt = Date()
+        patch.sourceSynthOS = sourceSynthOS
+        patch.sysexSHA256 = digest
+
+        let dup = patches.first { existing in
+            if let h = existing.sysexSHA256, h == digest { return true }
+            if let r = existing.rawSysEx, r == data { return true }
+            return false
+        }
+        return SysExImportEvaluation(patch: patch, duplicateOf: dup)
+    }
+
+    func commitImportedPatch(_ patch: VFXPatch) {
         patches.append(patch)
+    }
+
+    /// Import many `.syx` / SysEx files. Each URL should be security-scoped if required by the picker.
+    @discardableResult
+    func importSysExBulk(urls: [URL], policy: BulkImportDuplicatePolicy = .skipDuplicates) -> BulkSysExImportSummary {
+        var summary = BulkSysExImportSummary()
+        for url in urls {
+            let accessed = url.startAccessingSecurityScopedResource()
+            defer {
+                if accessed { url.stopAccessingSecurityScopedResource() }
+            }
+            guard let data = try? Data(contentsOf: url) else {
+                summary.skippedUnreadable += 1
+                continue
+            }
+            let ev = evaluateSysExImport(data, sourceFileName: url.lastPathComponent)
+            switch policy {
+            case .skipDuplicates:
+                if ev.duplicateOf != nil {
+                    summary.skippedDuplicate += 1
+                    continue
+                }
+                commitImportedPatch(ev.patch)
+                summary.imported += 1
+            case .importAll:
+                commitImportedPatch(ev.patch)
+                summary.imported += 1
+            }
+        }
+        return summary
     }
 
     func removePatches(at offsets: IndexSet) {

@@ -8,9 +8,17 @@ struct PatchListView: View {
     var body: some View {
         List {
             Section("Current") {
-                Text(editor.currentPatch.name)
-                    .font(.headline)
-                    .foregroundStyle(VFXTheme.textPrimary)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(editor.currentPatch.name)
+                        .font(.headline)
+                        .foregroundStyle(VFXTheme.textPrimary)
+                    if let note = editor.currentPatch.importIntegrityNote, !note.isEmpty {
+                        Text(note)
+                            .font(.caption2)
+                            .foregroundStyle(VFXTheme.textSecondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
             }
             .listRowBackground(VFXTheme.surface)
             Section("Compare") {

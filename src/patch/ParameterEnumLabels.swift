@@ -187,7 +187,7 @@ enum ParameterEnumLabels {
         "pitch.table": ["Off", "On", "Custom"],
         "pitch.glideMode": ["None", "Pedal", "Mono", "Legato", "Trigger"],
 
-        // Filters
+        // Filters (parameter label in map: "Filter #1 Type" / "Filter #2 Type" — these are the *values*)
         "filter.type": ["LP 2-pole", "LP 3-pole"],
         "filter2.type": ["HP 2-pole", "HP 1-pole", "LP 2-pole", "LP 1-pole"],
 

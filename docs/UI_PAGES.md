@@ -16,6 +16,14 @@ Editor tabs map to **`EditorPage`** in `EditorState.swift`. Most synthesis tabs 
 
 Ranges and short labels come from the map; tooltips show full label + note.
 
+### Discrete parameters (menus)
+
+`ParameterEnumLabels` supplies option strings for enum-like parameters (e.g. `filter.type` → “LP 2-pole” / “LP 3-pole”). **`ParameterDefinition.label`** is always the *control name* (e.g. “Filter #1 Type”), never a single option.
+
+`LabeledParameterCell` for enums: **one green line** — the map `label` (e.g. “Wave Class”) — then a **menu picker** that shows the current option (no second green value line, no extra acronym row). Continuous params still use `VirtualEncoder` (value in the dial + short label).
+
+**Audited (map vs enum options):** Filter types, wave class, MIDI enums, LFO waveshape, env modes, FX type list, mod sources/destinations, and system/program pitch tables align with `PARAMETER_MAP.md` / MIDI spec v2.00 where marked verified. **`sys.midiStatus`** options are Local / MIDI / Both (program-change routing), not generic Off/On.
+
 ## Custom layouts
 
 | Tab | UI |

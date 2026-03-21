@@ -11,8 +11,8 @@
 |-------|---------------------------|----------------|
 | **Physical / FlashFloppy** | Images often **HFE** (or indexed `.img`); shallow USB folders; short volume labels | Docs only (`VFX_SD_Context.md`); **no image I/O in code** |
 | **Musical workflow** | User copies **files** the synth can load (via sequencer/OS) or uses **MIDI SysEx** from a host | **SysEx import/export** is the supported bridge |
-| **Bank semantics** | VFX-SD **60 programs per internal bank**; presets/banks per manual | **Not enforced** in export or library model |
-| **Naming** | OLED ~**16 characters**; avoid huge flat lists | Export uses full sanitized names; **no length cap** for Gotek display |
+| **Bank semantics** | VFX-SD **60 programs per internal bank**; presets/banks per manual | **Partial:** `VFXBankLimits`, export “first 60”, optional `bank.json`; live sets not hard-capped at 60 in UI |
+| **Naming** | OLED ~**16 characters**; avoid huge flat lists | **Optional** ≤16 stems, numeric prefix, collision-safe names; full names still supported |
 
 So: the app is **compatible with a Gotek-assisted workflow** only in the sense of **producing/consuming `.syx` (raw SysEx) files** that you place on USB or send over MIDI. It is **not** yet compatible with **native floppy image formats** (HFE/RAW Ensoniq layout) for read/write.
 
@@ -39,25 +39,27 @@ So: the app is **compatible with a Gotek-assisted workflow** only in the sense o
 ### 3.1 Library & persistence (`LibraryDB`, `VFXPatch`)
 
 - **Storage:** `~/Library/Application Support/VFXCtrl/library.json` (+ favorites, live_sets).
-- **`VFXPatch`:** `id`, `name`, `category`, `notes`, `rawSysEx`, `parameters`.
-- **Missing vs Gotek/librarian spec:**  
-  - `sourceFileName`, `importedAt`, `sourceSynthOS`, `sysexHash` (duplicate detection), `diskImageId` / `bankSlot`, `confidence` flags.
-- **`VFXBank` / `BankManager`:** Struct exists; **not wired** into `LibraryDB` or sidebar — no 60-slot bank editor.
+- **`VFXPatch`:** `id`, `name`, `category`, `notes`, `rawSysEx`, `parameters`, plus **provenance:** `sourceFileName`, `importedAt`, optional `sourceSynthOS`, `sysexSHA256` (SHA256 hex of raw SysEx).
+- **On load:** legacy patches without `sysexSHA256` get the field **backfilled** from `rawSysEx` when present.
+- **Still missing vs broader librarian spec:** `diskImageId` / `bankSlot`, `confidence` flags, etc.
+- **`VFXBank` / `BankManager`:** `VFXBankLimits.programsPerInternalBank` (60), `BankExportManifest` + optional **`bank.json`** on live-set export; **Live Set** remains the ordered slot list (no separate bank editor UI yet).
 
 ### 3.2 Import (`LibrarySidebar` + `PatchParser`)
 
-- **Single file** import via `fileImporter` with `UTType.data` (not a dedicated `.syx` type — may be OK on macOS but **less discoverable**).
-- **`importSysEx`:** Parses with `PatchParser` or stores raw blob; **does not record original filename** from picker.
+- **Import:** **Menu** — single file, **multi-select**, or **folder** (top-level `.syx` only). `fileImporter` uses **`VFXSysExTypes`** (`.syx` + `.data` fallback). Bulk path **skips duplicates** silently and shows a summary alert.
+- **`evaluateSysExImport` / `commitImportedPatch`:** Parses with `PatchParser` or stores raw blob; sets **`sourceFileName`**, **`importedAt`**, **`sysexSHA256`**; if digest matches an existing patch (or raw bytes match), shows **duplicate alert** (Skip / Import Anyway).
 - **`PatchParser`:** Header `F0 0F 05`; name extraction **heuristic**; `raw.*` nibbles not full logical model; checksum **stub**.
 
-### 3.3 Export (`ExportHelper`, `MainView`, `ExportLiveSetSheet`)
+### 3.3 Export (`ExportHelper`, `ExportNaming`, `MainView`, `ExportLiveSetSheet`)
 
 - **Current patch / live set → folder of `.syx`** (raw bytes). This matches a common Gotek workflow (copy folder to USB).
-- **Risks for Gotek UX:**  
-  - Long filenames / special characters (partially sanitized).  
-  - **No 16-char alias** for OLED.  
-  - **No collision handling** (two patches same name → second overwrite in `exportPatches`).  
-  - **No “max 60 per export”** or bank ordering metadata.
+- **Gotek-oriented options (Live Set sheet, persisted via App Storage):**  
+  - Short names (≤16 chars before `.syx`).  
+  - Numeric prefix `01_` … `99_`, then `100_` … for large sets.  
+  - **Collision-safe:** existing files never overwritten (`name_2.syx`, …).  
+  - Optional **category subfolders** (`00_FACTORY`, `03_PAD`, …) per `VFX_SD_Context.md`.  
+- **Current patch menu:** normal save, or **“Gotek ≤16 chars”** default filename (`VFXSysExTypes` on save panel).  
+- **Live set export:** optional **`bank.json`** manifest (slot index, relative path, patch id/name, SHA256); toggle **export first 60 only** for one RAM bank; warning when set > 60 without truncate.
 
 ### 3.4 MIDI / SysEx (compatibility with hardware after load)
 
@@ -66,7 +68,7 @@ So: the app is **compatible with a Gotek-assisted workflow** only in the sense o
 
 ### 3.5 Tests
 
-- `PatchParserTests`, `CompareEngineTests`, `MacroEngineTests` — **no** tests for export naming, bank size, or metadata.
+- `PatchParserTests`, `CompareEngineTests`, `MacroEngineTests`, `PatchProvenanceTests`, `ExportNamingTests` (includes **`bank.json`** decode) — **no** UI test for live-set cap-at-60 in the sidebar.
 
 ---
 
@@ -77,31 +79,33 @@ So: the app is **compatible with a Gotek-assisted workflow** only in the sense o
 | Import single program `.syx` / SysEx blob | **Yes** |
 | Persist library locally | **Yes** |
 | Export patch / live set as `.syx` files | **Yes** |
-| Gotek HFE / `.img` read | **No** |
+| Gotek HFE / `.img` read (in app) | **No** — **manual pipeline documented** (`DISK_IMAGE_PLAN.md` Phase 2: external tool / MIDI → `.syx` → Import) |
 | Gotek HFE / `.img` write | **No** (by design until format verified — see `DISK_IMAGE_PLAN.md`) |
-| 60-program bank modeling & export | **No** |
-| Filename rules for FlashFloppy (short names) | **No** |
-| Duplicate detection (hash) | **No** |
-| Source file / disk metadata | **No** |
-| Bulk multi-file import | **No** |
-| Align export folder layout with `VFX_SD_Context.md` | **No** |
+| 60-program bank modeling & export | **Partial** (export “first 60”, manifest, `VFXBankLimits`; live set not hard-capped at 60 in UI) |
+| Filename rules for FlashFloppy (short names) | **Partial** (≤16 option + numeric prefix + collision-safe) |
+| Duplicate detection (hash) | **Yes** (SHA256 on import + alert; legacy library backfilled on load) |
+| Source file / disk metadata | **Partial** (import filename, date, optional `sourceSynthOS`; no disk image ID yet) |
+| Bulk multi-file import | **Yes** (multi-select + folder, duplicate skip + summary) |
+| Align export folder layout with `VFX_SD_Context.md` | **Partial** (optional category subfolders) |
+| `.syx` UTType in import/export panels | **Yes** (`VFXSysExTypes` + `.data` fallback) |
 
 ---
 
 ## 5. Recommended priority order (for TODO)
 
-1. **Metadata + import provenance** — store original filename, import date, optional notes; compute **SHA256 of `rawSysEx`** for duplicate warnings.
-2. **Export options for Gotek** — optional max filename length, numeric prefix (`01_…`), collision-safe names, optional category subfolders matching doc layout.
-3. **Bank (60) modeling** — `VFXBank` or live-set type = ordered list ≤ 60 with validation; export “bank folder” manifest.
-4. **Multi-select SysEx import** — folder or multiple files.
-5. **Disk image Phase 2** — external format research + read-only extractor (or link to trusted tool); document image→SysEx pipeline.
-6. **UTType** — declare/import `.syx` where appropriate for macOS 11+.
+1. ~~**Metadata + import provenance**~~ — **Done (Phase 6.1–6.2):** `VFXPatch` fields + `evaluateSysExImport` / duplicate alert; **remaining:** disk image / bank-slot IDs if desired.
+2. ~~**Export options for Gotek**~~ — **Largely done (6.3–6.4):** `ExportNaming` + Live Set toggles + single-patch Gotek menu item. **Remaining:** OLED-length presets beyond 16 if needed, export manifest.
+3. ~~**Bank (60) modeling**~~ — **Partially done:** live-set export + **first 60** + **`bank.json`**; optional: hard-cap live sets at 60 in UI, dedicated bank editor.
+4. ~~**Multi-select SysEx import**~~ — **Done** (multi file + folder, duplicate skip summary).
+5. **Disk image Phase 2** — **Doc done:** manual `.img`→`.syx` pipeline in `DISK_IMAGE_PLAN.md` + **README** (HFE/FlashFloppy). **Code:** read-only extractor still **TBD** after verified layout.
+6. ~~**UTType**~~ — **Done** (`VFXSysExTypes` for importers + save panel).
 
 ---
 
 ## 6. References
 
 - `docs/DISK_IMAGE_PLAN.md`
+- `docs/VFX_CAPABILITY_AUDIT.md` (UI vs `ParameterMap`)
 - `docs/VFX_SD_Context.md`
 - `docs/CURSOR_CONTEXT.md` (Librarian Design Requirements)
 - `docs/VFX_SD_GOTEK_CATALOG.csv`

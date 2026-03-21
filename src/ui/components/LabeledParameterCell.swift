@@ -34,12 +34,14 @@ struct LabeledParameterCell: View {
     }
 
     private func enumPicker(labels: [String]) -> some View {
-        VStack(spacing: 8) {
-            Text(currentLabel(labels: labels))
+        VStack(spacing: 10) {
+            // Single VFD-green line: parameter identity. Current option appears only in the menu control
+            // (no duplicate green value line or third short-label row).
+            Text(definition.label)
                 .font(.system(size: 13, weight: .medium, design: .rounded))
                 .foregroundStyle(VFXTheme.vfdGreen)
-                .lineLimit(2)
-                .minimumScaleFactor(0.75)
+                .lineLimit(3)
+                .minimumScaleFactor(0.8)
                 .multilineTextAlignment(.center)
                 .frame(minHeight: 36)
                 .frame(maxWidth: .infinity)
@@ -51,11 +53,6 @@ struct LabeledParameterCell: View {
             .labelsHidden()
             .pickerStyle(.menu)
             .frame(maxWidth: .infinity)
-            Text(definition.shortLabel)
-                .font(.system(size: 20, weight: .medium))
-                .foregroundStyle(VFXTheme.textPrimary)
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
         }
         .frame(maxWidth: .infinity)
         .help(definition.label + (definition.note.isEmpty ? "" : " — \(definition.note)"))

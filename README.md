@@ -4,21 +4,12 @@ A macOS-first editor, librarian, and future hardware control-surface companion f
 
 ## Status
 
-This starter is intentionally split into two tracks:
+The app is past “scaffold”: CoreMIDI I/O, program dump parse/serialize, a **map-driven** editor UI, librarian (import/export, live sets, Gotek-oriented naming), and **live** parameter SysEx when enabled. What remains for a confident **1.0** is mostly **hardware proof** (captures in `sysex/`, checksum, request/send flows), **coverage polish** (map vs `LiveSysExBuilder`), and **macOS release engineering** — see [`docs/ROADMAP.md`](docs/ROADMAP.md), [`TODO.md`](TODO.md) (Phase 7), [`docs/PRODUCTION_CHECKLIST.md`](docs/PRODUCTION_CHECKLIST.md), [`docs/RELEASE.md`](docs/RELEASE.md), [`CHANGELOG.md`](CHANGELOG.md), and [`docs/SUPPORT.md`](docs/SUPPORT.md).
 
-1. **Verified today**
-   - macOS app scaffold in SwiftUI
-   - CoreMIDI transport skeleton
-   - SysEx logging/sniffing tools
-   - library data model
-   - UI page model designed to map cleanly to future hardware
-   - disk-image parser plan and placeholders
-
-2. **Needs verification from the original Ensoniq MIDI spec / captures**
-   - exact SysEx byte layouts beyond the message categories already verified
-   - exact per-parameter addresses / offsets
-   - exact bank/program dump framing and checksums
-   - exact sequencer control semantics over MIDI SysEx
+**Still needs verification from the Ensoniq MIDI spec / your synth**
+   - per-parameter behavior on hardware (even when addresses come from the spec)
+   - bank/program dump checksums
+   - sequencer / FX scope the VFX-SD actually accepts over SysEx
 
 ## What this project is for
 
@@ -59,3 +50,10 @@ This repository does **not** pretend the parameter address map is complete. The 
 - `unknown`
 
 That keeps the project safe and honest while still letting you move quickly.
+
+## Gotek / FlashFloppy and HFE
+
+- **FlashFloppy** (Gotek firmware) commonly uses **HFE** (or indexed raw images) for floppy emulation. Constraints vary by image type and jumper settings; keep **folder depth shallow** and filenames short on the USB stick (the app’s **Export** options help with that — see `docs/VFX_SD_Context.md` and `docs/GOTEK_COMPATIBILITY_AUDIT.md`).
+- **VFX-CTRL does not write HFE or raw disk images** in-app. There is **no binary HFE writer** until **Phase 3** of [`docs/DISK_IMAGE_PLAN.md`](docs/DISK_IMAGE_PLAN.md) and a **verified** Ensoniq/VFX-SD sector layout for your sources.
+- **Phase 2** (read-only image metadata in code) is also unimplemented; until then use the **manual** `.img` → external tool / MIDI capture → **`.syx`** path described in `DISK_IMAGE_PLAN.md`.
+- For librarian workflows today: prefer **loose `.syx`**, **Live Sets**, optional **`bank.json`** on export, and duplicate detection on import.

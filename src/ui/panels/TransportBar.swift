@@ -43,6 +43,18 @@ struct TransportBar: View {
             .labelsHidden()
 
             Spacer()
+            if midi.patchRequestPhase == .waitingForDump {
+                Text("Waiting for dump…")
+                    .font(.caption2)
+                    .foregroundStyle(VFXTheme.vfdGreenDim)
+            }
+            if let notice = midi.transportUserNotice {
+                Text(notice)
+                    .font(.caption2)
+                    .foregroundStyle(.orange)
+                    .lineLimit(2)
+                    .frame(maxWidth: 280, alignment: .trailing)
+            }
             Button("Request Patch") { requestPatch() }
                 .buttonStyle(VFXButtonStyle())
             Button("Send") { sendCurrentPatch() }
@@ -66,12 +78,20 @@ struct TransportBar: View {
     }
 
     private func requestPatch() {
-        // VFX-SD "send current program" request format TBD; placeholder.
+        midi.requestCurrentProgram()
     }
 
     private func sendCurrentPatch() {
-        guard let data = editor.currentPatch.rawSysEx else { return }
-        midi.sendSysEx(data)
+        guard midi.selectedOutputRef != 0 else {
+            midi.transportUserNotice = "Select a MIDI output before sending."
+            return
+        }
+        do {
+            let data = try PatchSerializer().serialize(editor.currentPatch)
+            midi.sendSysEx(data)
+        } catch {
+            midi.transportUserNotice = "Nothing to send: patch has no program SysEx (request from synth or import a .syx first)."
+        }
     }
 }
 

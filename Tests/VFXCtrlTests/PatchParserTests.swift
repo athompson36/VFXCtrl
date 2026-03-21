@@ -49,5 +49,6 @@ final class PatchParserTests: XCTestCase {
         XCTAssertEqual(patch.rawSysEx, data)
         XCTAssertEqual(patch.name, "Captured Program")
         XCTAssertNotNil(patch.parameters["raw.0"])
+        XCTAssertEqual(patch.importIntegrityNote, PatchParser.programDumpChecksumNotValidatedNote)
     }
 }

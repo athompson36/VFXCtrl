@@ -18,7 +18,7 @@ struct SysExConsole: View {
                     .buttonStyle(VFXButtonStyle())
                     .fileImporter(
                         isPresented: $showSendFile,
-                        allowedContentTypes: [.data],
+                        allowedContentTypes: VFXSysExTypes.importContentTypes,
                         allowsMultipleSelection: false
                     ) { result in
                         guard case .success(let urls) = result, let url = urls.first,
