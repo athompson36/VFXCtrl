@@ -218,7 +218,7 @@
     },
     {
       "slot": 27,
-      "indexed_filename": "0027_ATW_Colorado_VFXsdDemos.HFE",
+      "indexed_filename": "0027_ATW_Colorado_Demos.HFE",
       "friendly_label": "ATW Colorado VFXsdDemos",
       "source_relative_path": "ATW/Colorado/VFXsdDemos.HFE",
       "size_bytes": 2049024,
@@ -226,7 +226,7 @@
     },
     {
       "slot": 28,
-      "indexed_filename": "0028_ATW_Colorado_VFXsdInternal.HFE",
+      "indexed_filename": "0028_ATW_Colorado_Internal.HFE",
       "friendly_label": "ATW Colorado VFXsdInternal",
       "source_relative_path": "ATW/Colorado/VFXsdInternal.HFE",
       "size_bytes": 2049024,
@@ -234,7 +234,7 @@
     },
     {
       "slot": 29,
-      "indexed_filename": "0029_ATW_Colorado_VFXsdKeys.HFE",
+      "indexed_filename": "0029_ATW_Colorado_Keys.HFE",
       "friendly_label": "ATW Colorado VFXsdKeys",
       "source_relative_path": "ATW/Colorado/VFXsdKeys.HFE",
       "size_bytes": 2049024,
@@ -242,7 +242,7 @@
     },
     {
       "slot": 30,
-      "indexed_filename": "0030_ATW_Colorado_VFXsdROM.HFE",
+      "indexed_filename": "0030_ATW_Colorado_ROM.HFE",
       "friendly_label": "ATW Colorado VFXsdROM",
       "source_relative_path": "ATW/Colorado/VFXsdROM.HFE",
       "size_bytes": 2049024,
@@ -1130,7 +1130,7 @@
     },
     {
       "slot": 141,
-      "indexed_filename": "0141_Ensoniq_VFX_VFXSD-Keys.HFE",
+      "indexed_filename": "0141_Ensoniq_VFX_Keys.HFE",
       "friendly_label": "Ensoniq VFX VFXSD-Keys",
       "source_relative_path": "Ensoniq/VFX/VFXSD-Keys.HFE",
       "size_bytes": 2049024,
@@ -1138,7 +1138,7 @@
     },
     {
       "slot": 142,
-      "indexed_filename": "0142_Ensoniq_VFX_VFXSD-RAM.HFE",
+      "indexed_filename": "0142_Ensoniq_VFX_RAM.HFE",
       "friendly_label": "Ensoniq VFX VFXSD-RAM",
       "source_relative_path": "Ensoniq/VFX/VFXSD-RAM.HFE",
       "size_bytes": 2049024,

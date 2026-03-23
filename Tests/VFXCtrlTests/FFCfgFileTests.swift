@@ -34,6 +34,18 @@ final class FFCfgFileTests: XCTestCase {
         XCTAssertEqual(r["indexed-prefix"], "\"\"")
     }
 
+    func testRecommended_extendedDisplayManualSelect() {
+        let r = FFCfgFile.recommendedEntries(indexedPrefix: "")
+        XCTAssertEqual(r["autoselect-file-secs"], "0")
+        XCTAssertEqual(r["autoselect-folder-secs"], "0")
+        XCTAssertEqual(r["ejected-on-startup"], "no")
+        XCTAssertEqual(r["rotary"], "full,reverse")
+        XCTAssertEqual(r["oled-font"], "8x16")
+        XCTAssertEqual(r["display-type"], "oled-128x64")
+        XCTAssertEqual(r["display-order"], "0d,7,1")
+        XCTAssertEqual(r["display-scroll-pause"], "1800")
+    }
+
     func testMergeRecommended_respectsReplaceFlag() {
         let base = ["nav-mode": "native", "host": "ensoniq"]
         let fill = FFCfgFile.mergeRecommended(into: base, indexedPrefix: "X", replaceRecommendedKeys: false)

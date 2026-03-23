@@ -13,19 +13,19 @@ struct FFCfgEditorView: View {
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(VFXTheme.textPrimary)
 
-            Text("INI-style config on the USB stick root (or FF/ subfolder if you use that layout). See FlashFloppy wiki.")
+            Text("INI-style config on the USB stick root (or FF/ subfolder if you use that layout). Keys must match the FlashFloppy wiki (e.g. autoselect-file-secs, not autoselect-file).")
                 .font(.caption)
                 .foregroundStyle(VFXTheme.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
 
             HStack {
-                Button("Apply recommended (Ensoniq + indexed)") {
+                Button("Apply recommended (VFX-SD rack + extended OLED)") {
                     applyRecommended()
                 }
                 Toggle("Replace recommended keys", isOn: $replaceAllRecommended)
-                    .font(.caption)
+                .font(.caption)
             }
-            Button("Merge OLED hints (display-order 0,1 + 6x13 font)") {
+            Button("Merge 128×64 OLED layout (oled-128x64, 0d,7,1, font 8×16)") {
                 mergeOLEDHints()
             }
             .font(.caption)
@@ -59,7 +59,7 @@ struct FFCfgEditorView: View {
         )
         cfgText = FFCfgFile.encode(
             entries: merged,
-            headerComment: "VFX-CTRL recommended baseline for indexed navigation + Ensoniq host. Verify interface/jumpers (Host Platforms: Ensoniq)."
+            headerComment: "VFX-CTRL: VFX-SD + SamplerZone Gotek Extended / FF 3.44 — oled-128x64, display-order 0d,7,1, oled-font 8x16, rotary full,reverse, autoselect 0. Verify jumpers (FlashFloppy Host Platforms: Ensoniq)."
         )
     }
 

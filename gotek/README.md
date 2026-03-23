@@ -9,29 +9,26 @@ Personal workspace for **Ensoniq VFX-SD** Gotek (FlashFloppy) setup: disk librar
 | Path | Purpose |
 |------|--------|
 | [`docs/`](docs/) | Migration context, Gotek PDFs |
-| [`docs/gotek-migration-context.txt`](docs/gotek-migration-context.txt) | Primary spec: indexed rack, `FF.CFG` / `IMG.CFG`, safety rules, USB deploy |
+| [`docs/gotek-migration-context.txt`](docs/gotek-migration-context.txt) | Historical migration notes (canonical policy: parent repo `docs/GOTEK_INDEXED_RACK.md`) |
 | [`ensoniq-vfx-sd/VFX-SD Backup/`](ensoniq-vfx-sd/VFX-SD%20Backup/) | VFX-SD disk images (`.HFE`, root `.img`), `FF.CFG`, `IMAGE_A.CFG` |
 | [`flashfloppy/flashfloppy-3.44/`](flashfloppy/flashfloppy-3.44/) | FlashFloppy release tree (firmware hex, examples, `Host/Ensoniq/IMG.CFG`) |
 | [`ensoniq-mirage/`](ensoniq-mirage/) | Separate Mirage material (not part of active VFX-SD migration) |
 
-Generated rack builds are gitignored:
+### Canonical rack build (in repo)
 
-- **`ensoniq-vfx-sd/VFX-RACK-BUILD/`** — full library: every backup image **except** excess `Blanks/*` reference files gets a slot (`DSKA0000.IMG` … exact indexed names only).
-- **`ensoniq-vfx-sd/VFX-RACK-BUILD-DEDUPED/`** — same order, but later byte-identical files (same SHA-256) are omitted.
+**`ensoniq-vfx-sd/VFX-RACK-BUILD-FF344/`** — FlashFloppy **3.44**, **`indexed-prefix = ""`**, files **`0000_*` … `0163_*`** (no `DSKA` on disk images). **`FF.CFG`** is tuned for **SamplerZone Gotek Extended** (34×19 mm OLED, rotary): manual mount (`autoselect-*-secs = 0`), `ejected-on-startup = yes`, `rotary = full`, readable scroll. See **`FF_CFG_CHANGELOG.md`** and parent **`docs/GOTEK_INDEXED_RACK.md`**.
 
-Behavior matches [`docs/correction-context.txt`](docs/correction-context.txt): exact `DSKA####.ext` names; **`Blanks/`** keeps at most **10** `BlankNNN.{HFE,IMG}` templates (lowest N first)—the rest stay in the backup as **reference-only** for formatting new disks (see `BLANKS_OMITTED.md` in each build).
+**Deploy:** `cp 000* FF.CFG` to FAT32 USB root only — **do not** copy `IMG.CFG`, `IMAGE_A.CFG`, or catalogs.
 
-**`IMG.CFG`** in the build: official Ensoniq raw-.IMG geometry stanzas (from FlashFloppy examples; Mirage block omitted) plus `##` comments mapping blank template slots to `Blanks/BlankNNN` sources. Deploy it with `FF.CFG`. Full slot names: `VFX_RACK_CATALOG.md` / `.csv`.
+### Refresh filenames + FF.CFG
 
-### Build the indexed USB contents
-
-From the repo root:
+From **vfx-ctrl** repo root:
 
 ```bash
-python3 scripts/build_vfx_rack.py
+python3 tools/apply_vfx_rack_friendly_indexed_names.py gotek/ensoniq-vfx-sd/VFX-RACK-BUILD-FF344
 ```
 
-Each folder receives `FF.CFG`, **`IMG.CFG`**, `DSKA####.{IMG,HFE}`, `VFX_RACK_CATALOG.md`, `VFX_RACK_CATALOG.csv`, `VFX_RACK_CATALOG.json`, `DUPLICATES_REPORT.md`, `BLANKS_OMITTED.md`, and `BUILD_README.txt`. Deploy with `cp DSKA* FF.CFG IMG.CFG` to the USB root (see `BUILD_README.txt`); do not copy `IMAGE_A.CFG`.
+Legacy **`python3 gotek/scripts/build_vfx_rack.py`** may still exist for older experiments; the maintained path is the `tools/` script above.
 
 Checklist: [`docs/VFX-SD-TODO.md`](docs/VFX-SD-TODO.md).
 

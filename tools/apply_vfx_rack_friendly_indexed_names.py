@@ -28,6 +28,16 @@ from pathlib import Path
 
 SUFFIX_MAX_LEN = 96
 
+# Shorter OLED-friendly suffixes for SamplerZone Gotek Extended (34×19 mm) — slot numbers from VFX_RACK_CATALOG.json.
+SLOT_DISPLAY_SUFFIX_OVERRIDES: dict[int, str] = {
+    27: "ATW_Colorado_Demos",
+    28: "ATW_Colorado_Internal",
+    29: "ATW_Colorado_Keys",
+    30: "ATW_Colorado_ROM",
+    141: "Ensoniq_VFX_Keys",
+    142: "Ensoniq_VFX_RAM",
+}
+
 
 def raw_suffix_from_source(source_relative_path: str) -> str:
     p = Path(source_relative_path)
@@ -56,8 +66,12 @@ def sanitize_suffix(s: str) -> str:
 def disambiguate_suffixes(slots: list[dict]) -> list[str]:
     bases: list[str] = []
     for item in slots:
-        raw = raw_suffix_from_source(item["source_relative_path"])
-        bases.append(sanitize_suffix(raw))
+        slot = int(item["slot"])
+        if slot in SLOT_DISPLAY_SUFFIX_OVERRIDES:
+            bases.append(sanitize_suffix(SLOT_DISPLAY_SUFFIX_OVERRIDES[slot]))
+        else:
+            raw = raw_suffix_from_source(item["source_relative_path"])
+            bases.append(sanitize_suffix(raw))
 
     seen: dict[str, int] = {}
     out: list[str] = []
@@ -148,13 +162,20 @@ def _write_duplicates_report(data: dict, report_path: Path) -> None:
 
 
 def _write_ff344_cfg(build: Path) -> None:
-    """FlashFloppy 3.44 + VFX-SD: empty indexed-prefix, numeric slot files 0000_*.IMG."""
-    text = """## FF.CFG — Ensoniq VFX-SD + FlashFloppy 3.44 (indexed, numeric slots)
+    """FlashFloppy 3.44 + VFX-SD + SamplerZone Gotek Extended: indexed, manual mount, readable OLED."""
+    text = """## FF.CFG — Ensoniq VFX-SD + FlashFloppy 3.44 (indexed, SamplerZone Gotek Extended OLED)
 ##
-## indexed-prefix = \"\"  →  slot files must be named 0000_*.*, 0001_*.*, … (four digits).
+## indexed-prefix = \"\"  →  slot files 0000_*.*, 0001_*.*, … (four digits). Friendly text after underscore.
 ## Deploy: copy 000*.HFE / 000*.IMG + this FF.CFG only. Do NOT copy IMAGE_A.CFG or IMG.CFG.
 ##
-## Note: FF 3.x uses autoselect-file-secs (seconds), not autoselect-file=yes. Non-zero enables auto-select.
+## FlashFloppy wiki keys only: there is NO display-nav-name / autoselect-file — use display-order and autoselect-*-secs.
+## display-scroll-rate / display-scroll-pause are in MILLISECONDS (min scroll-rate 100 per wiki). Slower = larger ms.
+## Browse with rotary; press encoder to mount. autoselect-*-secs = 0 disables timed auto-select.
+##
+## 128×64 OLED (SamplerZone Extended ~34×19 mm): oled-128x64 + display-order = 0d,7,1 (0d = double-height IMAGE NAME, 7 = spacer, 1 = status on lowest 16 px).
+## display-type=auto + 0,1 is for 128×32; on a 64px panel that can waste half the glass on EjectMenu / slot-only lines.
+## ejected-on-startup=no + image-on-startup=init shows normal nav with the first image name at power-up (eject with buttons if needed).
+## oled-font=8x16: bolder than 6x13 (wiki). rotary=full,reverse: swap direction if CW decreased slot (use full only if already correct).
 
 interface = shugart
 host = ensoniq
@@ -167,19 +188,19 @@ write-protect = no
 ejected-on-startup = no
 image-on-startup = init
 
-display-type = auto
-oled-font = 6x13
-display-order = 0,1
-display-off-secs = 60
+display-type = oled-128x64
+oled-font = 8x16
+display-order = 0d,7,1
+display-off-secs = 255
 display-on-activity = yes
 
-autoselect-file-secs = 2
-autoselect-folder-secs = 2
+autoselect-file-secs = 0
+autoselect-folder-secs = 0
 folder-sort = always
 sort-priority = files
 nav-loop = yes
 twobutton-action = zero
-rotary = none
+rotary = full,reverse
 
 motor-delay = 200
 step-delay = 3
@@ -188,10 +209,10 @@ write-drain = instant
 head-settle-ms = 12
 chgrst = delay-3
 
-display-scroll-rate = 200
-display-scroll-pause = 2000
-nav-scroll-rate = 80
-nav-scroll-pause = 300
+display-scroll-rate = 400
+display-scroll-pause = 1800
+nav-scroll-rate = 180
+nav-scroll-pause = 800
 
 step-volume = 10
 extend-image = yes

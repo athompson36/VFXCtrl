@@ -12,7 +12,7 @@
 | **Physical / FlashFloppy** | Images often **HFE** (or indexed `.img`); shallow USB folders; short volume labels | Docs only (`VFX_SD_Context.md`); **no image I/O in code** |
 | **Musical workflow** | User copies **files** the synth can load (via sequencer/OS) or uses **MIDI SysEx** from a host | **SysEx import/export** is the supported bridge |
 | **Bank semantics** | VFX-SD **60 programs per internal bank**; presets/banks per manual | **Partial:** `VFXBankLimits`, export “first 60”, optional `bank.json`; live sets not hard-capped at 60 in UI |
-| **Naming** | FlashFloppy **3.44** rack uses **empty** `indexed-prefix` → stick files `0000_*` … `0163_*` (no `DSKA`); OLED shows full name | **Optional** `DSKA` prefix for `.syx` USB export; disk rack: `docs/GOTEK_INDEXED_RACK.md` |
+| **Naming** | Rack uses **empty** `indexed-prefix` → `0000_*` … `0163_*` (no `DSKA` on disk images); concise suffixes for OLED | **Optional** `DSKA` prefix for `.syx` USB export; see `docs/GOTEK_INDEXED_RACK.md` |
 
 So: the app is **compatible with a Gotek-assisted workflow** only in the sense of **producing/consuming `.syx` (raw SysEx) files** that you place on USB or send over MIDI. It is **not** yet compatible with **native floppy image formats** (HFE/RAW Ensoniq layout) for read/write.
 
@@ -27,7 +27,7 @@ So: the app is **compatible with a Gotek-assisted workflow** only in the sense o
 | `docs/CURSOR_CONTEXT.md` | Librarian must import `.syx`, bulk dumps, preserve metadata, tags, **duplicate detection**, **source disk metadata** |
 | `docs/VFX_PROJECT_SPEC.md` | Export for Gotek workflows; **no arbitrary floppy image writes** |
 | `docs/VFX_SD_GOTEK_CATALOG.csv` | Catalog of backup `.img` sources; **reference only**, not parsed by app |
-| `docs/GOTEK_INDEXED_RACK.md` | FlashFloppy **indexed** HFE/IMG rack: `DSKA####_Suffix.EXT`, `IMG.CFG` scope, deployment |
+| `docs/GOTEK_INDEXED_RACK.md` | FlashFloppy **indexed** HFE/IMG rack: empty `indexed-prefix` → `0000_*` … `0163_*`, SamplerZone Extended FF.CFG baseline, deployment |
 | `docs/DEVELOPMENT_PLAN.md` / `ROADMAP.md` | Gotek/export/disk items tracked at high level |
 | `TODO.md` | 5.5 export marked done; 5.6 disk extractor “when format confirmed” |
 
@@ -75,7 +75,8 @@ So: the app is **compatible with a Gotek-assisted workflow** only in the sense o
 ### 3.6 Floppy Emulator (code)
 
 - **`RootContainerView` / `AppWorkspace`:** segmented control — Synth vs Floppy Emulator.
-- **`FloppyEmulatorView`:** export current patch / live set, SysEx import menu, USB tips, disk catalog table, embeds firmware wizard.
+- **`FloppyEmulatorView`:** export current patch / live set, SysEx import menu, USB tips, disk catalog table, Gotek+Ensoniq hardware cards, embeds firmware wizard.
+- **`FFCfgFile.recommendedEntries`:** VFX-SD + SamplerZone Gotek Extended baseline (indexed, `oled-128x64`, `oled-font=8x16`, `display-order=0d,7,1`, `autoselect-*-secs=0`, `rotary=full,reverse`, `ejected-on-startup=no` + `image-on-startup=init`) — must match [FF.CFG wiki](https://github.com/keirf/FlashFloppy/wiki/FF.CFG-Configuration-File) keys only.
 - **`FlashFloppyReleaseService`:** GitHub `releases/latest`, download `flashfloppy-*.zip`, `/usr/bin/unzip` extract, classify `.upd` vs `alt/bootloader/`.
 - **`UpdStagingService`:** list/remove root `*.upd`, copy selected files to user-chosen USB root.
 - **`FirmwareUpdateWizardView`:** guided flow + wiki links + optional DFU command copy.
@@ -103,6 +104,7 @@ So: the app is **compatible with a Gotek-assisted workflow** only in the sense o
 | FlashFloppy release fetch + ZIP unpack + `.upd` staging to USB | **Yes** — `FlashFloppyReleaseService`, `UpdStagingService`, `FirmwareUpdateWizardView` (see FlashFloppy wiki for hardware steps) |
 | DFU / initial programming in-app | **Partial** — advanced section: copy-paste `dfu-util` example + wiki links (no bundled flasher) |
 | Disk catalog browser (reference CSV) | **Yes** — bundled `VFX_SD_GOTEK_CATALOG.csv` (`src/Resources/` mirror for SPM; canonical copy in `docs/`) |
+| VFX-RACK indexed deploy + FF.CFG (extended OLED preset) | **Yes** — `GotekIndexedRackDeploy`, in-repo `VFX-RACK-BUILD-FF344/FF.CFG`, `FFCfgFile.recommendedEntries` |
 
 ---
 

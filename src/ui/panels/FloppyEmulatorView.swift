@@ -123,7 +123,7 @@ struct FloppyEmulatorView: View {
 
                 sectionTitle("OLED / indexed display names")
                 Text(
-                    "`VFX-RACK-BUILD-FF344` uses FlashFloppy 3.44 with **empty** `indexed-prefix` and files like `0002_ATW_Colorado_alogdig.HFE`. Slot = first four digits; the rest is OLED-friendly text. **Do not** deploy `IMG.CFG` for this workflow (see docs/GOTEK_INDEXED_RACK.md)."
+                    "`VFX-RACK-BUILD-FF344` uses FlashFloppy 3.44 with **empty** `indexed-prefix` and files like `0027_ATW_Colorado_Demos.HFE`. Slot = first four digits; keep suffixes short for the 34×19 mm OLED. **Do not** deploy `IMG.CFG` (see docs/GOTEK_INDEXED_RACK.md)."
                 )
                 .font(.caption)
                 .foregroundStyle(VFXTheme.textSecondary)
@@ -183,7 +183,7 @@ struct FloppyEmulatorView: View {
                 } else {
                     ffCfgDraft = FFCfgFile.encode(
                         entries: FFCfgFile.recommendedEntries(indexedPrefix: ""),
-                        headerComment: "VFX-CTRL defaults: empty indexed-prefix (numeric 0000_* rack). For .syx-only sticks set indexed-prefix = \"DSKA\" in the editor or USB export sheet. Verify jumpers (FlashFloppy wiki: Ensoniq)."
+                        headerComment: "VFX-CTRL defaults: VFX-RACK-BUILD-FF344 — oled-128x64, display-order 0d,7,1, font 8x16, rotary full,reverse, autoselect 0. For .syx-only sticks set indexed-prefix = \"DSKA\" in the editor or USB export sheet."
                     )
                 }
             }
@@ -247,7 +247,7 @@ struct FloppyEmulatorView: View {
     private var gotekHardwareSetupSection: some View {
         sectionTitle("Gotek model + Ensoniq host")
         Text(
-            "Icons are stand-ins for each Gotek style (see FlashFloppy Gotek Models for photos). Choose your board family, then the instrument. Jumpers follow the Host Platforms → Ensoniq wiki; Apply writes host / interface / pin / chgrst lines into the FF.CFG draft below."
+            "Icons are stand-ins for each Gotek style (see FlashFloppy Gotek Models for photos). The rack FF.CFG targets the SamplerZone Extended **128×64** OLED: `display-type = oled-128x64`, `display-order = 0d,7,1` (double-height disk name / spacer / status on the bottom 16 px). `ejected-on-startup = no` avoids a half-screen EjectMenu with no filename; autoselect stays off for deliberate mounts. Apply below merges only host/interface/pin/chgrst — use FF.CFG editor for the full baseline."
         )
         .font(.caption)
         .foregroundStyle(VFXTheme.textSecondary)
@@ -310,6 +310,11 @@ struct FloppyEmulatorView: View {
             Link("Hardware mods", destination: URL(string: "https://github.com/keirf/FlashFloppy/wiki/Hardware-Mods")!)
         }
         .font(.caption)
+
+        if let vendor = selectedGotekFamily.vendorProductURL, let vendorURL = URL(string: vendor) {
+            Link("SamplerZone: Gotek Extended (34×19 mm OLED)", destination: vendorURL)
+                .font(.caption)
+        }
 
         if selectedGotekFamily.id == "oled_kc30_415",
            selectedEnsoniqHost.ffCfgEntries["interface"] == "ibmpc-hdout" {

@@ -14,8 +14,24 @@ struct GotekUnitFamily: Identifiable, Hashable, Sendable {
     /// Bullets from FlashFloppy wiki / hardware mods.
     let notes: [String]
     let wikiURL: String
+    /// Optional retail product page (e.g. pre-built / cased Gotek).
+    let vendorProductURL: String?
 
     static let all: [GotekUnitFamily] = [
+        GotekUnitFamily(
+            id: "samplerzone_gotek_extended",
+            title: "SamplerZone Gotek Extended",
+            typicalModels: "34×19 mm OLED (larger than Gotek I/II); rotary included; taller case",
+            symbolName: "rectangle.on.rectangle",
+            notes: [
+                "Retail build from SamplerZone: extended case for instruments taller than ~24.5 mm; includes a 34 mm × 19 mm display and rotary encoder as standard.",
+                "In-repo VFX-RACK-BUILD-FF344 FF.CFG: oled-128x64, oled-font 8x16, display-order 0d,7,1, rotary full,reverse (CW = higher slot), autoselect off (see docs/GOTEK_INDEXED_RACK.md).",
+                "Sold pre-configured per host (e.g. Ensoniq VFX-SD); FlashFloppy wiki uses display-order (not display-nav-name) for name + status rows.",
+                "Without-display option replaces the OLED with a cover; you lose the filename readout.",
+            ],
+            wikiURL: "https://github.com/keirf/FlashFloppy/wiki/Gotek-Models",
+            vendorProductURL: "https://samplerzone.com/products/gotek-extended-floppy-emulator"
+        ),
         GotekUnitFamily(
             id: "classic_3digit",
             title: "Classic 3-digit + buttons",
@@ -26,7 +42,8 @@ struct GotekUnitFamily: Identifiable, Hashable, Sendable {
                 "Usually jumper at S0 for Shugart hosts (move factory S1 → S0 if needed).",
                 "Straight floppy ribbon (no twist) except IBM PC special cases — see FlashFloppy Host Platforms.",
             ],
-            wikiURL: "https://github.com/keirf/FlashFloppy/wiki/Gotek-Models"
+            wikiURL: "https://github.com/keirf/FlashFloppy/wiki/Gotek-Models",
+            vendorProductURL: nil
         ),
         GotekUnitFamily(
             id: "oled_kc30_415",
@@ -38,7 +55,8 @@ struct GotekUnitFamily: Identifiable, Hashable, Sendable {
                 "SFRKC30.AT2 may lack a JC jumper pad — set interface = ibmpc in FF.CFG if you need IBM-PC mode.",
                 "SFRKC30.AT2 does not support Disk Change Reset via the SWCLK mod (wiki).",
             ],
-            wikiURL: "https://github.com/keirf/FlashFloppy/wiki/Hardware-Mods#kc30-rotary-header"
+            wikiURL: "https://github.com/keirf/FlashFloppy/wiki/Hardware-Mods#kc30-rotary-header",
+            vendorProductURL: nil
         ),
         GotekUnitFamily(
             id: "oled_kc30_435",
@@ -50,7 +68,8 @@ struct GotekUnitFamily: Identifiable, Hashable, Sendable {
                 "MOR strap can connect motor sense for realistic ready timing (see Hardware Mods → Motor Signal).",
                 "KC30 rotary header same wiring as other KC30 boards.",
             ],
-            wikiURL: "https://github.com/keirf/FlashFloppy/wiki/Gotek-Models#artery-at32f435"
+            wikiURL: "https://github.com/keirf/FlashFloppy/wiki/Gotek-Models#artery-at32f435",
+            vendorProductURL: nil
         ),
         GotekUnitFamily(
             id: "at3_no_rotary_header",
@@ -60,7 +79,8 @@ struct GotekUnitFamily: Identifiable, Hashable, Sendable {
             notes: [
                 "No classic rotary header — wiki suggests wiring encoder to PA13/PA14 on the programming port, or use buttons.",
             ],
-            wikiURL: "https://github.com/keirf/FlashFloppy/wiki/Gotek-Models#artery-at32f415"
+            wikiURL: "https://github.com/keirf/FlashFloppy/wiki/Gotek-Models#artery-at32f415",
+            vendorProductURL: nil
         ),
     ]
 }
@@ -104,7 +124,7 @@ struct EnsoniqHostProfile: Identifiable, Hashable, Sendable {
                 "Wiki explicitly lists SD-1: S0, Shugart, no extra FF.CFG lines — VFX-SD is treated the same Shugart pattern in this app.",
             ],
             libraryBackupHints:
-                "VFX-CTRL’s 60 programs per bank limit matches the VFX-SD internal RAM bank when exporting .syx. Use indexed or bank.json exports for predictable restore order; keep one OS / library disk image in slot 0000 / 0001 on indexed USB sticks per your rack build."
+                "VFX-CTRL’s 60 programs per bank limit matches the VFX-SD internal RAM bank when exporting .syx. Use indexed or bank.json exports for predictable restore order; keep OS/library images in slots 0000 / 0001. For SamplerZone Extended OLED, keep 000N_ suffixes short; use Floppy Emulator → Apply recommended (VFX-SD rack + extended OLED) for FF.CFG."
         ),
         EnsoniqHostProfile(
             id: "eps",

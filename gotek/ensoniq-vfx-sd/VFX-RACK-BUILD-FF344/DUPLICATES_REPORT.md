@@ -5,7 +5,7 @@ Exact byte-identical files only. This build **keeps** each slot file; use for aw
 ## `296a2d15d25999b9…`
 
 - Slot 139: `0139_Ensoniq_SD1_SD1-ROM1.HFE` ← `Ensoniq/SD1/SD1-ROM1.HFE`
-- Slot 142: `0142_Ensoniq_VFX_VFXSD-RAM.HFE` ← `Ensoniq/VFX/VFXSD-RAM.HFE`
+- Slot 142: `0142_Ensoniq_VFX_RAM.HFE` ← `Ensoniq/VFX/VFXSD-RAM.HFE`
 - Slot 155: `0155_Blank_002.HFE` ← `Blanks/Blank002.HFE`
 
 ## `673e85bd9b5267bd…`

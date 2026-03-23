@@ -32,10 +32,10 @@ Source: `ensoniq-vfx-sd/VFX-SD Backup`
 | 24 | `0024_ATW_Colorado_soundfx.HFE` | ATW Colorado soundfx | `ATW/Colorado/soundfx.HFE` | 2049024 | `88e00639fd90e0c8…` |
 | 25 | `0025_ATW_Colorado_soundfx2.HFE` | ATW Colorado soundfx2 | `ATW/Colorado/soundfx2.HFE` | 2049024 | `7c5fe75fb43201c1…` |
 | 26 | `0026_ATW_Colorado_strings1.HFE` | ATW Colorado strings1 | `ATW/Colorado/strings1.HFE` | 2049024 | `e31c37e9935658b3…` |
-| 27 | `0027_ATW_Colorado_VFXsdDemos.HFE` | ATW Colorado VFXsdDemos | `ATW/Colorado/VFXsdDemos.HFE` | 2049024 | `1cba8619bb5164aa…` |
-| 28 | `0028_ATW_Colorado_VFXsdInternal.HFE` | ATW Colorado VFXsdInternal | `ATW/Colorado/VFXsdInternal.HFE` | 2049024 | `affab0035b9d981c…` |
-| 29 | `0029_ATW_Colorado_VFXsdKeys.HFE` | ATW Colorado VFXsdKeys | `ATW/Colorado/VFXsdKeys.HFE` | 2049024 | `11a8fe4f205c1ad7…` |
-| 30 | `0030_ATW_Colorado_VFXsdROM.HFE` | ATW Colorado VFXsdROM | `ATW/Colorado/VFXsdROM.HFE` | 2049024 | `a8d69c62084d9bf2…` |
+| 27 | `0027_ATW_Colorado_Demos.HFE` | ATW Colorado VFXsdDemos | `ATW/Colorado/VFXsdDemos.HFE` | 2049024 | `1cba8619bb5164aa…` |
+| 28 | `0028_ATW_Colorado_Internal.HFE` | ATW Colorado VFXsdInternal | `ATW/Colorado/VFXsdInternal.HFE` | 2049024 | `affab0035b9d981c…` |
+| 29 | `0029_ATW_Colorado_Keys.HFE` | ATW Colorado VFXsdKeys | `ATW/Colorado/VFXsdKeys.HFE` | 2049024 | `11a8fe4f205c1ad7…` |
+| 30 | `0030_ATW_Colorado_ROM.HFE` | ATW Colorado VFXsdROM | `ATW/Colorado/VFXsdROM.HFE` | 2049024 | `a8d69c62084d9bf2…` |
 | 31 | `0031_ATW_Colorado_wind.HFE` | ATW Colorado wind | `ATW/Colorado/wind.HFE` | 2049024 | `f0b04301bd74f02e…` |
 | 32 | `0032_ATW_Colorado_wind2.HFE` | ATW Colorado wind2 | `ATW/Colorado/wind2.HFE` | 2049024 | `4e91d059853e8fa8…` |
 | 33 | `0033_ATW_Fabio_Garcia_FGarcia.HFE` | ATW Fabio Garcia FGarcia | `ATW/Fabio Garcia/FGarcia.HFE` | 2049024 | `496135574472c2cd…` |
@@ -146,8 +146,8 @@ Source: `ensoniq-vfx-sd/VFX-SD Backup`
 | 138 | `0138_Ensoniq_SD1_SD1-RAM.HFE` | Ensoniq SD1 SD1-RAM | `Ensoniq/SD1/SD1-RAM.HFE` | 2049024 | `7dee961a3f56c8bc…` |
 | 139 | `0139_Ensoniq_SD1_SD1-ROM1.HFE` | Ensoniq SD1 SD1-ROM1 | `Ensoniq/SD1/SD1-ROM1.HFE` | 2049024 | `296a2d15d25999b9…` |
 | 140 | `0140_Ensoniq_VFX_VFX-ROM.HFE` | Ensoniq VFX VFX-ROM | `Ensoniq/VFX/VFX-ROM.HFE` | 2049024 | `673e85bd9b5267bd…` |
-| 141 | `0141_Ensoniq_VFX_VFXSD-Keys.HFE` | Ensoniq VFX VFXSD-Keys | `Ensoniq/VFX/VFXSD-Keys.HFE` | 2049024 | `9433e525549a571c…` |
-| 142 | `0142_Ensoniq_VFX_VFXSD-RAM.HFE` | Ensoniq VFX VFXSD-RAM | `Ensoniq/VFX/VFXSD-RAM.HFE` | 2049024 | `296a2d15d25999b9…` |
+| 141 | `0141_Ensoniq_VFX_Keys.HFE` | Ensoniq VFX VFXSD-Keys | `Ensoniq/VFX/VFXSD-Keys.HFE` | 2049024 | `9433e525549a571c…` |
+| 142 | `0142_Ensoniq_VFX_RAM.HFE` | Ensoniq VFX VFXSD-RAM | `Ensoniq/VFX/VFXSD-RAM.HFE` | 2049024 | `296a2d15d25999b9…` |
 | 143 | `0143_Ensoniq_VPC_VPC-100.HFE` | Ensoniq VPC VPC-100 | `Ensoniq/VPC/VPC-100.HFE` | 2049024 | `d89e160c93a0937e…` |
 | 144 | `0144_Ensoniq_VPC_VPC-101.HFE` | Ensoniq VPC VPC-101 | `Ensoniq/VPC/VPC-101.HFE` | 2049024 | `ff3df1b13c8841eb…` |
 | 145 | `0145_Ensoniq_VPC_VPC-102.HFE` | Ensoniq VPC VPC-102 | `Ensoniq/VPC/VPC-102.HFE` | 2049024 | `130d9a84ec121034…` |
