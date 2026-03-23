@@ -1,0 +1,1549 @@
+{
+  "slots": [
+    {
+      "slot": 0,
+      "indexed_filename": "0000_VFX_SD_OS_2.10.IMG",
+      "friendly_label": "VFX SD OS 2.10",
+      "source_relative_path": "VFX SD OS 2.10.img",
+      "size_bytes": 819200,
+      "sha256": "e297987bc94cb257e4a8adfe4d8fbf737378ca521ec22cdb094e47a9ad7ca013"
+    },
+    {
+      "slot": 1,
+      "indexed_filename": "0001_Stock_Library_Disk.IMG",
+      "friendly_label": "Stock Library Disk",
+      "source_relative_path": "Stock Library Disk.img",
+      "size_bytes": 819200,
+      "sha256": "4fcfa6c36b1b1f88db429857f97dcce122e6efe6b4b1879b723afd73ae09a23f"
+    },
+    {
+      "slot": 2,
+      "indexed_filename": "0002_ATW_Colorado_alogdig.HFE",
+      "friendly_label": "ATW Colorado alogdig",
+      "source_relative_path": "ATW/Colorado/alogdig.HFE",
+      "size_bytes": 2049024,
+      "sha256": "f5ac9ba58ced8c0e17efb1a11dc5940af1208485b8d25e825fba2966acac20e1"
+    },
+    {
+      "slot": 3,
+      "indexed_filename": "0003_ATW_Colorado_analog.HFE",
+      "friendly_label": "ATW Colorado analog",
+      "source_relative_path": "ATW/Colorado/analog.HFE",
+      "size_bytes": 2049024,
+      "sha256": "5bab8dd0658e3fdb17d96bc68c4722247c8a26409457c4b50be47209084bd38d"
+    },
+    {
+      "slot": 4,
+      "indexed_filename": "0004_ATW_Colorado_basses.HFE",
+      "friendly_label": "ATW Colorado basses",
+      "source_relative_path": "ATW/Colorado/basses.HFE",
+      "size_bytes": 2049024,
+      "sha256": "b53287fe2663cfe507829203ea1697e8b443b2d5f7022a1473596e056fd6b522"
+    },
+    {
+      "slot": 5,
+      "indexed_filename": "0005_ATW_Colorado_brass.HFE",
+      "friendly_label": "ATW Colorado brass",
+      "source_relative_path": "ATW/Colorado/brass.HFE",
+      "size_bytes": 2049024,
+      "sha256": "f14c74c6c14141afab85ad898e94ece228bf64239b498bae055dde959ab7d8df"
+    },
+    {
+      "slot": 6,
+      "indexed_filename": "0006_ATW_Colorado_digital.HFE",
+      "friendly_label": "ATW Colorado digital",
+      "source_relative_path": "ATW/Colorado/digital.HFE",
+      "size_bytes": 2049024,
+      "sha256": "a7cc2bfc5492042f62ec5217fe05b3e9feb6ba4e92f4258d09b47f3152a6eebe"
+    },
+    {
+      "slot": 7,
+      "indexed_filename": "0007_ATW_Colorado_digital2.HFE",
+      "friendly_label": "ATW Colorado digital2",
+      "source_relative_path": "ATW/Colorado/digital2.HFE",
+      "size_bytes": 2049024,
+      "sha256": "9ec3b44724379d464a5d04932c3131a5027193ec3c4fe3673e7207a7971ccce8"
+    },
+    {
+      "slot": 8,
+      "indexed_filename": "0008_ATW_Colorado_digital3.HFE",
+      "friendly_label": "ATW Colorado digital3",
+      "source_relative_path": "ATW/Colorado/digital3.HFE",
+      "size_bytes": 2049024,
+      "sha256": "7a7f3bb3509880d3414c8e8bc55c7150557db54ac1e39b9a6e1186bdf70e5c8c"
+    },
+    {
+      "slot": 9,
+      "indexed_filename": "0009_ATW_Colorado_digital4.HFE",
+      "friendly_label": "ATW Colorado digital4",
+      "source_relative_path": "ATW/Colorado/digital4.HFE",
+      "size_bytes": 2049024,
+      "sha256": "de604cbbc3a171948ca2eddec7e37cfb21bafda5cb3e08c92ef565c5eb010897"
+    },
+    {
+      "slot": 10,
+      "indexed_filename": "0010_ATW_Colorado_digital5.HFE",
+      "friendly_label": "ATW Colorado digital5",
+      "source_relative_path": "ATW/Colorado/digital5.HFE",
+      "size_bytes": 2049024,
+      "sha256": "d23534797338d4e74586b174e6049d9279da113be908f37308abf6684522602f"
+    },
+    {
+      "slot": 11,
+      "indexed_filename": "0011_ATW_Colorado_drums1.HFE",
+      "friendly_label": "ATW Colorado drums1",
+      "source_relative_path": "ATW/Colorado/drums1.HFE",
+      "size_bytes": 2049024,
+      "sha256": "bc6f2f806d688d743ec4c7525cceab66d4dcdae84e0857530a819a4c5ef0a676"
+    },
+    {
+      "slot": 12,
+      "indexed_filename": "0012_ATW_Colorado_drums2.HFE",
+      "friendly_label": "ATW Colorado drums2",
+      "source_relative_path": "ATW/Colorado/drums2.HFE",
+      "size_bytes": 2049024,
+      "sha256": "62a43a789813afe7d78b0e27d0504df82e77fa1c621561d4a4d081905c104589"
+    },
+    {
+      "slot": 13,
+      "indexed_filename": "0013_ATW_Colorado_electric.HFE",
+      "friendly_label": "ATW Colorado electric",
+      "source_relative_path": "ATW/Colorado/electric.HFE",
+      "size_bytes": 2049024,
+      "sha256": "f09e154bd89e33440621703a507b8e73620bcd5c8fee6ac55c9d29cc2f81a246"
+    },
+    {
+      "slot": 14,
+      "indexed_filename": "0014_ATW_Colorado_orches1.HFE",
+      "friendly_label": "ATW Colorado orches1",
+      "source_relative_path": "ATW/Colorado/orches1.HFE",
+      "size_bytes": 2049024,
+      "sha256": "d9172aee734e5b139097039f8a3f7fcb2a097b7e9c43cf3520fdac9bf53dd199"
+    },
+    {
+      "slot": 15,
+      "indexed_filename": "0015_ATW_Colorado_organ.HFE",
+      "friendly_label": "ATW Colorado organ",
+      "source_relative_path": "ATW/Colorado/organ.HFE",
+      "size_bytes": 2049024,
+      "sha256": "a9d376d9d9a07845a4a136a85ca0bbb3a60107199e4851b600c3b605577c9a13"
+    },
+    {
+      "slot": 16,
+      "indexed_filename": "0016_ATW_Colorado_otherelc.HFE",
+      "friendly_label": "ATW Colorado otherelc",
+      "source_relative_path": "ATW/Colorado/otherelc.HFE",
+      "size_bytes": 2049024,
+      "sha256": "a80ce91e7000e8a606bdbc5569de8123990fade56e0fd06d4b7ff7725062572b"
+    },
+    {
+      "slot": 17,
+      "indexed_filename": "0017_ATW_Colorado_percs1.HFE",
+      "friendly_label": "ATW Colorado percs1",
+      "source_relative_path": "ATW/Colorado/percs1.HFE",
+      "size_bytes": 2049024,
+      "sha256": "83c8246ffb38d78888496e6c297f96837837d0e775def2204851eece66a5b125"
+    },
+    {
+      "slot": 18,
+      "indexed_filename": "0018_ATW_Colorado_piano.HFE",
+      "friendly_label": "ATW Colorado piano",
+      "source_relative_path": "ATW/Colorado/piano.HFE",
+      "size_bytes": 2049024,
+      "sha256": "518f51c95753aa7b6c6cb463d5ca592717cf2bfa75e0f1d1577cc4619ebbb9e5"
+    },
+    {
+      "slot": 19,
+      "indexed_filename": "0019_ATW_Colorado_sd1_advpc100.HFE",
+      "friendly_label": "ATW Colorado sd1_advpc100",
+      "source_relative_path": "ATW/Colorado/sd1_advpc100.HFE",
+      "size_bytes": 2049024,
+      "sha256": "1a0c4b53ee16e924bb046079253be060ac78f7d23b302ce3c51b4a740f0cd047"
+    },
+    {
+      "slot": 20,
+      "indexed_filename": "0020_ATW_Colorado_sd1_advpc101.HFE",
+      "friendly_label": "ATW Colorado sd1_advpc101",
+      "source_relative_path": "ATW/Colorado/sd1_advpc101.HFE",
+      "size_bytes": 2049024,
+      "sha256": "e0e0631a31a7e2a0bcb62dd782a47f4cc55a34dc1642311ef8bfee8c4b831120"
+    },
+    {
+      "slot": 21,
+      "indexed_filename": "0021_ATW_Colorado_sd1_keys1.HFE",
+      "friendly_label": "ATW Colorado sd1_keys1",
+      "source_relative_path": "ATW/Colorado/sd1_keys1.HFE",
+      "size_bytes": 2049024,
+      "sha256": "ba70b323bad18197f5ab371b708a5e9535a2e4cf75809de14aaad78fa6a21ad8"
+    },
+    {
+      "slot": 22,
+      "indexed_filename": "0022_ATW_Colorado_sd1_rom0.HFE",
+      "friendly_label": "ATW Colorado sd1_rom0",
+      "source_relative_path": "ATW/Colorado/sd1_rom0.HFE",
+      "size_bytes": 2049024,
+      "sha256": "2b97e258649d2954291ff0d610bf7b43a4e510aede108e076ceddfa2bbdceb2b"
+    },
+    {
+      "slot": 23,
+      "indexed_filename": "0023_ATW_Colorado_sd1_rom1.HFE",
+      "friendly_label": "ATW Colorado sd1_rom1",
+      "source_relative_path": "ATW/Colorado/sd1_rom1.HFE",
+      "size_bytes": 2049024,
+      "sha256": "22f80676541bc30c05f97a693370969f08eab4a5d998de8315a30471e3e5aebc"
+    },
+    {
+      "slot": 24,
+      "indexed_filename": "0024_ATW_Colorado_soundfx.HFE",
+      "friendly_label": "ATW Colorado soundfx",
+      "source_relative_path": "ATW/Colorado/soundfx.HFE",
+      "size_bytes": 2049024,
+      "sha256": "88e00639fd90e0c80b96501a54c0537ee0ad05ed6e92eb08c78d89ad44cca9c7"
+    },
+    {
+      "slot": 25,
+      "indexed_filename": "0025_ATW_Colorado_soundfx2.HFE",
+      "friendly_label": "ATW Colorado soundfx2",
+      "source_relative_path": "ATW/Colorado/soundfx2.HFE",
+      "size_bytes": 2049024,
+      "sha256": "7c5fe75fb43201c1fe1444f253089514279949f5105d00c4c1ee8c81e7f3d3b5"
+    },
+    {
+      "slot": 26,
+      "indexed_filename": "0026_ATW_Colorado_strings1.HFE",
+      "friendly_label": "ATW Colorado strings1",
+      "source_relative_path": "ATW/Colorado/strings1.HFE",
+      "size_bytes": 2049024,
+      "sha256": "e31c37e9935658b30ddc8b19e62c0a5487036eece298dfd977b28c1927249b8c"
+    },
+    {
+      "slot": 27,
+      "indexed_filename": "0027_ATW_Colorado_VFXsdDemos.HFE",
+      "friendly_label": "ATW Colorado VFXsdDemos",
+      "source_relative_path": "ATW/Colorado/VFXsdDemos.HFE",
+      "size_bytes": 2049024,
+      "sha256": "1cba8619bb5164aa528b27d9043e5caf63ca62afc2479877a669498b39685ef6"
+    },
+    {
+      "slot": 28,
+      "indexed_filename": "0028_ATW_Colorado_VFXsdInternal.HFE",
+      "friendly_label": "ATW Colorado VFXsdInternal",
+      "source_relative_path": "ATW/Colorado/VFXsdInternal.HFE",
+      "size_bytes": 2049024,
+      "sha256": "affab0035b9d981cb72a115929bb90147acfee2936ec6ed73cc67f8c48cc303d"
+    },
+    {
+      "slot": 29,
+      "indexed_filename": "0029_ATW_Colorado_VFXsdKeys.HFE",
+      "friendly_label": "ATW Colorado VFXsdKeys",
+      "source_relative_path": "ATW/Colorado/VFXsdKeys.HFE",
+      "size_bytes": 2049024,
+      "sha256": "11a8fe4f205c1ad74e1232adf58eb66304f2b0e86fa4280b6bfa777cf984b54d"
+    },
+    {
+      "slot": 30,
+      "indexed_filename": "0030_ATW_Colorado_VFXsdROM.HFE",
+      "friendly_label": "ATW Colorado VFXsdROM",
+      "source_relative_path": "ATW/Colorado/VFXsdROM.HFE",
+      "size_bytes": 2049024,
+      "sha256": "a8d69c62084d9bf23de6af26902d5897d0f28b78ce8307eaea156d1d8e7b6523"
+    },
+    {
+      "slot": 31,
+      "indexed_filename": "0031_ATW_Colorado_wind.HFE",
+      "friendly_label": "ATW Colorado wind",
+      "source_relative_path": "ATW/Colorado/wind.HFE",
+      "size_bytes": 2049024,
+      "sha256": "f0b04301bd74f02ee5e7ef05a6dd40eed1962871ae93da67d836d6971c7cc829"
+    },
+    {
+      "slot": 32,
+      "indexed_filename": "0032_ATW_Colorado_wind2.HFE",
+      "friendly_label": "ATW Colorado wind2",
+      "source_relative_path": "ATW/Colorado/wind2.HFE",
+      "size_bytes": 2049024,
+      "sha256": "4e91d059853e8fa8f21162d3af3272a15f8ee515138d86f59ce2e89a45d1b635"
+    },
+    {
+      "slot": 33,
+      "indexed_filename": "0033_ATW_Fabio_Garcia_FGarcia.HFE",
+      "friendly_label": "ATW Fabio Garcia FGarcia",
+      "source_relative_path": "ATW/Fabio Garcia/FGarcia.HFE",
+      "size_bytes": 2049024,
+      "sha256": "496135574472c2cd006d7c88d411656e13808792a03ff7bc29833e1f0b91315a"
+    },
+    {
+      "slot": 34,
+      "indexed_filename": "0034_ATW_Neopatch_countrypatches.HFE",
+      "friendly_label": "ATW Neopatch countrypatches",
+      "source_relative_path": "ATW/Neopatch/countrypatches.HFE",
+      "size_bytes": 2049024,
+      "sha256": "00b4ad0bc782b161b0425da93cad2e96aa6c0526bdddcfb168911f2c8c5e4347"
+    },
+    {
+      "slot": 35,
+      "indexed_filename": "0035_ATW_Neopatch_NEWBNK00.HFE",
+      "friendly_label": "ATW Neopatch NEWBNK00",
+      "source_relative_path": "ATW/Neopatch/NEWBNK00.HFE",
+      "size_bytes": 2049024,
+      "sha256": "0d0a5b7fe6ff1a6ddf5957c401f9b6c7edcc51c3b4892d67a5dd89d538fa8025"
+    },
+    {
+      "slot": 36,
+      "indexed_filename": "0036_ATW_Neopatch_NEWBNK01.HFE",
+      "friendly_label": "ATW Neopatch NEWBNK01",
+      "source_relative_path": "ATW/Neopatch/NEWBNK01.HFE",
+      "size_bytes": 2049024,
+      "sha256": "ba5573aa9223114b24268e4e82c85e57ebc02ae6d72ac417f30a8bb4c0ba9d7f"
+    },
+    {
+      "slot": 37,
+      "indexed_filename": "0037_ATW_Neopatch_NEWBNK02.HFE",
+      "friendly_label": "ATW Neopatch NEWBNK02",
+      "source_relative_path": "ATW/Neopatch/NEWBNK02.HFE",
+      "size_bytes": 2049024,
+      "sha256": "0edafc25d6603a8ba4e2115021489c522398cb9d86c1331b6e6cacbfcb79e108"
+    },
+    {
+      "slot": 38,
+      "indexed_filename": "0038_ATW_Neopatch_playpatches.HFE",
+      "friendly_label": "ATW Neopatch playpatches",
+      "source_relative_path": "ATW/Neopatch/playpatches.HFE",
+      "size_bytes": 2049024,
+      "sha256": "bd579c94cce46eb2495ee49431da9e49af51faa0eedb420a1ef93efe62e0acfa"
+    },
+    {
+      "slot": 39,
+      "indexed_filename": "0039_ATW_Neopatch_SYNTHS.HFE",
+      "friendly_label": "ATW Neopatch SYNTHS",
+      "source_relative_path": "ATW/Neopatch/SYNTHS.HFE",
+      "size_bytes": 2049024,
+      "sha256": "089459660dd5c32913798d8591932bfe16f885660df80751def72e1032bf61f1"
+    },
+    {
+      "slot": 40,
+      "indexed_filename": "0040_ATW_Neopatch_SYNTHS2.HFE",
+      "friendly_label": "ATW Neopatch SYNTHS2",
+      "source_relative_path": "ATW/Neopatch/SYNTHS2.HFE",
+      "size_bytes": 2049024,
+      "sha256": "657c2a3874cdbe0cc8c6afabcffbc4fd674f827ae59a916e162c151a4ce68f48"
+    },
+    {
+      "slot": 41,
+      "indexed_filename": "0041_ATW_PAG_PAG.HFE",
+      "friendly_label": "ATW PAG PAG",
+      "source_relative_path": "ATW/PAG/PAG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "b5412d91ac259d968e0257111756274c9414be06f42cf434351fba348477334c"
+    },
+    {
+      "slot": 42,
+      "indexed_filename": "0042_ATW_SoundLib_SLIB_1.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 1",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 1.HFE",
+      "size_bytes": 2049024,
+      "sha256": "1176026a08ee36736ccbe2bea2c182a1166b14df03332668af11d03f0183c534"
+    },
+    {
+      "slot": 43,
+      "indexed_filename": "0043_ATW_SoundLib_SLIB_10.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 10",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 10.HFE",
+      "size_bytes": 2049024,
+      "sha256": "48c297e149428719502a4e5167acad28b81cf04e1d1c88310ad7e68e260bf87f"
+    },
+    {
+      "slot": 44,
+      "indexed_filename": "0044_ATW_SoundLib_SLIB_11.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 11",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 11.HFE",
+      "size_bytes": 2049024,
+      "sha256": "c94fa4805723ce7940518ad514b588601b5dafa9395c8c59ff522d71f9742554"
+    },
+    {
+      "slot": 45,
+      "indexed_filename": "0045_ATW_SoundLib_SLIB_12.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 12",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 12.HFE",
+      "size_bytes": 2049024,
+      "sha256": "5217f3e94930ba9c51e2e0351694c947ac26cfc393ad73c4b24a78c7c48a22f0"
+    },
+    {
+      "slot": 46,
+      "indexed_filename": "0046_ATW_SoundLib_SLIB_13.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 13",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 13.HFE",
+      "size_bytes": 2049024,
+      "sha256": "db6747607df2666f54d331564bc139ba658097b812d3e7268ef3655827d4f005"
+    },
+    {
+      "slot": 47,
+      "indexed_filename": "0047_ATW_SoundLib_SLIB_14.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 14",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 14.HFE",
+      "size_bytes": 2049024,
+      "sha256": "4a292dc6279fc9d12840ac01fd793f854a3d8a7eece011091674f5a9b02edd64"
+    },
+    {
+      "slot": 48,
+      "indexed_filename": "0048_ATW_SoundLib_SLIB_15.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 15",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 15.HFE",
+      "size_bytes": 2049024,
+      "sha256": "b9272156bdecf7cf19a57c259c034683b9febc0eea3841b2d7babc8f0b43964e"
+    },
+    {
+      "slot": 49,
+      "indexed_filename": "0049_ATW_SoundLib_SLIB_16.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 16",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 16.HFE",
+      "size_bytes": 2049024,
+      "sha256": "7cf626c99f90b373f65d3a23e20605b6e2e5ccb5451ff89080baf635590eb047"
+    },
+    {
+      "slot": 50,
+      "indexed_filename": "0050_ATW_SoundLib_SLIB_17.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 17",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 17.HFE",
+      "size_bytes": 2049024,
+      "sha256": "fa3241710d73d49ac9a475f93b5c916982a0628a084aa92d50d21aa5e8a50e94"
+    },
+    {
+      "slot": 51,
+      "indexed_filename": "0051_ATW_SoundLib_SLIB_18.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 18",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 18.HFE",
+      "size_bytes": 2049024,
+      "sha256": "0c20c3f7348f5604141c3342e93730d9840f619835a5d2f84ddf0ced7a1aab30"
+    },
+    {
+      "slot": 52,
+      "indexed_filename": "0052_ATW_SoundLib_SLIB_19.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 19",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 19.HFE",
+      "size_bytes": 2049024,
+      "sha256": "1324c7036cd33fbe47c33d65abca0ecebc786891fc6aff24f3dfad1ddaa69461"
+    },
+    {
+      "slot": 53,
+      "indexed_filename": "0053_ATW_SoundLib_SLIB_2.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 2",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 2.HFE",
+      "size_bytes": 2049024,
+      "sha256": "6e133b35cc7d9a32a93fdb63eddcb20ee28d55e7c2e8bad16e84e746dab5f3e9"
+    },
+    {
+      "slot": 54,
+      "indexed_filename": "0054_ATW_SoundLib_SLIB_20.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 20",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 20.HFE",
+      "size_bytes": 2049024,
+      "sha256": "d7e3c3a053277f9fccbbabe8ceea27d0cf5ef090f28db86bc76af3579d85a49c"
+    },
+    {
+      "slot": 55,
+      "indexed_filename": "0055_ATW_SoundLib_SLIB_21.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 21",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 21.HFE",
+      "size_bytes": 2049024,
+      "sha256": "f2c0730d11e1e5f68f873ad7bc11aa9dcf1f82202057e7b6e218d623f23dfecd"
+    },
+    {
+      "slot": 56,
+      "indexed_filename": "0056_ATW_SoundLib_SLIB_22.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 22",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 22.HFE",
+      "size_bytes": 2049024,
+      "sha256": "e0e78238a2460cc5c8bf2a1dc171ff24cdda91da6b3885bf0730a37ead496401"
+    },
+    {
+      "slot": 57,
+      "indexed_filename": "0057_ATW_SoundLib_SLIB_23.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 23",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 23.HFE",
+      "size_bytes": 2049024,
+      "sha256": "f6665018db4ec32c5d256f44343a9e62cdf41830ac59345657b90be4090ba2af"
+    },
+    {
+      "slot": 58,
+      "indexed_filename": "0058_ATW_SoundLib_SLIB_24.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 24",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 24.HFE",
+      "size_bytes": 2049024,
+      "sha256": "9616e34c4393506a38b67860c08fce51f1a774f6a0506952a94ada2a5d07cd62"
+    },
+    {
+      "slot": 59,
+      "indexed_filename": "0059_ATW_SoundLib_SLIB_25.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 25",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 25.HFE",
+      "size_bytes": 2049024,
+      "sha256": "f167b08a28291dee65d7ed0c3857b2117cfc741fbb14281d1cde8a677188dbc9"
+    },
+    {
+      "slot": 60,
+      "indexed_filename": "0060_ATW_SoundLib_SLIB_26.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 26",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 26.HFE",
+      "size_bytes": 2049024,
+      "sha256": "69dd9c135b13c7b787d9920d955b174565e8de6de0e68362362ffc0bda73a680"
+    },
+    {
+      "slot": 61,
+      "indexed_filename": "0061_ATW_SoundLib_SLIB_3.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 3",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 3.HFE",
+      "size_bytes": 2049024,
+      "sha256": "61e6cd9c6fec7b1457d7ea9e8401ea80c614836c2177fec9b1fce6c0fad559cf"
+    },
+    {
+      "slot": 62,
+      "indexed_filename": "0062_ATW_SoundLib_SLIB_4.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 4",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 4.HFE",
+      "size_bytes": 2049024,
+      "sha256": "99efefb2f235bae10f5dda190d924b19e7730ef662fd4fc13ea78d57148cdc38"
+    },
+    {
+      "slot": 63,
+      "indexed_filename": "0063_ATW_SoundLib_SLIB_5.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 5",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 5.HFE",
+      "size_bytes": 2049024,
+      "sha256": "cd4885a74742a98aefdeeabcd02e049d9d6c6805e661c4b9d9cd608a5cf14dd9"
+    },
+    {
+      "slot": 64,
+      "indexed_filename": "0064_ATW_SoundLib_SLIB_6.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 6",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 6.HFE",
+      "size_bytes": 2049024,
+      "sha256": "3797cca01a1f8c817f8a16a70775b601f51962b2b403fedb6d1e723e1b126599"
+    },
+    {
+      "slot": 65,
+      "indexed_filename": "0065_ATW_SoundLib_SLIB_7.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 7",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 7.HFE",
+      "size_bytes": 2049024,
+      "sha256": "1135f8d383ff29e42937bd69d79456c2ce9a8a3f107f847dc46794489e9968d6"
+    },
+    {
+      "slot": 66,
+      "indexed_filename": "0066_ATW_SoundLib_SLIB_8.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 8",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 8.HFE",
+      "size_bytes": 2049024,
+      "sha256": "22858fbbd721322e09112c4d73cb7bf87f56d64a651e1a50e82150fc979389a5"
+    },
+    {
+      "slot": 67,
+      "indexed_filename": "0067_ATW_SoundLib_SLIB_9.HFE",
+      "friendly_label": "ATW SoundLib SLIB_ 9",
+      "source_relative_path": "ATW/SoundLib/SLIB_ 9.HFE",
+      "size_bytes": 2049024,
+      "sha256": "efe12408324e3ab65e49c1ef962daaf908acb05eebfbd793607615a785653730"
+    },
+    {
+      "slot": 68,
+      "indexed_filename": "0068_ATW_Soundthinker_01_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 01_PRG",
+      "source_relative_path": "ATW/Soundthinker/01_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "3345aa4c3cf59e59e4e51170b5b15c10d74749d682bc9a617e12568affe935f2"
+    },
+    {
+      "slot": 69,
+      "indexed_filename": "0069_ATW_Soundthinker_02_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 02_PRG",
+      "source_relative_path": "ATW/Soundthinker/02_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "136a30c280629fa8dda4a66e085666daa07b770466fc6c24b80821336598db0f"
+    },
+    {
+      "slot": 70,
+      "indexed_filename": "0070_ATW_Soundthinker_03_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 03_PRG",
+      "source_relative_path": "ATW/Soundthinker/03_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "db3bab4e5f2cd150553b25c3e199609d8379d89f8bfd52bbc3c24d48c3e8d9d0"
+    },
+    {
+      "slot": 71,
+      "indexed_filename": "0071_ATW_Soundthinker_04_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 04_PRG",
+      "source_relative_path": "ATW/Soundthinker/04_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "220e27dd09bddd077a4652053367981bf86b8a4ce4b4825f12858cd0b16976c4"
+    },
+    {
+      "slot": 72,
+      "indexed_filename": "0072_ATW_Soundthinker_05_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 05_PRG",
+      "source_relative_path": "ATW/Soundthinker/05_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "96cc1049ed3491a049ab15acd5f75af303d863f9da808b9cf6f263a8d8e8da85"
+    },
+    {
+      "slot": 73,
+      "indexed_filename": "0073_ATW_Soundthinker_06_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 06_PRG",
+      "source_relative_path": "ATW/Soundthinker/06_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "f088668f8e0ed3b7ffbed2ace03611d75cd99c8617e3118b780ef218c39c0903"
+    },
+    {
+      "slot": 74,
+      "indexed_filename": "0074_ATW_Soundthinker_07_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 07_PRG",
+      "source_relative_path": "ATW/Soundthinker/07_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "30d3877a47b2da2dae64f7337e070fd9bca48e87d9bc126ae7357c796b9ecb3c"
+    },
+    {
+      "slot": 75,
+      "indexed_filename": "0075_ATW_Soundthinker_08_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 08_PRG",
+      "source_relative_path": "ATW/Soundthinker/08_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "7fe263908eec764e4e5f672417fd1fff33bb6d08127cebe976b336f2dc9c1c83"
+    },
+    {
+      "slot": 76,
+      "indexed_filename": "0076_ATW_Soundthinker_09_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 09_PRG",
+      "source_relative_path": "ATW/Soundthinker/09_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "e98daad50b2aae75ff68c6d5105ea6619bb38de9598b8f0cca971a0b9a91a40f"
+    },
+    {
+      "slot": 77,
+      "indexed_filename": "0077_ATW_Soundthinker_10_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 10_PRG",
+      "source_relative_path": "ATW/Soundthinker/10_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "7feabc3593e3fd3013de4107853054c701a9229f68f056c449177122f20b836a"
+    },
+    {
+      "slot": 78,
+      "indexed_filename": "0078_ATW_Soundthinker_11_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 11_PRG",
+      "source_relative_path": "ATW/Soundthinker/11_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "69fb56ba4aab6c463cf23aadf13a6111ad2ed9bd8321f189e3babec40379bcc7"
+    },
+    {
+      "slot": 79,
+      "indexed_filename": "0079_ATW_Soundthinker_12_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 12_PRG",
+      "source_relative_path": "ATW/Soundthinker/12_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "0bf72a6bc16cdc6154d707ce459c7bf738b45dddb0265311a3b2cf4e864d2e4f"
+    },
+    {
+      "slot": 80,
+      "indexed_filename": "0080_ATW_Soundthinker_13_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 13_PRG",
+      "source_relative_path": "ATW/Soundthinker/13_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "c81db219ac5e87c04880acf482969c0efe4f6586a8d8f8bb5e7cd16f5c1b8e74"
+    },
+    {
+      "slot": 81,
+      "indexed_filename": "0081_ATW_Soundthinker_14_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 14_PRG",
+      "source_relative_path": "ATW/Soundthinker/14_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "7204a0d774de79c8618f603f6b61cbabfe2c9f193a4d9560e492a7137908bd79"
+    },
+    {
+      "slot": 82,
+      "indexed_filename": "0082_ATW_Soundthinker_15_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 15_PRG",
+      "source_relative_path": "ATW/Soundthinker/15_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "bd081b7dd6bd54ffe5a01868cc1579b9a49fa6258e9f4f950b264de69439b54e"
+    },
+    {
+      "slot": 83,
+      "indexed_filename": "0083_ATW_Soundthinker_16_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 16_PRG",
+      "source_relative_path": "ATW/Soundthinker/16_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "d50c068aeffa63f0fb915dfd5023ba81cdecd6bb5963db4c0a9a83988f1ab119"
+    },
+    {
+      "slot": 84,
+      "indexed_filename": "0084_ATW_Soundthinker_17_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 17_PRG",
+      "source_relative_path": "ATW/Soundthinker/17_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "563700715d6fca71d868ca6fe8bbe28bc00ad938d00deaf228fddfc8f3a03216"
+    },
+    {
+      "slot": 85,
+      "indexed_filename": "0085_ATW_Soundthinker_18_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 18_PRG",
+      "source_relative_path": "ATW/Soundthinker/18_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "710795b61237091884725a5ee8c3d38b3b21752a45716d64e3cf5c7a907e3f00"
+    },
+    {
+      "slot": 86,
+      "indexed_filename": "0086_ATW_Soundthinker_19_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 19_PRG",
+      "source_relative_path": "ATW/Soundthinker/19_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "523fee43e9af28361be230157ff95aaa8596b3c451179c7a1c084eadc6a970db"
+    },
+    {
+      "slot": 87,
+      "indexed_filename": "0087_ATW_Soundthinker_20_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 20_PRG",
+      "source_relative_path": "ATW/Soundthinker/20_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "bd9475f1bbeadf976d7a8b28312c15072794062fae87098d304f3b1a5cc5fbd9"
+    },
+    {
+      "slot": 88,
+      "indexed_filename": "0088_ATW_Soundthinker_21_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 21_PRG",
+      "source_relative_path": "ATW/Soundthinker/21_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "6757019dad767efe13e57b93fe0f12553f057866fa51186b50f2bd2dca75b3dc"
+    },
+    {
+      "slot": 89,
+      "indexed_filename": "0089_ATW_Soundthinker_22_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 22_PRG",
+      "source_relative_path": "ATW/Soundthinker/22_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "51c8e45701ed1ed0f7bc613509e1d42c65568f49985f65b7a5e033cac98988ca"
+    },
+    {
+      "slot": 90,
+      "indexed_filename": "0090_ATW_Soundthinker_23_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 23_PRG",
+      "source_relative_path": "ATW/Soundthinker/23_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "5004d2e257ab3308d0650deeb20f3dfe16d31f28ca4f9d2395fe21b1694c8f93"
+    },
+    {
+      "slot": 91,
+      "indexed_filename": "0091_ATW_Soundthinker_24_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 24_PRG",
+      "source_relative_path": "ATW/Soundthinker/24_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "6a5b02e892fd422dd63cef77cc2879965ba81ba0ab501729009048c1f0a35854"
+    },
+    {
+      "slot": 92,
+      "indexed_filename": "0092_ATW_Soundthinker_25_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 25_PRG",
+      "source_relative_path": "ATW/Soundthinker/25_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "eccf2ea02e43142ea892011e4248073e658ca09ff533338d97b743e7151791ec"
+    },
+    {
+      "slot": 93,
+      "indexed_filename": "0093_ATW_Soundthinker_26_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 26_PRG",
+      "source_relative_path": "ATW/Soundthinker/26_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "e6facff4fe8bb899e57ba5ceb739cc3df83f728d15977bb18467869d36e2a6a0"
+    },
+    {
+      "slot": 94,
+      "indexed_filename": "0094_ATW_Soundthinker_27_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 27_PRG",
+      "source_relative_path": "ATW/Soundthinker/27_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "f584f10a897c5f3f4d461a7aefef47cce1aba40dd630b037a2fa6b176a67cd2b"
+    },
+    {
+      "slot": 95,
+      "indexed_filename": "0095_ATW_Soundthinker_28_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 28_PRG",
+      "source_relative_path": "ATW/Soundthinker/28_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "6764cc3d6593da4c478b385cb64c1d3c97acce6f9c36ef5e19379332543ba8f3"
+    },
+    {
+      "slot": 96,
+      "indexed_filename": "0096_ATW_Soundthinker_29_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 29_PRG",
+      "source_relative_path": "ATW/Soundthinker/29_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "806000e620bffbc73ae1b91aebc3d79c529328a79111b3ba15cd212d237ccafa"
+    },
+    {
+      "slot": 97,
+      "indexed_filename": "0097_ATW_Soundthinker_30_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 30_PRG",
+      "source_relative_path": "ATW/Soundthinker/30_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "68c0a7327f52b304f961146a063b64e7817534174bb9662e12a80a066b6a5ef4"
+    },
+    {
+      "slot": 98,
+      "indexed_filename": "0098_ATW_Soundthinker_31_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 31_PRG",
+      "source_relative_path": "ATW/Soundthinker/31_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "bb63c254eed4dd798c00146388846f264dfbd6d715d80d5b2a13f73185ace5c7"
+    },
+    {
+      "slot": 99,
+      "indexed_filename": "0099_ATW_Soundthinker_32_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 32_PRG",
+      "source_relative_path": "ATW/Soundthinker/32_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "02abb2b42cfd03767f8a0b17dc55df6acf3d94ed7cf981ecdac25be719bc4450"
+    },
+    {
+      "slot": 100,
+      "indexed_filename": "0100_ATW_Soundthinker_33_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 33_PRG",
+      "source_relative_path": "ATW/Soundthinker/33_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "88bcd331d267b2611910da2d04d9ae0fba873e4b192cf1e41e30269d6b13b013"
+    },
+    {
+      "slot": 101,
+      "indexed_filename": "0101_ATW_Soundthinker_34_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 34_PRG",
+      "source_relative_path": "ATW/Soundthinker/34_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "234764a75c3275fa35ebc128a275878f82d8326a1a37f65851ed0a5a7e6e8c07"
+    },
+    {
+      "slot": 102,
+      "indexed_filename": "0102_ATW_Soundthinker_35_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 35_PRG",
+      "source_relative_path": "ATW/Soundthinker/35_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "2dda22128c93e3aac1bce3e80dbef7beb43bec5a08d788372465a31ec5574199"
+    },
+    {
+      "slot": 103,
+      "indexed_filename": "0103_ATW_Soundthinker_36_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 36_PRG",
+      "source_relative_path": "ATW/Soundthinker/36_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "2f6de3ae2532b1904b1aa5c72882f218a72885f6da00d3cf6435bb0867efae87"
+    },
+    {
+      "slot": 104,
+      "indexed_filename": "0104_ATW_Soundthinker_37_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 37_PRG",
+      "source_relative_path": "ATW/Soundthinker/37_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "3e541b8f85db9cbe96cb2eb6447d7e344c6e9293c64f3cdb694926cb15c292fe"
+    },
+    {
+      "slot": 105,
+      "indexed_filename": "0105_ATW_Soundthinker_38_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 38_PRG",
+      "source_relative_path": "ATW/Soundthinker/38_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "ce6ac63a42b4d3420dc9f66c095f171951175476903c7a3d68f9e0a2c2022242"
+    },
+    {
+      "slot": 106,
+      "indexed_filename": "0106_ATW_Soundthinker_39_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 39_PRG",
+      "source_relative_path": "ATW/Soundthinker/39_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "732091f170f6783cb29197758360b8d63bf13b06642bbe25a847e45c7b85f5dd"
+    },
+    {
+      "slot": 107,
+      "indexed_filename": "0107_ATW_Soundthinker_40_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 40_PRG",
+      "source_relative_path": "ATW/Soundthinker/40_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "dcd2335dd5a78dd9926223b0cd7d88d705a9042a949ab52b5db7999be683a799"
+    },
+    {
+      "slot": 108,
+      "indexed_filename": "0108_ATW_Soundthinker_41_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 41_PRG",
+      "source_relative_path": "ATW/Soundthinker/41_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "413d9c80c14cb15353ad1fb0e889a1aa472ebed080ec48b1f327a6d696b2c92d"
+    },
+    {
+      "slot": 109,
+      "indexed_filename": "0109_ATW_Soundthinker_42_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 42_PRG",
+      "source_relative_path": "ATW/Soundthinker/42_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "7085cb8ec51f8f99a7e1c7ce6a0dd7e5e662beaa364ca22b1344495df41c1acd"
+    },
+    {
+      "slot": 110,
+      "indexed_filename": "0110_ATW_Soundthinker_43_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 43_PRG",
+      "source_relative_path": "ATW/Soundthinker/43_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "30378e80ff86b704570874575a5a8e9d3293064f955830f4d8cf8da79a8cfc11"
+    },
+    {
+      "slot": 111,
+      "indexed_filename": "0111_ATW_Soundthinker_44_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 44_PRG",
+      "source_relative_path": "ATW/Soundthinker/44_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "4f0e50efb02fcb1bafdc6064e7e9bc6da52e076f1a058d082c2e038359c5caf2"
+    },
+    {
+      "slot": 112,
+      "indexed_filename": "0112_ATW_Soundthinker_45_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 45_PRG",
+      "source_relative_path": "ATW/Soundthinker/45_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "d1bc0dea93db575fb7c64f21b40204bf015e5619034559aa28d706a1f6ba83f5"
+    },
+    {
+      "slot": 113,
+      "indexed_filename": "0113_ATW_Soundthinker_46_PRG.HFE",
+      "friendly_label": "ATW Soundthinker 46_PRG",
+      "source_relative_path": "ATW/Soundthinker/46_PRG.HFE",
+      "size_bytes": 2049024,
+      "sha256": "727488f6a0052ebcb47f056e833171ccc07efebe0851fabd58a05521b2dfc4ce"
+    },
+    {
+      "slot": 114,
+      "indexed_filename": "0114_ATW_TransHacker_TransHacker_1.HFE",
+      "friendly_label": "ATW TransHacker TransHacker_1",
+      "source_relative_path": "ATW/TransHacker/TransHacker_1.HFE",
+      "size_bytes": 2049024,
+      "sha256": "2afdcb1c5292a55f8192f2bafbc13c79282316ac10292e6ba2f65dd5c12212cf"
+    },
+    {
+      "slot": 115,
+      "indexed_filename": "0115_ATW_TransHacker_TransHacker_2.HFE",
+      "friendly_label": "ATW TransHacker TransHacker_2",
+      "source_relative_path": "ATW/TransHacker/TransHacker_2.HFE",
+      "size_bytes": 2049024,
+      "sha256": "e038717a57aede236166596895456efe87b4267c71dd55d3f066ae9cddf09f0d"
+    },
+    {
+      "slot": 116,
+      "indexed_filename": "0116_ATW_Tweakheads_richs.HFE",
+      "friendly_label": "ATW Tweakheads richs",
+      "source_relative_path": "ATW/Tweakheads/richs.HFE",
+      "size_bytes": 2049024,
+      "sha256": "17f88bc7e838ee0a5513f8b5f1963c13290aede4c3d9e7f69e20c681a6234a5a"
+    },
+    {
+      "slot": 117,
+      "indexed_filename": "0117_ATW_Yahoo!_analog.HFE",
+      "friendly_label": "ATW Yahoo! analog",
+      "source_relative_path": "ATW/Yahoo!/analog.HFE",
+      "size_bytes": 2049024,
+      "sha256": "6f696e9c4d53694226022e152302707cfae493dc9471b12a441c238cba40afb7"
+    },
+    {
+      "slot": 118,
+      "indexed_filename": "0118_ATW_Yahoo!_bass.HFE",
+      "friendly_label": "ATW Yahoo! bass",
+      "source_relative_path": "ATW/Yahoo!/bass.HFE",
+      "size_bytes": 2049024,
+      "sha256": "b617f3e2b11a3cbb8e731cbfa6c52e8573a47a468347303f92a76bbbe5b0856f"
+    },
+    {
+      "slot": 119,
+      "indexed_filename": "0119_ATW_Yahoo!_bells.HFE",
+      "friendly_label": "ATW Yahoo! bells",
+      "source_relative_path": "ATW/Yahoo!/bells.HFE",
+      "size_bytes": 2049024,
+      "sha256": "82652022ffaa10bcc614c8fbbf0c2c7307a3bfb25582a28dc51352706bb41f4b"
+    },
+    {
+      "slot": 120,
+      "indexed_filename": "0120_ATW_Yahoo!_bells2.HFE",
+      "friendly_label": "ATW Yahoo! bells2",
+      "source_relative_path": "ATW/Yahoo!/bells2.HFE",
+      "size_bytes": 2049024,
+      "sha256": "ff21b393aeef83e34fa03fde297eb9d3178ed417451a45acb98f2f7a3c9e69e2"
+    },
+    {
+      "slot": 121,
+      "indexed_filename": "0121_ATW_Yahoo!_brass.HFE",
+      "friendly_label": "ATW Yahoo! brass",
+      "source_relative_path": "ATW/Yahoo!/brass.HFE",
+      "size_bytes": 2049024,
+      "sha256": "282dd663dc265ce487c33801616e45f3c6599d38f097a4995bbd03e66acca887"
+    },
+    {
+      "slot": 122,
+      "indexed_filename": "0122_ATW_Yahoo!_drums.HFE",
+      "friendly_label": "ATW Yahoo! drums",
+      "source_relative_path": "ATW/Yahoo!/drums.HFE",
+      "size_bytes": 2049024,
+      "sha256": "cf9b2c04a895862b47332094db52cbf03d3285071d8b07c75318268031c1fd5d"
+    },
+    {
+      "slot": 123,
+      "indexed_filename": "0123_ATW_Yahoo!_guitars.HFE",
+      "friendly_label": "ATW Yahoo! guitars",
+      "source_relative_path": "ATW/Yahoo!/guitars.HFE",
+      "size_bytes": 2049024,
+      "sha256": "0ee89aa9fad3ddb869c3bf69757c30d1a73dc7eecbbfa3cc1407d92722f34c00"
+    },
+    {
+      "slot": 124,
+      "indexed_filename": "0124_ATW_Yahoo!_leads.HFE",
+      "friendly_label": "ATW Yahoo! leads",
+      "source_relative_path": "ATW/Yahoo!/leads.HFE",
+      "size_bytes": 2049024,
+      "sha256": "c3944d1ed9c1b9d1e5ad495825fadac5c55de9c9158b9714c375d4f150786508"
+    },
+    {
+      "slot": 125,
+      "indexed_filename": "0125_ATW_Yahoo!_organs.HFE",
+      "friendly_label": "ATW Yahoo! organs",
+      "source_relative_path": "ATW/Yahoo!/organs.HFE",
+      "size_bytes": 2049024,
+      "sha256": "47dc76fba24babd161a3d50c3c0a06708e1593f89370eab2b64686396547b786"
+    },
+    {
+      "slot": 126,
+      "indexed_filename": "0126_ATW_Yahoo!_organs2.HFE",
+      "friendly_label": "ATW Yahoo! organs2",
+      "source_relative_path": "ATW/Yahoo!/organs2.HFE",
+      "size_bytes": 2049024,
+      "sha256": "5ee7680858545158280e077233a9a08757cd26ca53a2ae693695b127df0ceb89"
+    },
+    {
+      "slot": 127,
+      "indexed_filename": "0127_ATW_Yahoo!_pianos.HFE",
+      "friendly_label": "ATW Yahoo! pianos",
+      "source_relative_path": "ATW/Yahoo!/pianos.HFE",
+      "size_bytes": 2049024,
+      "sha256": "4390eb37b21dc70c45d90b22629a3a7b47be496dd1d33feec62f5b5284ff83e4"
+    },
+    {
+      "slot": 128,
+      "indexed_filename": "0128_ATW_Yahoo!_pianos2.HFE",
+      "friendly_label": "ATW Yahoo! pianos2",
+      "source_relative_path": "ATW/Yahoo!/pianos2.HFE",
+      "size_bytes": 2049024,
+      "sha256": "166451831edfca0ef3894ea52ee60a2b3a1d0e99cae1bb05f59e4159fb177354"
+    },
+    {
+      "slot": 129,
+      "indexed_filename": "0129_ATW_Yahoo!_sndeffct.HFE",
+      "friendly_label": "ATW Yahoo! sndeffct",
+      "source_relative_path": "ATW/Yahoo!/sndeffct.HFE",
+      "size_bytes": 2049024,
+      "sha256": "7442d6d060d5a8c23574f007877c2d8ac3a8c110501b92162165fb69ab7c4e52"
+    },
+    {
+      "slot": 130,
+      "indexed_filename": "0130_ATW_Yahoo!_strings.HFE",
+      "friendly_label": "ATW Yahoo! strings",
+      "source_relative_path": "ATW/Yahoo!/strings.HFE",
+      "size_bytes": 2049024,
+      "sha256": "aa462c49a30e2f9bfc1c256fb4741cf272643c11cab9bf9ba722ea0dda8cd5cd"
+    },
+    {
+      "slot": 131,
+      "indexed_filename": "0131_ATW_Yahoo!_VFX2010.HFE",
+      "friendly_label": "ATW Yahoo! VFX2010",
+      "source_relative_path": "ATW/Yahoo!/VFX2010.HFE",
+      "size_bytes": 2049024,
+      "sha256": "fb302c794eee9a6dd72c3ea7362387418cf1e425fa575118fb0e64417510424d"
+    },
+    {
+      "slot": 132,
+      "indexed_filename": "0132_ATW_Yahoo!_winds.HFE",
+      "friendly_label": "ATW Yahoo! winds",
+      "source_relative_path": "ATW/Yahoo!/winds.HFE",
+      "size_bytes": 2049024,
+      "sha256": "4c7a36b8a9ee1db5bfef47c4c8dad92f4c9eb8e12dc7bfd025c7159243d67461"
+    },
+    {
+      "slot": 133,
+      "indexed_filename": "0133_ATW_Yahoo!_Yahoo_1.HFE",
+      "friendly_label": "ATW Yahoo! Yahoo_1",
+      "source_relative_path": "ATW/Yahoo!/Yahoo_1.HFE",
+      "size_bytes": 2049024,
+      "sha256": "20592f2a71ae4e711c460dad60ae3d534e0a07dbf4d4cbc5ea388a3036663300"
+    },
+    {
+      "slot": 134,
+      "indexed_filename": "0134_Ensoniq_IPC_IPC-1.HFE",
+      "friendly_label": "Ensoniq IPC IPC-1",
+      "source_relative_path": "Ensoniq/IPC/IPC-1.HFE",
+      "size_bytes": 2049024,
+      "sha256": "47a181d7f39e4820d2b19dbc685685990ef4202b0f95b5603d0a1b2320be7266"
+    },
+    {
+      "slot": 135,
+      "indexed_filename": "0135_Ensoniq_IPC_IPC-2.HFE",
+      "friendly_label": "Ensoniq IPC IPC-2",
+      "source_relative_path": "Ensoniq/IPC/IPC-2.HFE",
+      "size_bytes": 2049024,
+      "sha256": "964d4c2719fd9a6b8278b5236e9117693d196aee1e050cb9d20206ce305b4e5d"
+    },
+    {
+      "slot": 136,
+      "indexed_filename": "0136_Ensoniq_IPC_IPC-3.HFE",
+      "friendly_label": "Ensoniq IPC IPC-3",
+      "source_relative_path": "Ensoniq/IPC/IPC-3.HFE",
+      "size_bytes": 2049024,
+      "sha256": "874e4dcaf40f0fea147e1ba14d3b00ddea4a93c2e2b66ee3c8d9ca4ee8fdab30"
+    },
+    {
+      "slot": 137,
+      "indexed_filename": "0137_Ensoniq_IPC_IPC-4.HFE",
+      "friendly_label": "Ensoniq IPC IPC-4",
+      "source_relative_path": "Ensoniq/IPC/IPC-4.HFE",
+      "size_bytes": 2049024,
+      "sha256": "f3a85c71b83d799c7477d169c6eabaca40eb4ad3030052fb10941d95c927d9c8"
+    },
+    {
+      "slot": 138,
+      "indexed_filename": "0138_Ensoniq_SD1_SD1-RAM.HFE",
+      "friendly_label": "Ensoniq SD1 SD1-RAM",
+      "source_relative_path": "Ensoniq/SD1/SD1-RAM.HFE",
+      "size_bytes": 2049024,
+      "sha256": "7dee961a3f56c8bc8a972c9daf8a3d3a260fbf4ef2ccb6a67ae1165d798d3321"
+    },
+    {
+      "slot": 139,
+      "indexed_filename": "0139_Ensoniq_SD1_SD1-ROM1.HFE",
+      "friendly_label": "Ensoniq SD1 SD1-ROM1",
+      "source_relative_path": "Ensoniq/SD1/SD1-ROM1.HFE",
+      "size_bytes": 2049024,
+      "sha256": "296a2d15d25999b9014518637c2db80dc04126a257fa05060242501a759df701"
+    },
+    {
+      "slot": 140,
+      "indexed_filename": "0140_Ensoniq_VFX_VFX-ROM.HFE",
+      "friendly_label": "Ensoniq VFX VFX-ROM",
+      "source_relative_path": "Ensoniq/VFX/VFX-ROM.HFE",
+      "size_bytes": 2049024,
+      "sha256": "673e85bd9b5267bdbae8802f89a132d3fb0ce59bbfe1dc6d59f24d3b2e200c41"
+    },
+    {
+      "slot": 141,
+      "indexed_filename": "0141_Ensoniq_VFX_VFXSD-Keys.HFE",
+      "friendly_label": "Ensoniq VFX VFXSD-Keys",
+      "source_relative_path": "Ensoniq/VFX/VFXSD-Keys.HFE",
+      "size_bytes": 2049024,
+      "sha256": "9433e525549a571c06400629c426b8f5e83b79df7005fee2f74a8f066e63f91f"
+    },
+    {
+      "slot": 142,
+      "indexed_filename": "0142_Ensoniq_VFX_VFXSD-RAM.HFE",
+      "friendly_label": "Ensoniq VFX VFXSD-RAM",
+      "source_relative_path": "Ensoniq/VFX/VFXSD-RAM.HFE",
+      "size_bytes": 2049024,
+      "sha256": "296a2d15d25999b9014518637c2db80dc04126a257fa05060242501a759df701"
+    },
+    {
+      "slot": 143,
+      "indexed_filename": "0143_Ensoniq_VPC_VPC-100.HFE",
+      "friendly_label": "Ensoniq VPC VPC-100",
+      "source_relative_path": "Ensoniq/VPC/VPC-100.HFE",
+      "size_bytes": 2049024,
+      "sha256": "d89e160c93a0937e39d3b965511cb9585ed3dc7686158ebf951c9373565d0083"
+    },
+    {
+      "slot": 144,
+      "indexed_filename": "0144_Ensoniq_VPC_VPC-101.HFE",
+      "friendly_label": "Ensoniq VPC VPC-101",
+      "source_relative_path": "Ensoniq/VPC/VPC-101.HFE",
+      "size_bytes": 2049024,
+      "sha256": "ff3df1b13c8841ebc20ef6e65e1c4efead9a092667087015dddc0036272cd341"
+    },
+    {
+      "slot": 145,
+      "indexed_filename": "0145_Ensoniq_VPC_VPC-102.HFE",
+      "friendly_label": "Ensoniq VPC VPC-102",
+      "source_relative_path": "Ensoniq/VPC/VPC-102.HFE",
+      "size_bytes": 2049024,
+      "sha256": "130d9a84ec1210348a2cb712d0ca5646b7f5d77610bb2fad1b41a3c80c93168d"
+    },
+    {
+      "slot": 146,
+      "indexed_filename": "0146_Ensoniq_VPC_VPC-103.HFE",
+      "friendly_label": "Ensoniq VPC VPC-103",
+      "source_relative_path": "Ensoniq/VPC/VPC-103.HFE",
+      "size_bytes": 2049024,
+      "sha256": "e4546fe1820ea41aa5f9dc4720109144c6f0711a4aa53aa1281266f63a7c09ef"
+    },
+    {
+      "slot": 147,
+      "indexed_filename": "0147_Ensoniq_VPC_VPC-104.HFE",
+      "friendly_label": "Ensoniq VPC VPC-104",
+      "source_relative_path": "Ensoniq/VPC/VPC-104.HFE",
+      "size_bytes": 2049024,
+      "sha256": "6855585b6276de3ea8adfefd9e4aa6d3078115a49b9b09e8cf8ef66acadf8b33"
+    },
+    {
+      "slot": 148,
+      "indexed_filename": "0148_Ensoniq_VPC_VPC-105.HFE",
+      "friendly_label": "Ensoniq VPC VPC-105",
+      "source_relative_path": "Ensoniq/VPC/VPC-105.HFE",
+      "size_bytes": 2049024,
+      "sha256": "661a50fa97d84fd8cc685098d6bb16816a55397b8dee22e637121f05563af197"
+    },
+    {
+      "slot": 149,
+      "indexed_filename": "0149_Ensoniq_VSD_VSD1000A.HFE",
+      "friendly_label": "Ensoniq VSD VSD1000A",
+      "source_relative_path": "Ensoniq/VSD/VSD1000A.HFE",
+      "size_bytes": 2049024,
+      "sha256": "a930a0c456a6ee2bf59ada04db44726e35ac30a41740101f0c01cf257d5a7f3f"
+    },
+    {
+      "slot": 150,
+      "indexed_filename": "0150_Ensoniq_VSD_VSD1000B.HFE",
+      "friendly_label": "Ensoniq VSD VSD1000B",
+      "source_relative_path": "Ensoniq/VSD/VSD1000B.HFE",
+      "size_bytes": 2049024,
+      "sha256": "132d7e4249d8c6c294576c59154baa5ead4b63908d4017c2e1f4eaf8718b362c"
+    },
+    {
+      "slot": 151,
+      "indexed_filename": "0151_Ensoniq_VSD_VSD1000C.HFE",
+      "friendly_label": "Ensoniq VSD VSD1000C",
+      "source_relative_path": "Ensoniq/VSD/VSD1000C.HFE",
+      "size_bytes": 2049024,
+      "sha256": "0f89282478ee51d9fcff6e18648032a01d11942050dadc6d78f7a2f47e74cc0f"
+    },
+    {
+      "slot": 152,
+      "indexed_filename": "0152_Ensoniq_VSD_VSD1000D.HFE",
+      "friendly_label": "Ensoniq VSD VSD1000D",
+      "source_relative_path": "Ensoniq/VSD/VSD1000D.HFE",
+      "size_bytes": 2049024,
+      "sha256": "4b6c35c86e9c38a8b27f7c452f4789f1a27d18479277a99c7ca7682e677bc093"
+    },
+    {
+      "slot": 153,
+      "indexed_filename": "0153_Ensoniq_VSD_VSDBONUS.HFE",
+      "friendly_label": "Ensoniq VSD VSDBONUS",
+      "source_relative_path": "Ensoniq/VSD/VSDBONUS.HFE",
+      "size_bytes": 2049024,
+      "sha256": "ec863ddcaa3a52b7d8b3a2eeb09fb604afef914eb0635ecd7f58c2118a79e74d"
+    },
+    {
+      "slot": 154,
+      "indexed_filename": "0154_Blank_001.HFE",
+      "friendly_label": "Blank 01 (template)",
+      "source_relative_path": "Blanks/Blank001.HFE",
+      "size_bytes": 2049024,
+      "sha256": "37dc097473dc192c5732e6058579cd413e34d8e45eb61ac9161b05111f140a18"
+    },
+    {
+      "slot": 155,
+      "indexed_filename": "0155_Blank_002.HFE",
+      "friendly_label": "Blank 02 (template)",
+      "source_relative_path": "Blanks/Blank002.HFE",
+      "size_bytes": 2049024,
+      "sha256": "296a2d15d25999b9014518637c2db80dc04126a257fa05060242501a759df701"
+    },
+    {
+      "slot": 156,
+      "indexed_filename": "0156_Blank_003.HFE",
+      "friendly_label": "Blank 03 (template)",
+      "source_relative_path": "Blanks/Blank003.HFE",
+      "size_bytes": 2049024,
+      "sha256": "673e85bd9b5267bdbae8802f89a132d3fb0ce59bbfe1dc6d59f24d3b2e200c41"
+    },
+    {
+      "slot": 157,
+      "indexed_filename": "0157_Blank_004.HFE",
+      "friendly_label": "Blank 04 (template)",
+      "source_relative_path": "Blanks/Blank004.HFE",
+      "size_bytes": 2049024,
+      "sha256": "673e85bd9b5267bdbae8802f89a132d3fb0ce59bbfe1dc6d59f24d3b2e200c41"
+    },
+    {
+      "slot": 158,
+      "indexed_filename": "0158_Blank_005.HFE",
+      "friendly_label": "Blank 05 (template)",
+      "source_relative_path": "Blanks/Blank005.HFE",
+      "size_bytes": 2049024,
+      "sha256": "673e85bd9b5267bdbae8802f89a132d3fb0ce59bbfe1dc6d59f24d3b2e200c41"
+    },
+    {
+      "slot": 159,
+      "indexed_filename": "0159_Blank_006.HFE",
+      "friendly_label": "Blank 06 (template)",
+      "source_relative_path": "Blanks/Blank006.HFE",
+      "size_bytes": 2049024,
+      "sha256": "673e85bd9b5267bdbae8802f89a132d3fb0ce59bbfe1dc6d59f24d3b2e200c41"
+    },
+    {
+      "slot": 160,
+      "indexed_filename": "0160_Blank_007.HFE",
+      "friendly_label": "Blank 07 (template)",
+      "source_relative_path": "Blanks/Blank007.HFE",
+      "size_bytes": 2049024,
+      "sha256": "673e85bd9b5267bdbae8802f89a132d3fb0ce59bbfe1dc6d59f24d3b2e200c41"
+    },
+    {
+      "slot": 161,
+      "indexed_filename": "0161_Blank_008.HFE",
+      "friendly_label": "Blank 08 (template)",
+      "source_relative_path": "Blanks/Blank008.HFE",
+      "size_bytes": 2049024,
+      "sha256": "673e85bd9b5267bdbae8802f89a132d3fb0ce59bbfe1dc6d59f24d3b2e200c41"
+    },
+    {
+      "slot": 162,
+      "indexed_filename": "0162_Blank_009.HFE",
+      "friendly_label": "Blank 09 (template)",
+      "source_relative_path": "Blanks/Blank009.HFE",
+      "size_bytes": 2049024,
+      "sha256": "673e85bd9b5267bdbae8802f89a132d3fb0ce59bbfe1dc6d59f24d3b2e200c41"
+    },
+    {
+      "slot": 163,
+      "indexed_filename": "0163_Blank_010.HFE",
+      "friendly_label": "Blank 10 (template)",
+      "source_relative_path": "Blanks/Blank010.HFE",
+      "size_bytes": 2049024,
+      "sha256": "673e85bd9b5267bdbae8802f89a132d3fb0ce59bbfe1dc6d59f24d3b2e200c41"
+    }
+  ],
+  "skipped_duplicates": [],
+  "blanks_omitted_from_backup": [
+    "Blanks/Blank011.HFE",
+    "Blanks/Blank012.HFE",
+    "Blanks/Blank013.HFE",
+    "Blanks/Blank014.HFE",
+    "Blanks/Blank015.HFE",
+    "Blanks/Blank016.HFE",
+    "Blanks/Blank017.HFE",
+    "Blanks/Blank018.HFE",
+    "Blanks/Blank019.HFE",
+    "Blanks/Blank020.HFE",
+    "Blanks/Blank021.HFE",
+    "Blanks/Blank022.HFE",
+    "Blanks/Blank023.HFE",
+    "Blanks/Blank024.HFE",
+    "Blanks/Blank025.HFE",
+    "Blanks/Blank026.HFE",
+    "Blanks/Blank027.HFE",
+    "Blanks/Blank028.HFE",
+    "Blanks/Blank029.HFE",
+    "Blanks/Blank030.HFE",
+    "Blanks/Blank031.HFE",
+    "Blanks/Blank032.HFE",
+    "Blanks/Blank033.HFE",
+    "Blanks/Blank034.HFE",
+    "Blanks/Blank035.HFE",
+    "Blanks/Blank036.HFE",
+    "Blanks/Blank037.HFE",
+    "Blanks/Blank038.HFE",
+    "Blanks/Blank039.HFE",
+    "Blanks/Blank040.HFE",
+    "Blanks/Blank041.HFE",
+    "Blanks/Blank042.HFE",
+    "Blanks/Blank043.HFE",
+    "Blanks/Blank044.HFE",
+    "Blanks/Blank045.HFE",
+    "Blanks/Blank046.HFE",
+    "Blanks/Blank047.HFE",
+    "Blanks/Blank048.HFE",
+    "Blanks/Blank049.HFE",
+    "Blanks/Blank050.HFE",
+    "Blanks/Blank051.HFE",
+    "Blanks/Blank052.HFE",
+    "Blanks/Blank053.HFE",
+    "Blanks/Blank054.HFE",
+    "Blanks/Blank055.HFE",
+    "Blanks/Blank056.HFE",
+    "Blanks/Blank057.HFE",
+    "Blanks/Blank058.HFE",
+    "Blanks/Blank059.HFE",
+    "Blanks/Blank060.HFE",
+    "Blanks/Blank061.HFE",
+    "Blanks/Blank062.HFE",
+    "Blanks/Blank063.HFE",
+    "Blanks/Blank064.HFE",
+    "Blanks/Blank065.HFE",
+    "Blanks/Blank066.HFE",
+    "Blanks/Blank067.HFE",
+    "Blanks/Blank068.HFE",
+    "Blanks/Blank069.HFE",
+    "Blanks/Blank070.HFE",
+    "Blanks/Blank071.HFE",
+    "Blanks/Blank072.HFE",
+    "Blanks/Blank073.HFE",
+    "Blanks/Blank074.HFE",
+    "Blanks/Blank075.HFE",
+    "Blanks/Blank076.HFE",
+    "Blanks/Blank077.HFE",
+    "Blanks/Blank078.HFE",
+    "Blanks/Blank079.HFE",
+    "Blanks/Blank080.HFE",
+    "Blanks/Blank081.HFE",
+    "Blanks/Blank082.HFE",
+    "Blanks/Blank083.HFE",
+    "Blanks/Blank084.HFE",
+    "Blanks/Blank085.HFE",
+    "Blanks/Blank086.HFE",
+    "Blanks/Blank087.HFE",
+    "Blanks/Blank088.HFE",
+    "Blanks/Blank089.HFE",
+    "Blanks/Blank090.HFE",
+    "Blanks/Blank091.HFE",
+    "Blanks/Blank092.HFE",
+    "Blanks/Blank093.HFE",
+    "Blanks/Blank094.HFE",
+    "Blanks/Blank095.HFE",
+    "Blanks/Blank096.HFE",
+    "Blanks/Blank097.HFE",
+    "Blanks/Blank098.HFE",
+    "Blanks/Blank099.HFE",
+    "Blanks/Blank100.HFE",
+    "Blanks/Blank101.HFE",
+    "Blanks/Blank102.HFE",
+    "Blanks/Blank103.HFE",
+    "Blanks/Blank104.HFE",
+    "Blanks/Blank105.HFE",
+    "Blanks/Blank106.HFE",
+    "Blanks/Blank107.HFE",
+    "Blanks/Blank108.HFE",
+    "Blanks/Blank109.HFE",
+    "Blanks/Blank110.HFE",
+    "Blanks/Blank111.HFE",
+    "Blanks/Blank112.HFE",
+    "Blanks/Blank113.HFE",
+    "Blanks/Blank114.HFE",
+    "Blanks/Blank115.HFE",
+    "Blanks/Blank116.HFE",
+    "Blanks/Blank117.HFE",
+    "Blanks/Blank118.HFE",
+    "Blanks/Blank119.HFE",
+    "Blanks/Blank120.HFE",
+    "Blanks/Blank121.HFE",
+    "Blanks/Blank122.HFE",
+    "Blanks/Blank123.HFE",
+    "Blanks/Blank124.HFE",
+    "Blanks/Blank125.HFE",
+    "Blanks/Blank126.HFE",
+    "Blanks/Blank127.HFE",
+    "Blanks/Blank128.HFE",
+    "Blanks/Blank129.HFE",
+    "Blanks/Blank130.HFE",
+    "Blanks/Blank131.HFE",
+    "Blanks/Blank132.HFE",
+    "Blanks/Blank133.HFE",
+    "Blanks/Blank134.HFE",
+    "Blanks/Blank135.HFE",
+    "Blanks/Blank136.HFE",
+    "Blanks/Blank137.HFE",
+    "Blanks/Blank138.HFE",
+    "Blanks/Blank139.HFE",
+    "Blanks/Blank140.HFE",
+    "Blanks/Blank141.HFE",
+    "Blanks/Blank142.HFE",
+    "Blanks/Blank143.HFE",
+    "Blanks/Blank144.HFE",
+    "Blanks/Blank145.HFE",
+    "Blanks/Blank146.HFE",
+    "Blanks/Blank147.HFE",
+    "Blanks/Blank148.HFE",
+    "Blanks/Blank149.HFE",
+    "Blanks/Blank150.HFE",
+    "Blanks/Blank151.HFE",
+    "Blanks/Blank152.HFE",
+    "Blanks/Blank153.HFE",
+    "Blanks/Blank154.HFE",
+    "Blanks/Blank155.HFE",
+    "Blanks/Blank156.HFE",
+    "Blanks/Blank157.HFE",
+    "Blanks/Blank158.HFE",
+    "Blanks/Blank159.HFE",
+    "Blanks/Blank160.HFE",
+    "Blanks/Blank161.HFE",
+    "Blanks/Blank162.HFE",
+    "Blanks/Blank163.HFE",
+    "Blanks/Blank164.HFE",
+    "Blanks/Blank165.HFE",
+    "Blanks/Blank166.HFE",
+    "Blanks/Blank167.HFE",
+    "Blanks/Blank168.HFE",
+    "Blanks/Blank169.HFE",
+    "Blanks/Blank170.HFE",
+    "Blanks/Blank171.HFE",
+    "Blanks/Blank172.HFE",
+    "Blanks/Blank173.HFE",
+    "Blanks/Blank174.HFE",
+    "Blanks/Blank175.HFE",
+    "Blanks/Blank176.HFE",
+    "Blanks/Blank177.HFE",
+    "Blanks/Blank178.HFE",
+    "Blanks/Blank179.HFE",
+    "Blanks/Blank180.HFE",
+    "Blanks/Blank181.HFE",
+    "Blanks/Blank182.HFE",
+    "Blanks/Blank183.HFE",
+    "Blanks/Blank184.HFE",
+    "Blanks/Blank185.HFE",
+    "Blanks/Blank186.HFE",
+    "Blanks/Blank187.HFE",
+    "Blanks/Blank188.HFE",
+    "Blanks/Blank189.HFE",
+    "Blanks/Blank190.HFE",
+    "Blanks/Blank191.HFE",
+    "Blanks/Blank192.HFE",
+    "Blanks/Blank193.HFE",
+    "Blanks/Blank194.HFE",
+    "Blanks/Blank195.HFE",
+    "Blanks/Blank196.HFE",
+    "Blanks/Blank197.HFE",
+    "Blanks/Blank198.HFE",
+    "Blanks/Blank199.HFE",
+    "Blanks/Blank200.HFE",
+    "Blanks/Blank201.HFE",
+    "Blanks/Blank202.HFE",
+    "Blanks/Blank203.HFE",
+    "Blanks/Blank204.HFE",
+    "Blanks/Blank205.HFE",
+    "Blanks/Blank206.HFE",
+    "Blanks/Blank207.HFE",
+    "Blanks/Blank208.HFE",
+    "Blanks/Blank209.HFE",
+    "Blanks/Blank210.HFE",
+    "Blanks/Blank211.HFE",
+    "Blanks/Blank212.HFE",
+    "Blanks/Blank213.HFE",
+    "Blanks/Blank214.HFE",
+    "Blanks/Blank215.HFE",
+    "Blanks/Blank216.HFE",
+    "Blanks/Blank217.HFE",
+    "Blanks/Blank218.HFE",
+    "Blanks/Blank219.HFE",
+    "Blanks/Blank220.HFE",
+    "Blanks/Blank221.HFE",
+    "Blanks/Blank222.HFE",
+    "Blanks/Blank223.HFE",
+    "Blanks/Blank224.HFE",
+    "Blanks/Blank225.HFE",
+    "Blanks/Blank226.HFE",
+    "Blanks/Blank227.HFE",
+    "Blanks/Blank228.HFE",
+    "Blanks/Blank229.HFE",
+    "Blanks/Blank230.HFE",
+    "Blanks/Blank231.HFE",
+    "Blanks/Blank232.HFE",
+    "Blanks/Blank233.HFE",
+    "Blanks/Blank234.HFE",
+    "Blanks/Blank235.HFE",
+    "Blanks/Blank236.HFE",
+    "Blanks/Blank237.HFE",
+    "Blanks/Blank238.HFE",
+    "Blanks/Blank239.HFE",
+    "Blanks/Blank240.HFE"
+  ]
+}

@@ -11,6 +11,9 @@ let package = Package(
         .executableTarget(
             name: "VFXCtrl",
             path: "src",
+            resources: [
+                .copy("Resources/VFX_SD_GOTEK_CATALOG.csv"),
+            ],
             linkerSettings: [.linkedFramework("CoreMIDI")]
         ),
         .testTarget(

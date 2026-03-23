@@ -12,7 +12,7 @@
 | **Physical / FlashFloppy** | Images often **HFE** (or indexed `.img`); shallow USB folders; short volume labels | Docs only (`VFX_SD_Context.md`); **no image I/O in code** |
 | **Musical workflow** | User copies **files** the synth can load (via sequencer/OS) or uses **MIDI SysEx** from a host | **SysEx import/export** is the supported bridge |
 | **Bank semantics** | VFX-SD **60 programs per internal bank**; presets/banks per manual | **Partial:** `VFXBankLimits`, export “first 60”, optional `bank.json`; live sets not hard-capped at 60 in UI |
-| **Naming** | OLED ~**16 characters**; avoid huge flat lists | **Optional** ≤16 stems, numeric prefix, collision-safe names; full names still supported |
+| **Naming** | FlashFloppy **3.44** rack uses **empty** `indexed-prefix` → stick files `0000_*` … `0163_*` (no `DSKA`); OLED shows full name | **Optional** `DSKA` prefix for `.syx` USB export; disk rack: `docs/GOTEK_INDEXED_RACK.md` |
 
 So: the app is **compatible with a Gotek-assisted workflow** only in the sense of **producing/consuming `.syx` (raw SysEx) files** that you place on USB or send over MIDI. It is **not** yet compatible with **native floppy image formats** (HFE/RAW Ensoniq layout) for read/write.
 
@@ -27,6 +27,7 @@ So: the app is **compatible with a Gotek-assisted workflow** only in the sense o
 | `docs/CURSOR_CONTEXT.md` | Librarian must import `.syx`, bulk dumps, preserve metadata, tags, **duplicate detection**, **source disk metadata** |
 | `docs/VFX_PROJECT_SPEC.md` | Export for Gotek workflows; **no arbitrary floppy image writes** |
 | `docs/VFX_SD_GOTEK_CATALOG.csv` | Catalog of backup `.img` sources; **reference only**, not parsed by app |
+| `docs/GOTEK_INDEXED_RACK.md` | FlashFloppy **indexed** HFE/IMG rack: `DSKA####_Suffix.EXT`, `IMG.CFG` scope, deployment |
 | `docs/DEVELOPMENT_PLAN.md` / `ROADMAP.md` | Gotek/export/disk items tracked at high level |
 | `TODO.md` | 5.5 export marked done; 5.6 disk extractor “when format confirmed” |
 
@@ -69,6 +70,15 @@ So: the app is **compatible with a Gotek-assisted workflow** only in the sense o
 ### 3.5 Tests
 
 - `PatchParserTests`, `CompareEngineTests`, `MacroEngineTests`, `PatchProvenanceTests`, `ExportNamingTests` (includes **`bank.json`** decode) — **no** UI test for live-set cap-at-60 in the sidebar.
+- `FlashFloppyReleaseServiceTests`, `GotekDiskCatalogTests` — GitHub release JSON parsing + CSV catalog parsing.
+
+### 3.6 Floppy Emulator (code)
+
+- **`RootContainerView` / `AppWorkspace`:** segmented control — Synth vs Floppy Emulator.
+- **`FloppyEmulatorView`:** export current patch / live set, SysEx import menu, USB tips, disk catalog table, embeds firmware wizard.
+- **`FlashFloppyReleaseService`:** GitHub `releases/latest`, download `flashfloppy-*.zip`, `/usr/bin/unzip` extract, classify `.upd` vs `alt/bootloader/`.
+- **`UpdStagingService`:** list/remove root `*.upd`, copy selected files to user-chosen USB root.
+- **`FirmwareUpdateWizardView`:** guided flow + wiki links + optional DFU command copy.
 
 ---
 
@@ -88,6 +98,11 @@ So: the app is **compatible with a Gotek-assisted workflow** only in the sense o
 | Bulk multi-file import | **Yes** (multi-select + folder, duplicate skip + summary) |
 | Align export folder layout with `VFX_SD_Context.md` | **Partial** (optional category subfolders) |
 | `.syx` UTType in import/export panels | **Yes** (`VFXSysExTypes` + `.data` fallback) |
+| **Floppy Emulator** workspace (Synth vs Gotek tab) | **Yes** — `RootContainerView` + `FloppyEmulatorView` |
+| Library export / import from Floppy tab | **Yes** (same `ExportHelper` / `ExportLiveSetSheet` / import flows as Library) |
+| FlashFloppy release fetch + ZIP unpack + `.upd` staging to USB | **Yes** — `FlashFloppyReleaseService`, `UpdStagingService`, `FirmwareUpdateWizardView` (see FlashFloppy wiki for hardware steps) |
+| DFU / initial programming in-app | **Partial** — advanced section: copy-paste `dfu-util` example + wiki links (no bundled flasher) |
+| Disk catalog browser (reference CSV) | **Yes** — bundled `VFX_SD_GOTEK_CATALOG.csv` (`src/Resources/` mirror for SPM; canonical copy in `docs/`) |
 
 ---
 

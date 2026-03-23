@@ -8,7 +8,7 @@ struct VFXCtrlApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            RootContainerView()
                 .environmentObject(editorState)
                 .environmentObject(midi)
                 .environmentObject(library)

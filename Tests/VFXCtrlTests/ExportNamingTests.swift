@@ -26,6 +26,55 @@ final class ExportNamingTests: XCTestCase {
         XCTAssertEqual(ExportNaming.orderPrefix(for: 99), "100_")
     }
 
+    func testIndexedSlotBase_withSuffix() {
+        let p = VFXPatch(name: "Lead One", category: "Lead", rawSysEx: Data([1]))
+        let opts = ExportNaming.Options(
+            maxBaseNameLength: 8,
+            numericPrefix: false,
+            categorySubfolders: false,
+            flashFloppyIndexedMode: true,
+            indexedPrefix: "DSKA"
+        )
+        XCTAssertEqual(ExportNaming.exportStem(patch: p, index: 0, options: opts), "DSKA0000_Lead One")
+        XCTAssertEqual(ExportNaming.exportStem(patch: p, index: 42, options: opts), "DSKA0042_Lead One")
+    }
+
+    func testIndexedSlotBase_prefixNormalized() {
+        XCTAssertEqual(ExportNaming.normalizedIndexedPrefix(""), "")
+        XCTAssertEqual(ExportNaming.normalizedIndexedPrefix("ab"), "AB")
+        XCTAssertEqual(ExportNaming.normalizedIndexedPrefix("toolongprefixxx"), "TOOLONG")
+    }
+
+    func testIndexedSlotBase_emptyPrefix_numericFilenames() {
+        XCTAssertEqual(
+            ExportNaming.indexedSlotBase(prefix: "", slotIndex: 0, nameSuffix: "Lead"),
+            "0000_Lead"
+        )
+    }
+
+    func testWritePatches_indexed_overwritesSameSlot() throws {
+        let dir = FileManager.default.temporaryDirectory
+            .appendingPathComponent("VFXIdx-\(UUID().uuidString)", isDirectory: true)
+        try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: dir) }
+
+        let raw = Data([0xF0, 0x0F, 0x05, 0xF7])
+        let a = VFXPatch(name: "Same", category: "Lead", rawSysEx: raw)
+        let opts = ExportNaming.Options(
+            maxBaseNameLength: nil,
+            numericPrefix: false,
+            categorySubfolders: true,
+            flashFloppyIndexedMode: true,
+            indexedPrefix: "DSKA"
+        )
+        _ = ExportHelper.writePatches([a], to: dir, options: opts, manifest: nil)
+        _ = ExportHelper.writePatches([a], to: dir, options: opts, manifest: nil)
+        let files = try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil)
+        let syx = files.filter { $0.pathExtension.lowercased() == "syx" }
+        XCTAssertEqual(syx.count, 1)
+        XCTAssertTrue(syx[0].lastPathComponent.hasPrefix("DSKA0000"))
+    }
+
     func testUniqueSyxURL_avoidsCollision() throws {
         let dir = FileManager.default.temporaryDirectory
             .appendingPathComponent("VFXCtrlExportTest-\(UUID().uuidString)", isDirectory: true)

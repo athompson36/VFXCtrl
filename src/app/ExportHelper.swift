@@ -68,7 +68,9 @@ enum ExportHelper {
         for patch in patches {
             guard let data = patch.rawSysEx else { continue }
             let baseDir: URL
-            if options.categorySubfolders {
+            if options.flashFloppyIndexedMode {
+                baseDir = dir
+            } else if options.categorySubfolders {
                 let sub = ExportNaming.categoryFolder(for: patch.category)
                 baseDir = dir.appendingPathComponent(sub, isDirectory: true)
                 try? FileManager.default.createDirectory(at: baseDir, withIntermediateDirectories: true)
@@ -76,7 +78,15 @@ enum ExportHelper {
                 baseDir = dir
             }
             let stem = ExportNaming.exportStem(patch: patch, index: writeOrdinal, options: options)
-            let url = ExportNaming.uniqueSyxURL(directory: baseDir, stem: stem)
+            let url: URL
+            if options.flashFloppyIndexedMode {
+                url = baseDir.appendingPathComponent(stem).appendingPathExtension("syx")
+                if FileManager.default.fileExists(atPath: url.path) {
+                    try? FileManager.default.removeItem(at: url)
+                }
+            } else {
+                url = ExportNaming.uniqueSyxURL(directory: baseDir, stem: stem)
+            }
             do {
                 try data.write(to: url)
                 count += 1

@@ -6,10 +6,14 @@ enum ExportNaming {
     struct Options: Equatable {
         /// Truncate patch name stem to this length (excluding `.syx`). `nil` = no limit.
         var maxBaseNameLength: Int?
-        /// Prefix `01_`, `02_`, … by export order (2-digit, up to 99).
+        /// Prefix `01_`, `02_`, … by export order (2-digit, up to 99). Ignored when `flashFloppyIndexedMode` is true.
         var numericPrefix: Bool = false
-        /// Place files under `00_FACTORY`, `03_PAD`, … based on `VFXPatch.category`.
+        /// Place files under `00_FACTORY`, `03_PAD`, … based on `VFXPatch.category`. Ignored when `flashFloppyIndexedMode` is true (indexed layout is flat root).
         var categorySubfolders: Bool = false
+        /// [FlashFloppy indexed navigation](https://github.com/keirf/FlashFloppy/wiki/Image-Navigation-Modes): filenames `PREFIX0000_suffix.syx`, `PREFIX0001_…`, …
+        var flashFloppyIndexedMode: Bool = false
+        /// `indexed-prefix` in FF.CFG (max 7 characters, letters/digits only after normalization).
+        var indexedPrefix: String = "DSKA"
     }
 
     /// Map editor/library category strings to shallow Gotek-style folders.
@@ -33,12 +37,20 @@ enum ExportNaming {
         return collapsed.isEmpty ? "patch" : collapsed
     }
 
-    /// Final filename stem (no extension): optional `01_` prefix + sanitized/truncated name.
+    /// Final filename stem (no extension): FlashFloppy indexed slot, or optional `01_` prefix + name, or plain name.
     static func exportStem(
         patch: VFXPatch,
         index: Int,
         options: Options
     ) -> String {
+        if options.flashFloppyIndexedMode {
+            var namePart = sanitizeFilenameStem(patch.name)
+            if let maxL = options.maxBaseNameLength, maxL > 0 {
+                namePart = String(namePart.prefix(maxL))
+            }
+            let suffix = namePart.isEmpty ? nil : namePart
+            return indexedSlotBase(prefix: options.indexedPrefix, slotIndex: index, nameSuffix: suffix)
+        }
         var stem = sanitizeFilenameStem(patch.name)
         if let maxL = options.maxBaseNameLength, maxL > 0 {
             stem = String(stem.prefix(maxL))
@@ -48,6 +60,25 @@ enum ExportNaming {
             return orderPrefix(for: index) + stem
         }
         return stem
+    }
+
+    /// Normalizes FlashFloppy `indexed-prefix`: A–Z / 0–9 only, max 7 characters. Empty string is allowed (numeric slot files `0000_*`).
+    static func normalizedIndexedPrefix(_ raw: String) -> String {
+        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty { return "" }
+        let upper = trimmed.uppercased().filter { $0.isLetter || $0.isNumber }
+        return String(upper.prefix(7))
+    }
+
+    /// Indexed basename without extension: `DSKA0000_patch`, or `0000_patch` when prefix is empty (FlashFloppy 3.44 + VFX rack).
+    static func indexedSlotBase(prefix: String, slotIndex: Int, nameSuffix: String?) -> String {
+        let p = normalizedIndexedPrefix(prefix)
+        let idx = max(0, min(slotIndex, 9999))
+        let num = String(format: "%04d", idx)
+        if let suf = nameSuffix, !suf.isEmpty {
+            return "\(p)\(num)_\(suf)"
+        }
+        return "\(p)\(num)"
     }
 
     /// `01_` … `99_`, then `100_` … (3-digit) for large live sets.
